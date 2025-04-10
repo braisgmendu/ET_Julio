@@ -1,220 +1,132 @@
-const def_html_analysis_preparation = {
-    ADD: {
-        name_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Nombre de Preparación de Análisis",
-            atributos: {
-                type: "text",
-                id: "name_analysis_preparation",
-                name: "name_analysis_preparation",
-                placeholder: "Ingrese el nombre",
+const estructura_analysis_preparation = {
+    attributes_list: ['id_analysis_preparatio', 'name_analysis_preparation', 'description_analysis_preparation', 'bib_analysis_preparation', 'file_analysis_preparation'],
+    columnas_visibles_tabla : ['id_analysis_preparatio', 'name_analysis_preparation', 'bib_analysis_preparation'],
+    columnas_modificadas_tabla: ['file_analysis_preparation'],
+    attributes: {
+        id_analysis_preparatio: {
+            html: {
+                tag: 'input',
+                type: 'text',
             },
-            error: "error_name_analysis_preparation",
-            div_error: "div_error_name_analysis_preparation"
-        },
-        description_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Descripción de Preparación de Análisis",
-            atributos: {
-                type : "text",
-                id: "description_analysis_preparation",
-                name: "description_analysis_preparation",
-                placeholder: "Ingrese la descripción",
-            },
-            error: "error_description_analysis_preparation",
-            div_error: "div_error_description_analysis_preparation"
-        },
-        bib_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Referencia Bibliográfica",
-            atributos: {
-                type: "text",
-                id: "bib_analysis_preparation",
-                name: "bib_analysis_preparation",
-                placeholder: "Ingrese la referencia bibliográfica"
-            },
-            error: "error_bib_analysis_preparation",
-            div_error: "div_error_bib_analysis_preparation"
-        },
-        
-        file_analysis_preparation: {
-                tipo: "input",
-                etiqueta: "Archivo Actual", // Cambiar etiqueta para mayor claridad
-                atributos: {
-                    type: "text", // Cambiar a tipo texto porque no es editable en DELETE
-                    id: "file_analysis_preparation",
-                    name: "file_analysis_preparation",
-                    placeholder: "Introduce el nombre del fichero",              
-                },
-                error: "error_file_analysis_preparation",
-                div_error: "div_error_file_analysis_preparation",
-                link: {
-                    id: "link_file_analysis_preparation",
-                    href: "http://193.147.87.202/ET2/filesuploaded/files_file_analysis_preparation/",
-                    src: "./iconos/FILE.png",
-                },
-        },
-        nuevo_file_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Nuevo archivo",
-            atributos: {
-                type: "file",
-                id: "nuevo_file_analysis_preparation",
-                name: "nuevo_file_analysis_preparation",
-                accept: ".pdf, .doc, .docx",
-            },
-            error: "error_nuevo_file_analysis_preparation",
-            div_error: "div_error_nuevo_file_analysis_preparation"
-        },
-    },
-    EDIT: {
-        name_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Nombre de Preparación de Análisis",
-            atributos: {
-                type: "text",
-                id: "name_analysis_preparation",
-                name: "name_analysis_preparation",
-                placeholder: "Ingrese el nombre",
-            },
-            error: "error_name_analysis_preparation",
-            div_error: "div_error_name_analysis_preparation"
-        },
-        description_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Descripción de Preparación de Análisis",
-            atributos: {
-                type : "text",
-                id: "description_analysis_preparation",
-                name: "description_analysis_preparation",
-                placeholder: "Ingrese la descripción",
-            },
-            error: "error_description_analysis_preparation",
-            div_error: "div_error_description_analysis_preparation"
-        },
-        bib_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Referencia Bibliográfica",
-            atributos: {
-                type: "text",
-                id: "bib_analysis_preparation",
-                name: "bib_analysis_preparation",
-                placeholder: "Ingrese la referencia bibliográfica"
-            },
-            error: "error_bib_analysis_preparation",
-            div_error: "div_error_bib_analysis_preparation"
-        },
-        
-        file_analysis_preparation: {
-                tipo: "input",
-                etiqueta: "Archivo Actual", // Cambiar etiqueta para mayor claridad
-                atributos: {
-                    type: "text", // Cambiar a tipo texto porque no es editable en DELETE
-                    id: "file_analysis_preparation",
-                    name: "file_analysis_preparation",
-                    placeholder: "Introduce el nombre del fichero",              
-                },
-                error: "error_file_analysis_preparation",
-                div_error: "div_error_file_analysis_preparation",
-                link: {
-                    id: "link_file_analysis_preparation",
-                    href: "http://193.147.87.202/ET2/filesuploaded/files_file_analysis_preparation/",
-                    src: "./iconos/FILE.png",
-                },
-        },
-        nuevo_file_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Nuevo archivo",
-            atributos: {
-                type: "file",
-                id: "nuevo_file_analysis_preparation",
-                name: "nuevo_file_analysis_preparation",
-                accept: ".pdf, .doc, .docx",
-            },
-            error: "error_nuevo_file_analysis_preparation",
-            div_error: "div_error_nuevo_file_analysis_preparation"
-        },
-    },
-    SEARCH: {
-        id_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "ID de Preparación de Análisis",
-            atributos: {
-                type: "text",
-                id: "id_analysis_preparation",
-                name: "id_analysis_preparation",
-                placeholder: "Ingrese el ID de Preparación de Análisis",
-               
-            },
-            error: "error_id_analysis_preparation",
-            div_error: "div_error_id_analysis_preparation"
+            is_pk: true,
+            is_not_null: true,
+            is_autoincrement: true,
+            //component_visible_size: 9,
+            validation_rules: {
+                SEARCH:{
+				    max_size: [9,'dni_max_size_KO'],
+                    reg_exp :  ['^[0-9]$+', 'id_analysis_preparation_format_KO'],
+                }
+            }
         },
         name_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Nombre de Preparación de Análisis",
-            atributos: {
-                type: "text",
-                id: "name_analysis_preparation",
-                name: "name_analysis_preparation",
-                placeholder: "Ingrese el nombre",
+            html: {
+                tag: 'input',
+                type: 'text',
             },
-            error: "error_name_analysis_preparation",
-            div_error: "div_error_name_analysis_preparation"
+            is_not_null: true,
+            validation_rules: {
+                ADD:{
+                    min_size : [8, 'name_analysis_preparation_min_size_KO'],
+				    max_size: [100,'name_analysis_preparation_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]+$', 'name_analysis_preparation_format_KO'],
+                },
+                EDIT:{
+                    min_size : [8, 'name_analysis_preparation_min_size_KO'],
+				    max_size: [100,'name_analysis_preparation_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]*$', 'name_analysis_preparation_format_KO'],
+                },
+                SEARCH:{
+				    max_size: [9,'name_analysis_preparation_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]*$', 'name_analysis_preparation_format_KO'],
+                }
+            }
         },
         description_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Descripción de Preparación de Análisis",
-            atributos: {
-                type : "text",
-                id: "description_analysis_preparation",
-                name: "description_analysis_preparation",
-                placeholder: "Ingrese la descripción",
+            html: {
+                tag: 'input',
+                type: 'text',
             },
-            error: "error_description_analysis_preparation",
-            div_error: "div_error_description_analysis_preparation"
+            is_not_null: true,
+            validation_rules: {
+                ADD:{
+                    min_size : [80, 'description_analysis_preparation_min_size_KO'],
+				    max_size: [5000,'description_analysis_preparation_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]+$', 'description_analysis_preparation_format_KO'],
+                },
+                EDIT:{
+                    min_size : [80, 'description_analysis_preparation_min_size_KO'],
+				    max_size: [5000,'description_analysis_preparation_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]*$', 'description_analysis_preparation_format_KO'],
+                },
+                SEARCH:{
+				    max_size: [5000,'description_analysis_preparation_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]*$', 'description_analysis_preparation_format_KO'],
+                }
+            }
         },
         bib_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Referencia Bibliográfica",
-            atributos: {
-                type: "text",
-                id: "bib_analysis_preparation",
-                name: "bib_analysis_preparation",
-                placeholder: "Ingrese la referencia bibliográfica"
+            html: {
+                tag: 'input',
+                type: 'text',
             },
-            error: "error_bib_analysis_preparation",
-            div_error: "div_error_bib_analysis_preparation"
+            is_not_null: true,
+            validation_rules: {
+                ADD:{
+                    min_size : [6, 'bib_analysis_preparation_min_size_KO'],
+				    max_size: [200,'bib_analysis_preparation_max_size_KO'],
+                    reg_exp : ['^[A-Za-zÀ-ÿñÑ\\s.,;:!¡¿?\"\'\\-]+$', 'bib_analysis_preparation_format_KO'],
+                },
+                EDIT:{
+                    min_size : [6, 'bib_analysis_preparation_min_size_KO'],
+				    max_size: [200,'bib_analysis_preparation_max_size_KO'],
+                    reg_exp : ['^[A-Za-zÀ-ÿñÑ\\s.,;:!¡¿?\"\'\\-]*$', 'bib_analysis_preparation_format_KO'],
+                },
+                SEARCH:{
+				    max_size: [200,'bib_analysis_preparation_max_size_KO'],
+                    reg_exp : ['^[A-Za-zÀ-ÿñÑ\\s.,;:!¡¿?\"\'\\-]*$', 'bib_analysis_preparation_format_KO'],
+                }
+            }
         },
-        
         file_analysis_preparation: {
-                tipo: "input",
-                etiqueta: "Archivo Actual", // Cambiar etiqueta para mayor claridad
-                atributos: {
-                    type: "text", // Cambiar a tipo texto porque no es editable en DELETE
-                    id: "file_analysis_preparation",
-                    name: "file_analysis_preparation",
-                    placeholder: "Introduce el nombre del fichero",              
-                },
-                error: "error_file_analysis_preparation",
-                div_error: "div_error_file_analysis_preparation",
-                link: {
-                    id: "link_file_analysis_preparation",
-                    href: "http://193.147.87.202/ET2/filesuploaded/files_file_analysis_preparation/",
-                    src: "./iconos/FILE.png",
-                },
+            html: {
+                tag: 'input',
+                type: 'file',
+            },
+            is_not_null: true,
+            validation_rules: {
+                SEARCH:{
+				    max_size: [100,'file_analysis_preparation_name_max_size_KO'],
+                    reg_exp : ['(^$)|(^[A-Za-z]*\.(pdf|doc|docx)$)', 'file_analysis_preparation_name_format_KO'],
+                }
+            }
         },
         nuevo_file_analysis_preparation: {
-            tipo: "input",
-            etiqueta: "Nuevo archivo",
-            atributos: {
-                type: "file",
-                id: "nuevo_file_analysis_preparation",
-                name: "nuevo_file_analysis_preparation",
-                accept: ".pdf, .doc, .docx",
+            html: {
+                tag: 'input',
+                type: 'text',
             },
-            error: "error_nuevo_file_analysis_preparation",
-            div_error: "div_error_nuevo_file_analysis_preparation"
-        },
+            is_not_null: true,
+            validation_rules: {
+                ADD:{
+                    min_size : [7, 'nuevo_file_analysis_preparation_name_min_size_KO'],
+				    max_size: [100,'nuevo_file_analysis_preparation_name_max_size_KO'],
+                    no_file: "nuevo_file_analysis_no_file_KO", // funcion atomica no existe fichero. no obligatorio segun accion
+                    file_type :[["application/pdf", "application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"],"nuevo_file_analysis_preparation_file_type_KO"], // funcion atomica tipo mime fichero. No obligatorio si no se comprueba tipo de fichero
+                    max_size_file: [ 2000000, "nuevo_file_analysis_preparation_max_size_file_KO"], // funcion atomica tamaño maximo fichero. No obligatorio si no se comprueba tamaño maximo fichero
+                    format_name_file: ["^[A-Za-z\.]+$","nuevo_file_analysis_preparation_name_format_KO"], // funcion atomica formato nombre fichero. No obligatorio sino se comprueba el formato del nombre y extension
 
-    }
-}
+                },
+                EDIT:{
+                    min_size : [7, 'nuevo_file_analysis_preparation_name_min_size_KO'],
+				    max_size: [100,'nuevo_file_analysis_preparation_name_max_size_KO'],
+                    no_file: "nuevo_file_analysis_no_file_KO", // funcion atomica no existe fichero. no obligatorio segun accion
+                    file_type :[["application/pdf", "application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"],"nuevo_file_analysis_preparation_file_type_KO"], // funcion atomica tipo mime fichero. No obligatorio si no se comprueba tipo de fichero
+                    max_size_file: [ 2000000, "nuevo_file_analysis_preparation_max_size_file_KO"], // funcion atomica tamaño maximo fichero. No obligatorio si no se comprueba tamaño maximo fichero
+                    format_name_file: ["^[A-Za-z\.]*$","nuevo_file_analysis_preparation_name_format_KO"], // funcion atomica formato nombre fichero. No obligatorio sino se comprueba el formato del nombre y extension
+                }
+            }
+        },
+    },
+
+};
