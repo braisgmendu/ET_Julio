@@ -246,18 +246,18 @@ const estructura_project= {
             is_not_null: true,
             validation_rules: {
                 ADD:{
-                    min_size : [16, 'id_sampling_methodology_min_size_KO'],
-				    max_size: [200,'bibref_characteristic_max_size_KO'],
-                    reg_exp : ['^[A-Za-zÀ-ÿñÑ\\s.,;:!¡¿?\"\'\\-]+$', 'bibref_characteristic_format_KO'],
+                    min_size : [1, 'id_sampling_methodology_min_size_KO'],
+				    max_size: [11,'id_sampling_methodology_max_size_KO'],
+                    reg_exp : ['^[0-9]+$', 'id_sampling_methodology_format_KO'],
                 },
                 EDIT:{
-                    min_size : [16, 'id_sampling_methodology_min_size_KO'],
-				    max_size: [200,'bibref_characteristic_max_size_KO'],
-                    reg_exp : ['^[A-Za-zÀ-ÿñÑ\\s.,;:!¡¿?\"\'\\-]*$', 'bibref_characteristic_format_KO'],
+                    min_size : [1, 'id_sampling_methodology_min_size_KO'],
+				    max_size: [11,'id_sampling_methodology_max_size_KO'],
+                    reg_exp : ['^[0-9]*$', 'id_sampling_methodology_format_KO'],
                 },
                 SEARCH:{
-				    max_size: [200,'bibref_characteristic_max_size_KO'],
-                    reg_exp : ['^[A-Za-zÀ-ÿñÑ\\s.,;:!¡¿?\"\'\\-]*$', 'bibref_characteristic_format_KO'],
+				    max_size: [11,'id_sampling_methodology_max_size_KO'],
+                    reg_exp : ['^[0-9]*$', 'id_sampling_methodology_format_KO'],
                 }
             }
         } 
