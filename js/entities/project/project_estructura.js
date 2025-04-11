@@ -1,4 +1,4 @@
-const estructura_analysis_preparation = {
+const estructura_project= {
     attributes_list: ['id_project', 'name_project', 'start_date_project', 'end_date_project', 'responsable_project', 'organization_project', 'description_project', 'file_project','nuevo_file_project', 'code_project', 'acronym_project','id_sampling_methodology'],
     columnas_visibles_tabla : ['id_project', 'name_project','start_date_project','end_date_project'],
     columnas_modificadas_tabla: ['file_characteristic'],

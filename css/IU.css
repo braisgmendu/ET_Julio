@@ -1,0 +1,267 @@
+/*General*/
+.bordeado{
+	border-width: 1;
+	border-style: solid;
+}
+#header_page{
+	font-size: 60;
+	text-align: center;
+}
+.iconos {
+	width: 30px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+header nav img {
+    margin: 0 10px;
+    cursor: pointer;
+    height: 30px;
+    width: auto;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+nav.bordeado {
+    background-color: #007BFF;
+    color: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+nav.bordeado:hover {
+    background-color: #0056b3;
+}
+
+ol {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+ol li {
+    background-color: #f4f4f4;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+ol li:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+#workspace {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #007BFF;
+    color: white;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    border-radius: 5px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    margin: 0;
+}
+
+.modal-header .close {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.bordeado {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+#addysearch img {
+    margin-right: 10px;
+    cursor: pointer;
+    width: 30px;
+    height: auto;
+}
+/* --- ESTILO RESPONSIVE --- */
+
+/* Resoluciones entre 1920px y 960px */
+@media (max-width: 1920px) and (min-width: 960px) {
+    ol li {
+        flex: 1 1 30%; /* Tres columnas por defecto */
+    }
+
+    header, footer {
+        flex-wrap: nowrap;
+    }
+}
+
+/* Resoluciones menores a 960px (formato móvil) */
+@media (max-width: 960px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    ol {
+        flex-direction: column;
+    }
+
+    ol li {
+        flex: 1 1 100%; /* Una columna */
+        text-align: left;
+    }
+
+    #workspace {
+        padding: 10px;
+    }
+
+    table th, table td {
+        font-size: 0.9rem;
+        padding: 6px;
+    }
+
+    button {
+        padding: 8px 15px;
+    }
+}
+
+/* Resoluciones menores a 640px (tamaño mínimo) */
+/* Icono del menú hamburguesa */
+.hamburger {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: white;
+    display: none; /* Se mostrará solo en móviles */
+}
+
+/* Oculta el menú por defecto en móviles */
+#menu-navigation {
+    display: flex; /* Mostrado por defecto en escritorio */
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+
+@media (max-width: 640px) {
+    #menu-navigation {
+        display: none; /* Oculta el menú inicialmente en móviles */
+        flex-direction: column; /* Menú vertical */
+        background-color: #333; /* Fondo oscuro */
+        position: absolute;
+        top: 60px; /* Ajusta según el tamaño del header */
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        padding: 10px;
+    }
+
+    #menu-navigation img {
+        margin: 10px 0; /* Separación entre los iconos en el menú móvil */
+    }
+
+    .hamburger {
+        display: block; /* Icono hamburguesa visible en móviles */
+    }
+}
+
+/* Menú visible al activar */
+#menu-navigation.active {
+    display: flex; /* Muestra el menú */
+}
