@@ -1,248 +1,152 @@
-const def_html_characteristic = {
-    ADD:{
-        name_characteristic: {
-            tipo: "input",
-            etiqueta: "Nombre de la Característica",
-            atributos: {
-                type: "text",
-                id: "name_characteristic",
-                name: "name_characteristic",
-            },
-            error: "error_name_characteristic",
-            div_error: "div_error_name_characteristic"
-        },
-        description_characteristic: {
-            tipo: "input",
-            etiqueta: "Descripción de la Característica",
-            atributos: {
-                id: "description_characteristic",
-                name: "description_characteristic",
-            },
-            error: "error_description_characteristic",
-            div_error: "div_error_description_characteristic"
-        },
-        data_type_characteristic: {
-            tipo: "select",
-            etiqueta: "Tipo de Dato",
-            opciones: ["","number", "text", "set"],
-            nombre_options: ["data_type_empty","data_type_number", "data_type_text", "data_type_set"],
-            atributos: {
-                id: "data_type_characteristic",
-                name: "data_type_characteristic",
-            },
-            error: "error_data_type_characteristic",
-            div_error: "div_error_data_type_characteristic"
-        },
-        category_characteristic: {
-            tipo: "select",
-            etiqueta: "Categoría",
-            opciones: ["","soil_site", "soil_chem", "soil_bio"],
-            nombre_options: ["category_empty","category_soil_site", "category_soil_chem", "category_soil_bio"],
-            atributos: {
-                id: "category_characteristic",
-                name: "category_characteristic",
-    
-            },
-            error: "error_category_characteristic",
-            div_error: "div_error_category_characteristic"
-        },
-        bibref_characteristic: {
-            tipo: "input",
-            etiqueta: "Referencia Bibliográfica",
-            atributos: {
-                type: "text",
-                id: "bibref_characteristic",
-                name: "bibref_characteristic",
-            },
-            error: "error_bibref_characteristic",
-            div_error: "div_error_bibref_characteristic"
-        },
-        nuevo_file_characteristic: {
-            tipo: "input",
-            etiqueta: "Nuevo Archivo",
-            atributos: {
-                type: "file",
-                id: "nuevo_file_characteristic",
-                name: "nuevo_file_characteristic",
-            },
-            error: "error_nuevo_file_characteristic",
-            div_error: "div_error_nuevo_file_characteristic",
-        }
-    },
-    EDIT: {
-        name_characteristic: {
-            tipo: "input",
-            etiqueta: "Nombre de la Característica",
-            atributos: {
-                type: "text",
-                id: "name_characteristic",
-                name: "name_characteristic",
-            },
-            error: "error_name_characteristic",
-            div_error: "div_error_name_characteristic"
-        },
-        description_characteristic: {
-            tipo: "input",
-            etiqueta: "Descripción de la Característica",
-            atributos: {
-                id: "description_characteristic",
-                name: "description_characteristic",
-            },
-            error: "error_description_characteristic",
-            div_error: "div_error_description_characteristic"
-        },
-        data_type_characteristic: {
-            tipo: "select",
-            etiqueta: "Tipo de Dato",
-            opciones: ["","number", "text", "set"],
-            nombre_options: ["data_type_empty","data_type_number", "data_type_text", "data_type_set"],
-            atributos: {
-                id: "data_type_characteristic",
-                name: "data_type_characteristic",
-            },
-            error: "error_data_type_characteristic",
-            div_error: "div_error_data_type_characteristic"
-        },
-        category_characteristic: {
-            tipo: "select",
-            etiqueta: "Categoría",
-            opciones: ["","soil_site", "soil_chem", "soil_bio"],
-            nombre_options: ["category_empty","category_soil_site", "category_soil_chem", "category_soil_bio"],
-            atributos: {
-                id: "category_characteristic",
-                name: "category_characteristic",
-    
-            },
-            error: "error_category_characteristic",
-            div_error: "div_error_category_characteristic"
-        },
-        bibref_characteristic: {
-            tipo: "input",
-            etiqueta: "Referencia Bibliográfica",
-            atributos: {
-                type: "text",
-                id: "bibref_characteristic",
-                name: "bibref_characteristic",
-            },
-            error: "error_bibref_characteristic",
-            div_error: "div_error_bibref_characteristic"
-        },
-        
-        file_characteristic: {
-            tipo: "input",
-            etiqueta: "Archivo",
-            atributos: {
-                type: "text",
-                id: "file_characteristic",
-                name: "file_characteristic",
-                // Asegurar que sea de solo lectura
-            },
-            error: "error_file_characteristic",
-            div_error: "div_error_file_characteristic",
-            link: {
-                id: "link_file_characteristic",
-                href: "http://193.147.87.202/ET2/filesuploaded/files_file_characteristic/",
-                src: "./iconos/FILE.png"
-            }
-        },
-        nuevo_file_characteristic: {
-            tipo: "input",
-            etiqueta: "Nuevo Archivo",
-            atributos: {
-                type: "file",
-                id: "nuevo_file_characteristic",
-                name: "nuevo_file_characteristic",
-            },
-            error: "error_nuevo_file_characteristic",
-            div_error: "div_error_nuevo_file_characteristic",
-        }
-    },
-    SEARCH: {
+const estructura_analysis_preparation = {
+    attributes_list: ['id_characteristic', 'name_characteristic', 'description_characteristic', 'data_type_characteristic', 'category_characteristic', 'bibref_characteristic', 'file_characteristic', 'nuevo_file_characteristic'],
+    columnas_visibles_tabla : ['id_characteristic', 'name_characteristic','data_type_characteristic','category_characteristic'],
+    columnas_modificadas_tabla: ['file_characteristic'],
+    attributes: {
         id_characteristic: {
-            tipo: "input",
-            etiqueta: "ID de la Característica",
-            atributos: {
-                type: "text",
-                id: "id_characteristic",
-                name: "id_characteristic",
+            html: {
+                tag: 'input',
+                type: 'text',
             },
-            error: "error_id_characteristic",
-            div_error: "div_error_id_characteristic"
+            is_pk: true,
+            is_not_null: true,
+            is_autoincrement: true,
+            //component_visible_size: 9,
+            validation_rules: {
+                SEARCH:{
+				    max_size: [11,'id_characteristic_max_size_KO'],
+                    reg_exp :  ['^[0-9]*$', 'id_characteristic_format_KO'],
+                }
+            }
         },
         name_characteristic: {
-            tipo: "input",
-            etiqueta: "Nombre de la Característica",
-            atributos: {
-                type: "text",
-                id: "name_characteristic",
-                name: "name_characteristic",
+            html: {
+                tag: 'input',
+                type: 'text',
             },
-            error: "error_name_characteristic",
-            div_error: "div_error_name_characteristic"
+            is_not_null: true,
+            validation_rules: {
+                ADD:{
+                    min_size : [8, 'name_characteristic_min_size_KO'],
+				    max_size: [100,'name_characteristic_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]+$', 'name_characteristic_format_KO'],
+                },
+                EDIT:{
+                    min_size : [8, 'name_characteristic_min_size_KO'],
+				    max_size: [100,'name_characteristic_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]*$', 'name_characteristic_format_KO'],
+                },
+                SEARCH:{
+				    max_size: [9,'name_characteristic_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]*$', 'name_characteristic_format_KO'],
+                }
+            }
         },
         description_characteristic: {
-            tipo: "input",
-            etiqueta: "Descripción de la Característica",
-            atributos: {
-                id: "description_characteristic",
-                name: "description_characteristic",
+            html: {
+                tag: 'input',
+                type: 'text',
             },
-            error: "error_description_characteristic",
-            div_error: "div_error_description_characteristic"
+            is_not_null: true,
+            validation_rules: {
+                ADD:{
+                    min_size : [80, 'description_characteristic_min_size_KO'],
+				    max_size: [5000,'description_characteristic_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]+$', 'description_characteristic_format_KO'],
+                },
+                EDIT:{
+                    min_size : [80, 'description_characteristic_min_size_KO'],
+				    max_size: [5000,'description_characteristic_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]*$', 'description_characteristic_format_KO'],
+                },
+                SEARCH:{
+				    max_size: [5000,'description_characteristic_max_size_KO'],
+                    reg_exp : ['^[A-Za-z\\s]*$', 'description_characteristic_format_KO  '],
+                }
+            }
         },
         data_type_characteristic: {
-            tipo: "select",
-            etiqueta: "Tipo de Dato",
-            opciones: ["","number", "text", "set"],
-            nombre_options: ["data_type_empty","data_type_number", "data_type_text", "data_type_set"],
-            atributos: {
-                id: "data_type_characteristic",
-                name: "data_type_characteristic",
+            html: {
+                tag: 'select',
+                options: ['','number','text','set'],
             },
-            error: "error_data_type_characteristic",
-            div_error: "div_error_data_type_characteristic"
+            is_not_null: true,
+            default_value : '',
+            validation_rules: {
+            }
         },
         category_characteristic: {
-            tipo: "select",
-            etiqueta: "Categoría",
-            opciones: ["","soil_site", "soil_chem", "soil_bio"],
-            nombre_options: ["category_empty","category_soil_site", "category_soil_chem", "category_soil_bio"],
-            atributos: {
-                id: "category_characteristic",
-                name: "category_characteristic",
-    
+            html: {
+                tag: 'select',
+                options: ["","soil_site", "soil_chem", "soil_bio"],
             },
-            error: "error_category_characteristic",
-            div_error: "div_error_category_characteristic"
+            is_not_null: true,
+            default_value : '',
+            validation_rules: {
+            }
         },
         bibref_characteristic: {
-            tipo: "input",
-            etiqueta: "Referencia Bibliográfica",
-            atributos: {
-                type: "text",
-                id: "bibref_characteristic",
-                name: "bibref_characteristic",
+            html: {
+                tag: 'input',
+                type: 'text',
             },
-            error: "error_bibref_characteristic",
-            div_error: "div_error_bibref_characteristic"
-        },
-        
-        file_characteristic: {
-            tipo: "input",
-            etiqueta: "Archivo",
-            atributos: {
-                type: "text",
-                id: "file_characteristic",
-                name: "file_characteristic",
-                // Asegurar que sea de solo lectura
-            },
-            error: "error_file_characteristic",
-            div_error: "div_error_file_characteristic",
-            link: {
-                id: "link_file_characteristic",
-                href: "http://193.147.87.202/ET2/filesuploaded/files_file_characteristic/",
-                src: "./iconos/FILE.png"
+            is_not_null: true,
+            validation_rules: {
+                ADD:{
+                    min_size : [16, 'bibref_characteristic_min_size_KO'],
+				    max_size: [200,'bibref_characteristic_max_size_KO'],
+                    reg_exp : ['^[A-Za-zÀ-ÿñÑ\\s.,;:!¡¿?\"\'\\-]+$', 'bibref_characteristic_format_KO'],
+                },
+                EDIT:{
+                    min_size : [16, 'bibref_characteristic_min_size_KO'],
+				    max_size: [200,'bibref_characteristic_max_size_KO'],
+                    reg_exp : ['^[A-Za-zÀ-ÿñÑ\\s.,;:!¡¿?\"\'\\-]*$', 'bibref_characteristic_format_KO'],
+                },
+                SEARCH:{
+				    max_size: [200,'bibref_characteristic_max_size_KO'],
+                    reg_exp : ['^[A-Za-zÀ-ÿñÑ\\s.,;:!¡¿?\"\'\\-]*$', 'bibref_characteristic_format_KO'],
+                }
             }
-        }
-    }    
-}
+        },    
+        file_characteristic: {
+            html: {
+                tag: 'input',
+                type: 'text',
+            },
+            is_not_null: true,
+            validation_rules: {
+                SEARCH:{
+				    max_size: [100,'file_characteristic_name_max_size_KO'],
+                    reg_exp : ['(^$)|(^[A-Za-z]*\.(pdf|doc|docx)$)', 'file_characteristic_name_format_KO'],
+                }
+            }
+        },
+        nuevo_file_characteristic: {
+            html: {
+                tag: 'input',
+                type: 'file',
+            },
+            is_not_null: true,
+            validation_rules: {
+                ADD:{
+                    min_size : [7, 'nuevo_file_characteristic_name_min_size_KO'],
+				    max_size: [100,'nuevo_file_characteristic_name_max_size_KO'],
+                    no_file: "nuevo_file_characteristic_no_file_KO", // funcion atomica no existe fichero. no obligatorio segun accion
+                    file_type :[["application/pdf", "application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"],"nuevo_file_characteristic_file_type_KO"], // funcion atomica tipo mime fichero. No obligatorio si no se comprueba tipo de fichero
+                    max_size_file: [ 2000000, "nuevo_file_characteristic_max_size_KO"], // funcion atomica tamaño maximo fichero. No obligatorio si no se comprueba tamaño maximo fichero
+                    format_name_file: ["^[A-Za-z\.]+$","nuevo_file_characteristic_name_format_KO"], // funcion atomica formato nombre fichero. No obligatorio sino se comprueba el formato del nombre y extension
+
+                },
+                EDIT:{
+                    min_size : [7, 'nuevo_file_characteristic_name_min_size_KO'],
+				    max_size: [100,'nuevo_file_characteristic_name_max_size_KO'],
+                    no_file: "nuevo_file_characteristic_no_file_KO", // funcion atomica no existe fichero. no obligatorio segun accion
+                    file_type :[["application/pdf", "application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"],"nuevo_file_characteristic_file_type_KO"], // funcion atomica tipo mime fichero. No obligatorio si no se comprueba tipo de fichero
+                    max_size_file: [ 2000000, "nuevo_file_characteristic_max_size_KO"], // funcion atomica tamaño maximo fichero. No obligatorio si no se comprueba tamaño maximo fichero
+                    format_name_file: ["^[A-Za-z\.]*$","nuevo_file_characteristic_name_format_KO"], // funcion atomica formato nombre fichero. No obligatorio sino se comprueba el formato del nombre y extension
+                }
+            }
+        },
+    },
+
+};
