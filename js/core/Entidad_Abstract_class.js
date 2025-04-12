@@ -14,6 +14,8 @@ class Entidad_Abstracta extends Dom {
         this.nombreEntidad = nombreEntidad;
         this.estructura = estructura;
 		this.access_functions = new ExternalAccess();
+        this.tests = new test_IU();
+        document.getElementById("workspace").style.display = 'block';
 		this.cerrar_test()
 		this.SEARCH();
 

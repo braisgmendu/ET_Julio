@@ -83,6 +83,7 @@ ol li:hover {
 }
 
 #workspace {
+    display: none;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;

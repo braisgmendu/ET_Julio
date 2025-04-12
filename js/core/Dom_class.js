@@ -182,6 +182,45 @@ class Dom{
 		setLang();
 	
 	}
+	modificarcolumnasamostrar(atributo){
+
+
+		let nuevascolumnas = Array();
+		if (this.columnasamostrar.includes(atributo)){
+			// borrar ese atributo
+			for (let i=0;i<this.columnasamostrar.length;i++){
+				if (this.columnasamostrar[i] == atributo){}
+				else{
+					nuevascolumnas.push(this.columnasamostrar[i]);
+				}
+			}
+			this.columnasamostrar = nuevascolumnas;
+		}
+		else{
+			// añadir
+			this.columnasamostrar.push(atributo);
+		}
+	
+	
+		this.crearTablaDatos();
+	}
+	
+	mostrarocultarcolumnas(){
+	
+		for (let columna of this.atributos){
+			if (this.columnasamostrar.includes(columna)){}
+			else{
+				//document.querySelector("th[class='"+columna+" tabla-th-"+columna+"']").style.display = 'none';
+				document.querySelector("th[class='"+columna+"']").style.display = 'none';
+				let arraytds = document.querySelectorAll("td[class='tabla-td-"+columna+"']");
+				for (let i=0;i<arraytds.length;i++){
+					arraytds[i].style.display = 'none';
+				}
+			}
+		}
+	
+	
+	}
 	
     mostrar_error_campo(id, codigoerror){
         document.getElementById('div_error_'+id).style.display = 'inline';
@@ -200,6 +239,18 @@ class Dom{
         document.getElementById('div_error_'+id).innerHTML = '';
         document.getElementById(id).className = 'exitocampo';
     }
+
+	crearboton(entidad, accion, parametros){
+        let columna = document.createElement('td');
+        let opcion = document.createElement('img');
+        opcion.src = "./iconos/"+accion+'.png';
+        let textoonclick = "validar.createForm_"+accion+"("+parametros+");"
+        opcion.setAttribute('onclick',textoonclick);
+        columna.appendChild(opcion);
+        return columna.outerHTML;
+    
+	}
+
 	cerrar_formulario(){
 
         document.getElementById("IU_form").innerHTML = '';
@@ -228,6 +279,7 @@ class Dom{
         document.getElementById("muestradatostabla").innerHTML = '';
         document.getElementById("id_tabla_datos").style.display = 'none';
         document.getElementById("title_page").style.display = 'none';
+        document.getElementById("workspace").style.display = 'none';
 
         this.ocultar_boton_test();
         this.cerrar_test();
