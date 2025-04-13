@@ -95,57 +95,44 @@ class Dom{
 		setLang();
 	}
 	
-	hacertabla(){
-	
-		// titulos
-	
-		document.getElementById("text_title_page").className = "text_titulo_page_"+this.entidad;
+	hacertabla() {
+		// Títulos
+		document.getElementById("text_title_page").className = "text_titulo_page_" + this.entidad;
 		document.getElementById('title_page').style.display = 'block';
 	
-		if (this.datos == ""){
-	
+		if (this.datos == "") {
 			document.getElementById("id_tabla_datos").style.display = 'block';
 			document.getElementById('titulostablacabecera').innerHTML = '';
 			document.getElementById('muestradatostabla').innerHTML = '';
 			document.getElementById('muestradatostabla').className = 'RECORDSET_VACIO';
+		} else {
+			let textolineatitulos = '<tr>';
 	
-		}
-		else{
+			for (let atributo of this.atributos) {
+				textolineatitulos += '<th class="' + atributo + '">' + atributo + '</th>';
+			}
 	
-			var textolineatitulos = '<tr>';
-	
-			for (let atributo of this.atributos){
-			
-				textolineatitulos += '<th class="'+atributo+'">'+atributo+'</th>';
-			
-			}  
-				
 			textolineatitulos += '<th colspan="3"></th>';
-			
 			textolineatitulos += '</tr>';
-			
+	
 			let cabecera = document.getElementById("titulostablacabecera");
 			cabecera.innerHTML = textolineatitulos;
 	
-			// filas
+			// Filas
+			let textolineadatos = '';
 	
-			var textolineadatos = ''; 
+			for (let i = 0; i < this.datos.length; i++) {
+				textolineadatos += '<tr class="tabla-fila">';
 	
-			for (let i=0;i<this.datos.length;i++){
-			
-				textolineadatos += '<tr style="background-color:grey;">';
-	
-				for (let clave in this.datos[i]){
-	
-					if (this.datosespecialestabla.includes(clave)){
-						let valorcolumna = this.change_value_IU(clave,this.datos[i][clave]);
-						textolineadatos += '<td class="tabla-td-'+clave+'">'+valorcolumna+'</td>';
-					}
-					else{
-						// limpieza codigo no deseado incrustado html y script
+				for (let clave in this.datos[i]) {
+					if (this.datosespecialestabla.includes(clave)) {
+						let valorcolumna = this.change_value_IU(clave, this.datos[i][clave]);
+						textolineadatos += '<td class="tabla-td-' + clave + '">' + valorcolumna + '</td>';
+					} else {
+						// Limpieza de código no deseado incrustado HTML y script
 						let san = (obj) => {
 							let value = obj?.toString() || '';
-							let sanitizedObj = value.replace(/[&<>"'`]/g, function(match) {
+							return value.replace(/[&<>"'`]/g, function (match) {
 								switch (match) {
 									case '&': return '&amp;';
 									case '<': return '&lt;';
@@ -155,33 +142,28 @@ class Dom{
 									case '`': return '&#x60;';
 								}
 							});
-							return sanitizedObj;
 						}
 						let valorE = san(this.datos[i][clave]);
-						textolineadatos += '<td class="tabla-td-'+clave+'">'+valorE+'</td>';
+						textolineadatos += '<td class="tabla-td-' + clave + '">' + valorE + '</td>';
 					}
-	
 				}
 	
-				// crear los td para cada boton de llamada a funcion de formulario de accion (EDIT, DELETE O SHOWCURRENT)
-	
+				// Crear los td para cada botón de llamada a función de formulario de acción (EDIT, DELETE O SHOWCURRENT)
 				let lineaedit = this.crearboton(this.entidad, 'EDIT', JSON.stringify(this.datos[i]));
 				let lineadelete = this.crearboton(this.entidad, 'DELETE', JSON.stringify(this.datos[i]));
 				let lineashowcurrent = this.crearboton(this.entidad, 'SHOWCURRENT', JSON.stringify(this.datos[i]));
 	
-				textolineadatos += lineaedit+lineadelete+lineashowcurrent;
-	
+				textolineadatos += lineaedit + lineadelete + lineashowcurrent;
 				textolineadatos += '</tr>';
-	
 			}
-			
+	
 			let cuerpo = document.getElementById('muestradatostabla');
 			cuerpo.innerHTML = textolineadatos;
 		}
 	
 		setLang();
-	
 	}
+	
 	modificarcolumnasamostrar(atributo){
 
 

@@ -266,3 +266,53 @@ button:hover {
 #menu-navigation.active {
     display: flex; /* Muestra el menú */
 }
+/* Estilo general de la tabla */
+#id_tabla_datos {
+    overflow-x: auto; /* Habilita el desplazamiento horizontal */
+    max-width: 100%; /* Asegura que la tabla no desborde */
+    background-color: white; /* Fondo blanco para mejor contraste */
+    border: 1px solid #ccc; /* Borde discreto */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px;
+    margin: 20px 0; /* Separación respecto a otros elementos */
+}
+
+/* Tabla interna */
+#tabladatosalumnos {
+    width: 100%; /* Asegura que la tabla use el espacio disponible */
+    border-collapse: collapse; /* Unifica los bordes */
+    font-family: Arial, sans-serif; /* Fuente legible */
+    font-size: 14px;
+    color: #333; /* Color de texto */
+}
+
+/* Cabecera de la tabla */
+#tabladatosalumnos th {
+    background-color: #007BFF; /* Azul para la cabecera */
+    color: white; /* Texto blanco */
+    text-align: left; /* Texto alineado a la izquierda */
+    padding: 10px;
+    border: 1px solid #ccc; /* Bordes de celda */
+}
+
+/* Filas de la tabla */
+#tabladatosalumnos td {
+    padding: 10px; /* Espaciado interno */
+    border: 1px solid #ccc; /* Bordes de celda */
+    text-align: left; /* Texto alineado a la izquierda */
+}
+
+/* Alternar colores de fondo para las filas */
+#tabladatosalumnos tr:nth-child(odd) {
+    background-color: #f9f9f9; /* Gris claro */
+}
+
+#tabladatosalumnos tr:nth-child(even) {
+    background-color: #ffffff; /* Blanco */
+}
+
+/* Colores al pasar el mouse */
+#tabladatosalumnos tr:hover {
+    background-color: #f1f1f1; /* Fondo más claro */
+    cursor: pointer;
+}
