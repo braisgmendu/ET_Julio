@@ -4,77 +4,61 @@ class Dom{
     }
 
 
-    createForm(action, def_html) {
+    createForm(action, estructura) {
 		const form = document.getElementById('IU_form');
 		form.innerHTML = ''; // Limpiar formulario previo
 	
-		if (!def_html || typeof def_html !== 'object') {
-			console.error('def_html está vacío o no es un objeto válido');
+		if (!estructura || typeof estructura !== 'object') {
+			console.error('Estructura inválida');
 			return;
 		}
 	
-		for (const [key, def] of Object.entries(def_html)) {
+		const atributos = estructura.attributes;
+		const lista_atributos = estructura.attributes_list;
+	
+		for (const nombreAtributo of lista_atributos) {
+			const def = atributos[nombreAtributo];
+			if (!def) continue;
+	
 			const div = document.createElement('div');
-			const campo = document.createElement(def.tipo);
+			const campo = document.createElement(def.html.tag);
 	
-			// Configurar atributos del campo
-			for (let attr in def.attributes) {
-				campo.setAttribute(attr, def.atributos[attr]);
+			// Setear tipo si aplica (como input[type="text"], input[type="file"]...)
+			if (def.html.type) {
+				campo.setAttribute('type', def.html.type);
 			}
 	
-			// Crear etiqueta, si corresponde
-			if (def.tipo !== 'hidden') {
+			// Asignar atributos comunes
+			campo.setAttribute('id', nombreAtributo);
+			campo.setAttribute('name', nombreAtributo);
+	
+			// Si no es oculto, crear label
+			if (def.html.type !== 'hidden') {
 				const label = document.createElement('label');
-				label.setAttribute('id', 'label_' + def.atributos.id);
-				label.setAttribute('name', 'label_' + def.atributos.name);
-				label.setAttribute('for', def.atributos.id);
-				label.textContent = def.etiqueta;
+				label.setAttribute('id', 'label_' + nombreAtributo);
+				label.setAttribute('name', 'label_' + nombreAtributo);
+				label.setAttribute('for', nombreAtributo);
+				label.textContent = nombreAtributo; // Puedes cambiar esto por un texto más amigable si tienes etiquetas traducidas
 				div.appendChild(label);
-			}
-	
-			// Crear opciones si es un campo select
-			if (def.tipo === 'select' && Array.isArray(def.opciones)) {
-				def.opciones.forEach((opcion, index) => {
-					const option = document.createElement('option');
-					option.value = opcion;
-			
-					// Usar el nombre de la opción correspondiente si existe
-					if (def.nombre_options && def.nombre_options[index]) {
-						option.className = def.nombre_options[index];
-					} else {
-						option.textContent = opcion; // Fallback en caso de que no haya nombre
-					}
-			
-					campo.appendChild(option);
-				});
 			}
 	
 			// Crear y agregar elementos de error
 			const errorSpan = document.createElement('span');
-			errorSpan.id = def.div_error || '';
+			errorSpan.id = 'div_error_' + nombreAtributo;
 			const errorA = document.createElement('a');
-			errorA.id = def.error || '';
+			errorA.id = 'error_' + nombreAtributo;
 			errorSpan.appendChild(errorA);
 	
 			// Agregar campo y errores al contenedor
 			div.appendChild(campo);
 			div.appendChild(errorSpan);
 	
-			// Agregar link, si corresponde
-			if (def.link) {
-				const link = document.createElement('a');
-				link.id = def.link.id;
-				link.href = def.link.href;
-				const img = document.createElement('img');
-				img.src = def.link.src;
-				link.appendChild(img);
-				div.appendChild(link);
-			}
-	
-			// Agregar el div al formulario
+			// Agregar div al formulario
 			form.appendChild(div);
+			
 		}
 	}
+	
 
 
 	construirSelect(){
@@ -225,7 +209,8 @@ class Dom{
 	crearboton(entidad, accion, parametros){
         let columna = document.createElement('td');
         let opcion = document.createElement('img');
-        opcion.src = "./iconos/"+accion+'.png';
+		opcion.className = "boton"
+        opcion.src = "assets/icons/"+ accion +".png";
         let textoonclick = "validar.createForm_"+accion+"("+parametros+");"
         opcion.setAttribute('onclick',textoonclick);
         columna.appendChild(opcion);

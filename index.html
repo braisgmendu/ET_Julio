@@ -4,39 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <link rel="stylesheet" type="text/css" href="../css/IU.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/IU.css" media="screen" />
     <title>Julio-ET - Gestión de Entidades</title>
     <!-- ficheros de idiomas -->
-	<script type="text/javascript" src="../js/languages/idioma.js"></script>
-	<script type="text/javascript" src="../js/languages/Textos_ES.js"></script>
-	<script type="text/javascript" src="../js/languages/Textos_EN.js"></script>
+	<script type="text/javascript" src="js/languages/idioma.js"></script>
+	<script type="text/javascript" src="js/languages/Textos_ES.js"></script>
+	<script type="text/javascript" src="js/languages/Textos_EN.js"></script>
     <!--ficheros del js_core-->
-	<script type="text/javascript" src="../js/core/ExternalAccess_class.js"></script>
-	<script type="text/javascript" src="../js/tests/Tests_class.js"></script>
-	<script type="text/javascript" src="../js/core/Dom_class.js"></script>
-    <script type="text/javascript" src="../js/core/Dom_validations_class.js"></script>
-    <script type="text/javascript" src="../js/core/Validaciones_class.js"></script>
+	<script type="text/javascript" src="js/core/ExternalAccess_class.js"></script>
+	<script type="text/javascript" src="js/tests/Tests_class.js"></script>
+	<script type="text/javascript" src="js/core/Dom_class.js"></script>
+    <script type="text/javascript" src="js/core/Dom_validations_class.js"></script>
+    <script type="text/javascript" src="js/core/Validaciones_class.js"></script>
     <!--ficheros de js_base-->
-	<script type="text/javascript" src="../js/core/Entidad_Abstract_class.js"></script>
+	<script type="text/javascript" src="js/core/Entidad_Abstract_class.js"></script>
 	
 
 
 	<!--ficheros js_app-->
     <!--analaysis_preparation-->
-	<script type="text/javascript" src="../js/entities/analysis_preparation/analysis_preparation_class.js"></script>
-    <script type="text/javascript" src="../js/entities/analysis_preparation/analysis_preparation_estructura.js"></script>
-    <script type="text/javascript" src="../js/entities/analysis_preparation/tests_analysis_preparation.js"></script>
+	<script type="text/javascript" src="js/entities/analysis_preparation/analysis_preparation_class.js"></script>
+    <script type="text/javascript" src="js/entities/analysis_preparation/analysis_preparation_estructura.js"></script>
+    <script type="text/javascript" src="js/entities/analysis_preparation/tests_analysis_preparation.js"></script>
     <!--project-->
-	<script type="text/javascript" src="../js/entities/project/project_class.js"></script>
-	<script type="text/javascript" src="../js/entities/project/project_estructura.js"></script>
-	<script type="text/javascript" src="../js/entities/project/tests_project.js"></script>
+	<script type="text/javascript" src="js/entities/project/project_class.js"></script>
+	<script type="text/javascript" src="js/entities/project/project_estructura.js"></script>
+	<script type="text/javascript" src="js/entities/project/tests_project.js"></script>
     <!--characterisitic-->
-	<script type="text/javascript" src="../js/entities/characteristic/characteristic_class.js"></script>
-	<script type="text/javascript" src="../js/entities/characteristic/characteristic_estructura.js"></script>	
-	<script type="text/javascript" src="../js/entities/characteristic/tests_characteristic.js"></script>	
+	<script type="text/javascript" src="js/entities/characteristic/characteristic_class.js"></script>
+	<script type="text/javascript" src="js/entities/characteristic/characteristic_estructura.js"></script>	
+	<script type="text/javascript" src="js/entities/characteristic/tests_characteristic.js"></script>	
 
 	
-    <script type="text/javascript" src="../data/Julio_Datos_BraisGonzalez.js"></script>
+    <script type="text/javascript" src="data/Julio_Datos_BraisGonzalez.js"></script>
 
 	<!-- este es el script que carga las librerias ajax que usamos para acceder al back -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -48,10 +48,10 @@
             &#9776; <!-- Código para el icono hamburguesa -->
         </button>
         <nav id="menu-navigation">
-            <img src="../assets/icons/Spain.png" class="iconos" onclick="setLang('ES');" />
-            <img src="../assets/icons/United-Kingdom.png" class="iconos" onclick="setLang('EN');" />
-            <img id="botonTEST" src="../assets/icons/TEST.png" onclick="validar.tests.test_run();" />
-            <a href="API.html"><img src="../assets/icons/icono_api.png" alt="Documentación API" class="iconos"></a>
+            <img src="assets/icons/Spain.png" class="iconos" onclick="setLang('ES');" />
+            <img src="assets/icons/United-Kingdom.png" class="iconos" onclick="setLang('EN');" />
+            <img id="botonTEST" src="assets/icons/TEST.png" onclick="validar.tests.test_run();" />
+            <a href="API.html"><img src="assets/icons/icono_api.png" alt="Documentación API" class="iconos"></a>
         </nav>
     </header>
 
@@ -78,8 +78,8 @@
             <div id="id_tabla_datos">
                 
                 <div id="addysearch">
-                    <img id="botonADD" src="./iconos/ADD.png" onclick="validar.createForm_ADD();" />
-                    <img id="botonSEARCH" src="./iconos/SEARCH.png" onclick="validar.createForm_SEARCH();"/>
+                    <img id="botonADD" class="boton" src="assets/icons/ADD.png" onclick="validar.createForm_ADD();" />
+                    <img id="botonSEARCH" class="boton" src="assets/icons/SEARCH.png" onclick="validar.createForm_SEARCH();"/>
                     
                     <select id="seleccioncolumnas" size="2" multiple >
                     </select>
@@ -92,7 +92,7 @@
                 </table>
     
                 <br>
-                <img src="./iconos/BACK.png" onclick="validar.cerrar_tabla();" />
+                <img id="botonBACK" class="boton" src="assets/icons/BACK.png" onclick="validar.cerrar_tabla();" />
     
             </div>
             

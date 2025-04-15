@@ -172,7 +172,7 @@ button:hover {
     border-radius: 5px;
 }
 
-#addysearch img {
+.boton {
     margin-right: 10px;
     cursor: pointer;
     width: 30px;
