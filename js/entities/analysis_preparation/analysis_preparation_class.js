@@ -8,11 +8,12 @@ class analysis_preparation extends Entidad_Abstracta{
         this.atributos = estructura_analysis_preparation.attributes_list;
         this.columnasamostrar = estructura_analysis_preparation.columnas_visibles_tabla;
         this.datosespecialestabla = estructura_analysis_preparation.columnas_modificadas_tabla;
+        this.validations = new Dom_validations(new Validaciones_Atomicas, this.entidad);
         this.inicializar(this.entidad,this.def_estructura);
         
     }
 
-    cargar_formularios_estatico(){
+    /*cargar_formularios_estatico(){
         this.action = '';
         let form = 
             `
@@ -52,10 +53,121 @@ class analysis_preparation extends Entidad_Abstracta{
             //inserta el formulario en el contenedor 'IU_form'
             document.getElementById('IU_form').innerHTML = form;
             
-    }
+    }*/
     cargar_formulario_dinamico(){
-        super.dom.createForm('', this.def_html);
+        super.createForm('', this.def_estructura);
     }
+    createForm_ADD() {
+        this.cargar_formulario();
+        
+        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_ADD';
+        document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'block';
+        document.getElementById("nuevo_file_analysis_preparation").style.display = 'block';
+        //document.getElementById("label_id_analysis_preparation").style.display = 'none';
+        //document.getElementById("id_analysis_preparation").style.display = 'none';
+        document.getElementById("label_file_analysis_preparation").style.display = 'none';
+        document.getElementById("file_analysis_preparation").style.display = 'none';
+        //document.getElementById("link_file_analysis_preparation").style.display = 'none';
+
+        this.validations.load_validations('ADD');
+        this.colocarboton('ADD');
+        
+		document.getElementById("IU_form").setAttribute('onsubmit',"return validar.manejoVal.comprobar_submit('ADD');");
+		document.getElementById("IU_form").setAttribute('action',"javascript:validar.ADD();");
+
+		document.getElementById("div_IU_form").style.display = 'block';
+		setLang();
+    }
+
+    createForm_SEARCH() {
+        this.cargar_formulario();
+        
+        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_SEARCH';
+
+        document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
+        document.getElementById("nuevo_file_analysis_preparation").style.display = 'none';
+        document.getElementById("link_file_analysis_preparation").style.display = 'none';
+        document.getElementById('file_analysis_preparation').removeAttribute('required');
+
+        
+
+        this.validations.load_validations('SEARCH');
+        this.colocarboton('SEARCH');
+        
+        document.getElementById("IU_form").setAttribute('onsubmit',"return validar.manejoVal.comprobar_submit('SEARCH');");
+		document.getElementById("IU_form").setAttribute('action',"javascript:validar.SEARCH();");
+
+		document.getElementById("div_IU_form").style.display = 'block';
+		setLang();
+    }
+
+    createForm_EDIT(parametros) {
+        this.cargar_formulario();
+        this.action = 'EDIT';
+        super.load_data(parametros);
+        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_EDIT';
+        document.getElementById("id_analysis_preparation").setAttribute('readonly',true);
+        document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'block';
+        document.getElementById("nuevo_file_analysis_preparation").style.display = 'block';
+        document.getElementById('nuevo_file_analysis_preparation').removeAttribute('required');
+
+
+        document.getElementById('file_analysis_preparation').setAttribute('readonly',true);
+		
+        document.getElementById('link_file_analysis_preparation').innerHTML = this.cambiardatosespecialestabla('file_analysis_preparation', parametros.file_analysis_preparation);
+
+        this.validations.load_validations('EDIT');
+        this.colocarboton('EDIT');
+
+		document.getElementById("IU_form").setAttribute('onsubmit',"return validar.manejoVal.comprobar_submit('EDIT');");
+		document.getElementById("IU_form").setAttribute('action',"javascript:validar.EDIT();");
+
+		document.getElementById("div_IU_form").style.display = 'block';
+		setLang();
+    }
+
+    createForm_DELETE(parametros) {
+        this.cargar_formulario();
+        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_DELETE';
+       
+		document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
+        document.getElementById("nuevo_file_analysis_preparation").style.display = 'none';
+        
+
+		
+		super.load_data(parametros);
+        document.getElementById('link_file_analysis_preparation').innerHTML = this.cambiardatosespecialestabla('file_analysis_preparation', parametros.file_analysis_preparation);
+
+        super.ponerNoActivo();
+        this.colocarboton('DELETE');
+
+		document.getElementById("IU_form").setAttribute('action',"javascript:validar.DELETE();");
+
+		document.getElementById("div_IU_form").style.display = 'block';
+		setLang();
+    }
+
+    createForm_SHOWCURRENT(parametros) {
+        this.cargar_formulario();
+        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_SHOWCURRENT';
+
+		document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
+        document.getElementById("nuevo_file_analysis_preparation").style.display = 'none';
+        
+
+
+		super.load_data(parametros);
+		document.getElementById('link_file_analysis_preparation').innerHTML = this.cambiardatosespecialestabla('file_analysis_preparation', parametros.file_analysis_preparation);
+        
+        super.ponerNoActivo();
+		document.getElementById("IU_form").setAttribute('onsubmit',"return true;");
+		document.getElementById("IU_form").setAttribute('action',"");
+
+		document.getElementById("div_IU_form").style.display = 'block';
+		setLang();
+
+    }
+
     change_value_IU(atributo, valoratributo){
 
 		if (atributo == 'file_analysis_preparation'){

@@ -23,7 +23,7 @@ class Entidad_Abstracta extends Dom {
 	}
 
     change_value_IU(atributo, valor){
-        
+        return valor;
     }
 
     cargar_formulario(){
