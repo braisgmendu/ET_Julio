@@ -10,7 +10,15 @@
 .iconos {
 	width: 30px;
 }
-
+:root {
+    --primary: #5e3bee;
+    --heading-color: #282928;
+    --bg-shade: #f5fcff;
+    --github: #e62872;
+    --darkblue: #1c1e53;
+    --dark: #00000;
+    --white: #fffff;
+  }
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -40,6 +48,7 @@ header nav img {
     height: 30px;
     width: auto;
 }
+
 
 main {
     display: flex;
