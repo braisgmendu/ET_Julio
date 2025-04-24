@@ -80,7 +80,7 @@ class Entidad_Abstracta extends Dom {
 
     async ADD(){
     
-        await this.access_functions.peticionBackGeneral('IU_form', this.entidad, 'ADD')
+        await this.access_functions.back_request('IU_form', this.entidad, 'ADD')
         .then((respuesta) => {
 
         	if (respuesta['ok']){
@@ -109,7 +109,7 @@ class Entidad_Abstracta extends Dom {
 
     async DELETE(){
     
-        await this.access_functions.peticionBackGeneral('IU_form', this.entidad, 'DELETE')
+        await this.access_functions.back_request('IU_form', this.entidad, 'DELETE')
         .then((respuesta) => {
 
         	if (respuesta['ok']){
@@ -137,7 +137,7 @@ class Entidad_Abstracta extends Dom {
 
     async EDIT(){
     
-        await this.access_functions.peticionBackGeneral('IU_form', this.entidad, 'EDIT')
+        await this.access_functions.back_request('IU_form', this.entidad, 'EDIT')
         .then((respuesta) => {
 
         	if (respuesta['ok']){

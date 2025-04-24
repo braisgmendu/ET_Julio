@@ -72,7 +72,7 @@ class analysis_preparation extends Entidad_Abstracta{
         this.validations.load_validations('ADD');
         this.colocarboton('ADD');
         
-		document.getElementById("IU_form").setAttribute('onsubmit',"return validar.manejoVal.comprobar_submit('ADD');");
+		document.getElementById("IU_form").setAttribute('onsubmit',"return validar.validations.submit_test('ADD');");
 		document.getElementById("IU_form").setAttribute('action',"javascript:validar.ADD();");
 
 		document.getElementById("div_IU_form").style.display = 'block';

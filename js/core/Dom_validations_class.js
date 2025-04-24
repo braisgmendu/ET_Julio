@@ -7,28 +7,28 @@ class Dom_validations extends Dom{
     }
 
     getAttributes() {
-        let attributes;
+        let atributos;
 
         switch (this.entidad) {
             case 'analysis_preparation':
-                attributes = estructura_analysis_preparation.attributes;
+                atributos = estructura_analysis_preparation.attributes;
                 break;
             case 'characteristic':
-                attributes = estructura_characteristic.attributes;
+                atributos = estructura_characteristic.attributes;
                 break;
             case 'project':
-                attributes = estructura_project.attributes;
+                atributos = estructura_project.attributes;
                 break;
             default:
                 console.error(`No se encontraron definiciones de validaciones para la entidad: ${this.entidad}`);
                 return null;
         }
 
-        if (!attributes) {
+        if (!atributos) {
             console.warn(`No se encontraron definiciones para la entidad: ${this.entidad}, acción: ${action}`);
         }
 
-        return definiciones;
+        return atributos;
     }
 
     load_validations(action) {
@@ -63,143 +63,58 @@ class Dom_validations extends Dom{
         let resultadoGlobal = false;
         
 
-        for (let validacion of validacionesCampo) {
+        for (let [tipoValidacion, [valor, mensaje]] of Object.entries(validacionesCampo[action] || {})) {
             let resultado = false;
-              // Saltar validaciones para "nuevo_file_analysis_preparation" si no hay archivo subido, el campo existe, y la acción es "EDIT"
-              if (
+    
+            // Saltar validaciones para ciertos casos especiales
+            if (
                 (campo === "nuevo_file_analysis_preparation" ||
-                campo === "nuevo_file_project" ||
-                campo === "nuevo_file_characteristic" ) &&
+                 campo === "nuevo_file_project" ||
+                 campo === "nuevo_file_characteristic") &&
                 action === "EDIT" &&
                 document.getElementById(campo) &&
                 document.getElementById(campo)?.files?.length === 0
             ) {
                 return true; // Considerar válido si no hay archivo
-            } else {
-
-                switch (validacion[action]) {
-                case 'min_size':
-                    resultado = this.validaciones.min_size(campo, validacion.valor);
-                    if (!resultado) {
-                        this.mostrar_error_campo(campo, validacion.mensaje);
-                        return validacion.mensaje;
-                    }else{
-                        resultadoGlobal = resultado;
-                    }
-                    break;
-                case 'max_size':
-                    resultado = this.validaciones.max_size(campo, validacion.valor);
-                    if (!resultado) {
-                        this.mostrar_error_campo(campo, validacion.mensaje);
-                        return validacion.mensaje;
-                    }else{
-                        resultadoGlobal = resultado;
-                    }
-                    break;
-                case 'format':
-                    resultado = this.validaciones.format(campo, validacion.valor);
-                    if (!resultado) {
-                        this.mostrar_error_campo(campo, validacion.mensaje);
-                        return validacion.mensaje;
-                    }else{
-                        resultadoGlobal = resultado;
-                    }
-                    break;
-                case 'valid_date':
-                    resultado = this.validacionesespeciales(campo, validacion.valor)
-                    if (!resultado) {
-                        this.mostrar_error_campo(campo, validacion.mensaje);
-                        return validacion.mensaje;
-                    }else{
-                        resultadoGlobal = resultado;
-                    }
-                    break;
-                case 'format_name_file': {
-                    const mifichero = document.getElementById(campo)?.files[0];
-                    if (!mifichero) {
-                        console.warn(`No se seleccionó ningún archivo para validar el formato del nombre en el campo: ${campo}`);
-                        resultado = false;
-                    } else {
-                        resultado = this.validaciones.format_name_file(mifichero, validacion.valor);
-                    }
-                    if (!resultado) {
-                        this.mostrar_error_campo(campo, validacion.mensaje);
-                        return validacion.mensaje;
-                    }else{
-                        resultadoGlobal = resultado;
-                    }
-                    break;
-                }
-                case 'max_size_file': {
-                   
-                    const mifichero = document.getElementById(campo)?.files[0];
-                    if (!mifichero) {
-                        console.warn(`No se seleccionó ningún archivo para validar el tamaño máximo en el campo: ${campo}`);
-                        resultado = false;
-                    } else {
-                        resultado = this.validaciones.max_size_file(mifichero, validacion.valor);
-                    }
-                    if (!resultado) {
-                        this.mostrar_error_campo(campo, validacion.mensaje);
-                        return validacion.mensaje;
-                    }else{
-                        resultadoGlobal = resultado;
-                    }
-                    break;
-                }
-                case 'type_file': {
-                    const mifichero = document.getElementById(campo)?.files[0];
-                    if (!mifichero) {
-                        console.warn(`No se seleccionó ningún archivo para validar el tipo en el campo: ${campo}`);
-                        resultado = false;
-                    } else {
-                        resultado = this.validaciones.type_file(mifichero, validacion.valor);
-                    }
-                    if (!resultado) {
-                        this.mostrar_error_campo(campo, validacion.mensaje);
-                        return validacion.mensaje;
-                    }else{
-                        resultadoGlobal = resultado;
-                    }
-                    break;
-                }
-                case 'min_size_name_file': {
-                    const mifichero = document.getElementById(campo)?.files[0];
-                    if (!mifichero) {
-                        console.warn(`No se seleccionó ningún archivo para validar el tipo en el campo: ${campo}`);
-                        resultado = false;
-                    } else {
-                        resultado = this.validaciones.min_size_name_file(mifichero, validacion.valor);
-                    }
-                    if (!resultado) {
-                        this.mostrar_error_campo(campo, validacion.mensaje);
-                        return validacion.mensaje;
-                    }else{
-                        resultadoGlobal = resultado;
-                    }
-                    break;
-                }
-                case 'max_size_name_file': {
-                    const mifichero = document.getElementById(campo)?.files[0];
-                    if (!mifichero) {
-                        console.warn(`No se seleccionó ningún archivo para validar el tipo en el campo: ${campo}`);
-                        resultado = false;
-                    } else {
-                        resultado = this.validaciones.max_size_name_file(mifichero, validacion.valor);
-                    }
-                    if (!resultado) {
-                        this.mostrar_error_campo(campo, validacion.mensaje);
-                        return validacion.mensaje;
-                    }else{
-                        resultadoGlobal = resultado;
-                    }
-                    break;
-                }
-                default:
-                    console.error(`Tipo de validación no soportado: ${validacion.tipo}`);
             }
-        }
-        
+    
+            switch (tipoValidacion) {
+                case 'min_size':
+                    resultado = this.validaciones.min_size(campo, valor);
+                    if (!resultado) {
+                        this.mostrar_error_campo(campo, mensaje);
+                        return mensaje;
+                    }
+                    break;
+    
+                case 'max_size':
+                    resultado = this.validaciones.max_size(campo, valor);
+                    if (!resultado) {
+                        this.mostrar_error_campo(campo, mensaje);
+                        return mensaje;
+                    }
+                    break;
+    
+                case 'reg_exp':
+                    resultado = this.validaciones.format(campo, valor);
+                    if (!resultado) {
+                        this.mostrar_error_campo(campo, mensaje);
+                        return mensaje;
+                    }
+                    break;
+    
+                case 'valid_date':
+                    resultado = this.validacionesespeciales(campo, valor);
+                    if (!resultado) {
+                        this.mostrar_error_campo(campo, mensaje);
+                        return mensaje;
+                    }
+                    break;
+    
+                // Más casos según sea necesario
+                default:
+                    console.error(`Tipo de validación no soportado: ${tipoValidacion}`);
+            }
         }
 
         return resultadoGlobal;
@@ -208,14 +123,14 @@ class Dom_validations extends Dom{
 
 
     submit_test(action) {
-        const definiciones = this.getDefinicionesValidaciones(action);
+        const atributos  = this.getAttributes();
     
-        if (!definiciones) {
-            console.error(`No se encontraron definiciones de validaciones.`);
+        if (!atributos) {
+            console.error(`No se encontraron atributos para validaciones.`);
             return false; // No se puede proceder sin definiciones
         }
     
-        const errores = Object.keys(definiciones).map(campo => {
+        const errores = Object.keys(atributos).map(campo => {
             const resultado = this.comprobarCampo(campo, action);
             if (resultado !== true) {
                 console.error(`Error en el campo "${campo}": ${resultado}`);

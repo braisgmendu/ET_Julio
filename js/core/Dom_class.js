@@ -61,11 +61,14 @@ class Dom{
 	colocarboton(action) { 
 		let divboton = document.createElement('div'); 
 		divboton.id = 'div_boton'; 
+		
 		document.getElementById('IU_form').appendChild(divboton); 
 		let boton = document.createElement('button'); 
 		boton.id = 'submit_button'; boton.type = 'submit'; 
+		
 		let img = document.createElement('img'); 
-		img.src = `./iconos/${action}.png`; boton.appendChild(img); 
+		img.className = 'boton';
+		img.src = `assets/icons/${action}.png`; boton.appendChild(img); 
 		divboton.appendChild(boton); 
 	}
 	load_data(contenido) {

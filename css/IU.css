@@ -61,7 +61,52 @@ nav.bordeado {
 nav.bordeado:hover {
     background-color: #0056b3;
 }
+.div_IU_form {
+	width:100%; /*Toma el 100% del ancho de la página*/
+	height:100%; /*Toma el 100% del alto de la página*/
+	position:fixed; /*Con este código hacemos que el contenedor se mantenga en la pantalla y para que tome las dimensiones del body y no de la entrada*/
+	/*background-color: rgba(1, 1, 1, 0.95); /*Color de fondo, incluye opacidad del 90%*/
+	top:0; /*Position superior*/
+	left:0; /*Posición lateral*/
+	z-index:1001; /*Evitamos que algún elemento del blog sobreponga la ventana modal*/
 
+}
+.contenidoForm { 
+    background: rgba(217, 213, 213, 0.95);
+    position: absolute;
+    z-index: 20;
+    border-radius: 5px;
+    width: 80%;
+    height: 78.5%;
+    margin-top: 6%;
+    margin-left: 7%;
+    border: 1px;
+    border-style: solid;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+}
+.class_titulo_form{
+    position: relative;
+    height: 100px;
+    width: 100%;
+
+    background: #ffff99;
+    color: #333;
+}
+#class_contenido_titulo_form{
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    font-weight: bold;
+}
+.formulario{
+    top: 20px;
+    position: relative;
+    left: 20px;
+}
 ol {
     list-style: none;
     padding: 0;
@@ -173,9 +218,9 @@ button:hover {
 }
 
 .boton {
+    width: 30px;
     margin-right: 10px;
     cursor: pointer;
-    width: 30px;
     height: auto;
 }
 /* --- ESTILO RESPONSIVE --- */
