@@ -3,7 +3,7 @@ const estructura_analysis_preparation = {
     columnas_visibles_tabla : ['id_analysis_preparatio', 'name_analysis_preparation', 'bib_analysis_preparation'],
     columnas_modificadas_tabla: ['file_analysis_preparation'],
     attributes: {
-        id_analysis_preparatio: {
+        id_analysis_preparation: {
             html: {
                 tag: 'input',
                 type: 'text',

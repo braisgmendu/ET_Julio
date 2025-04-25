@@ -65,10 +65,11 @@ class Dom{
 		document.getElementById('IU_form').appendChild(divboton); 
 		let boton = document.createElement('button'); 
 		boton.id = 'submit_button'; boton.type = 'submit'; 
-		
+		boton.className = 'boton';
 		let img = document.createElement('img'); 
-		img.className = 'boton';
-		img.src = `assets/icons/${action}.png`; boton.appendChild(img); 
+		img.className = 'img--boton';
+		img.src = `assets/icons/${action}.png`; 
+		boton.appendChild(img); 
 		divboton.appendChild(boton); 
 	}
 	load_data(contenido) {
@@ -229,12 +230,16 @@ class Dom{
 
 	crearboton(entidad, accion, parametros){
         let columna = document.createElement('td');
+		let  boton = document.createElement('button');
         let opcion = document.createElement('img');
-		opcion.className = "boton"
+		boton.id = 'boton' + accion;
+		boton.className = 'boton';
+		opcion.className = "img--button";
         opcion.src = "assets/icons/"+ accion +".png";
         let textoonclick = "validar.createForm_"+accion+"("+parametros+");"
         opcion.setAttribute('onclick',textoonclick);
-        columna.appendChild(opcion);
+		boton.appendChild(opcion);
+        columna.appendChild(boton);
         return columna.outerHTML;
     
 	}
