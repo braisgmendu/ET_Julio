@@ -94,7 +94,7 @@ class analysis_preparation extends Entidad_Abstracta{
         this.validations.load_validations('SEARCH');
         this.colocarboton('SEARCH');
         
-        document.getElementById("IU_form").setAttribute('onsubmit',"return validar.submit_test('SEARCH');");
+        document.getElementById("IU_form").setAttribute('onsubmit',"return validar.validations.submit_test('SEARCH');");
 		document.getElementById("IU_form").setAttribute('action',"javascript:validar.SEARCH();");
 
 		document.getElementById("div_IU_form").style.display = 'block';
@@ -119,7 +119,7 @@ class analysis_preparation extends Entidad_Abstracta{
         this.validations.load_validations('EDIT');
         this.colocarboton('EDIT');
 
-		document.getElementById("IU_form").setAttribute('onsubmit',"return validar.submit_test('EDIT');");
+		document.getElementById("IU_form").setAttribute('onsubmit',"return validar.validations.submit_test('EDIT');");
 		document.getElementById("IU_form").setAttribute('action',"javascript:validar.EDIT();");
 
 		document.getElementById("div_IU_form").style.display = 'block';
@@ -130,15 +130,13 @@ class analysis_preparation extends Entidad_Abstracta{
         this.cargar_formulario('DELETE');
         document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_DELETE';
        
-		document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
-        document.getElementById("nuevo_file_analysis_preparation").style.display = 'none';
+		//document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
+        //document.getElementById("nuevo_file_analysis_preparation").style.display = 'none';
         
 
 		
-		super.load_data(parametros);
-        document.getElementById('link_file_analysis_preparation').innerHTML = this.cambiardatosespecialestabla('file_analysis_preparation', parametros.file_analysis_preparation);
-
-        super.ponerNoActivo();
+		this.load_data(parametros);
+        document.getElementById('link_file_analysis_preparation').innerHTML = this.change_value_IU('file_analysis_preparation', parametros.file_analysis_preparation);
         this.colocarboton('DELETE');
 
 		document.getElementById("IU_form").setAttribute('action',"javascript:validar.DELETE();");
@@ -151,15 +149,14 @@ class analysis_preparation extends Entidad_Abstracta{
         this.cargar_formulario('SHOWCURRENT');
         document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_SHOWCURRENT';
 
-		document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
-        document.getElementById("nuevo_file_analysis_preparation").style.display = 'none';
+		//document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
+        //document.getElementById("nuevo_file_analysis_preparation").style.display = 'none';
         
 
 
-		super.load_data(parametros);
-		document.getElementById('link_file_analysis_preparation').innerHTML = this.cambiardatosespecialestabla('file_analysis_preparation', parametros.file_analysis_preparation);
+		this.load_data(parametros);
+		document.getElementById('link_file_analysis_preparation').innerHTML = this.change_value_IU('file_analysis_preparation', parametros.file_analysis_preparation);
         
-        super.ponerNoActivo();
 		document.getElementById("IU_form").setAttribute('onsubmit',"return true;");
 		document.getElementById("IU_form").setAttribute('action',"");
 

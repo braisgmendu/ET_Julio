@@ -21,6 +21,8 @@ class Dom {
       ADD: this.handleAddField.bind(this),
       EDIT: this.handleEditField.bind(this),
       SEARCH: this.handleSearchField.bind(this),
+	  DELETE :this.handleDeleteField.bind(this),
+	  SHOWCURRENT :this.handleDeleteField.bind(this),
     };
 
     const handleField = actionHandlers[action.toUpperCase()];
@@ -60,8 +62,15 @@ class Dom {
     if (nombreAtributo.startsWith("nuevo_file_")) {
 		return null; // Excluir estos campos en SEARCH
 	}
+	console.log("nombreAtributo", nombreAtributo);
     
     return this.createField(nombreAtributo, def); // Campos sin restricciones específicas
+  }
+  handleDeleteField(nombreAtributo, def) {
+	if (nombreAtributo.startsWith("nuevo_file_")) {
+	  return null; // Excluir estos campos en DELETE
+	}
+	return this.createField(nombreAtributo, def,true); // Campos sin restricciones específicas
   }
 
   // Método genérico para crear un campo
