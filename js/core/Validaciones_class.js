@@ -33,7 +33,7 @@ class Validaciones_Atomicas{
         }
     }
 
-    format(id, parametro){
+    reg_exp(id, parametro){
         const valor = document.getElementById(id)?.value; // Verificar que el campo existe
         if (!valor) {
             console.warn(`El campo con id "${id}" no existe o no tiene valor.`);
@@ -49,7 +49,7 @@ class Validaciones_Atomicas{
 		return true;
 	}
 
-	type_file(objfile, array_tipos){
+	file_type(objfile, array_tipos){
 		if (!(array_tipos.includes(objfile.type))){
 			return false;
 		}
@@ -72,6 +72,12 @@ class Validaciones_Atomicas{
     max_size_name_file(objfile,param){
         let valor = objfile.name;
         if (valor.length > param){
+            return false;
+        }
+        return true;
+    }
+    no_file(objfile){
+        if (objfile.size == 0){
             return false;
         }
         return true;

@@ -48,7 +48,7 @@ class Dom_validations extends Dom{
         let mensajeError = true;
         const atributos = this.getAttributes(); //Definiciones de test para una determinada accion de una clase
 
-        if (atributos[campo] === undefined) {
+        if (atributos[campo] ==null) {
             console.warn(`No se pueden comprobar validaciones porque no existen definiciones para la acción: ${action}`);
             return true; // Si no hay definiciones, asumimos que es válido
         }
@@ -77,13 +77,15 @@ class Dom_validations extends Dom{
             ) {
                 return true; // Considerar válido si no hay archivo
             }
-    
+            
             switch (tipoValidacion) {
                 case 'min_size':
                     resultado = this.validaciones.min_size(campo, valor);
                     if (!resultado) {
                         this.mostrar_error_campo(campo, mensaje);
                         return mensaje;
+                    }else{
+                        resultadoGlobal = resultado; // Si pasa la validación, se considera válido
                     }
                     break;
     
@@ -92,15 +94,20 @@ class Dom_validations extends Dom{
                     if (!resultado) {
                         this.mostrar_error_campo(campo, mensaje);
                         return mensaje;
+                    }else{
+                        resultadoGlobal = resultado; // Si pasa la validación, se considera válido
                     }
                     break;
     
                 case 'reg_exp':
-                    resultado = this.validaciones.format(campo, valor);
+                    resultado = this.validaciones.reg_exp(campo, valor);
                     if (!resultado) {
                         this.mostrar_error_campo(campo, mensaje);
                         return mensaje;
+                    }else{
+                        resultadoGlobal = resultado; // Si pasa la validación, se considera válido
                     }
+        
                     break;
     
                 case 'valid_date':
@@ -108,6 +115,54 @@ class Dom_validations extends Dom{
                     if (!resultado) {
                         this.mostrar_error_campo(campo, mensaje);
                         return mensaje;
+                    }else
+                        resultadoGlobal = resultado; // Si pasa la validación, se considera válido
+                    break;
+                case 'no_file':
+                    resultado = this.validaciones.no_file(campo, valor);
+                    if (!resultado) {
+                        this.mostrar_error_campo(campo, mensaje);
+                        return mensaje;
+                    }else
+                        resultadoGlobal = resultado; // Si pasa la validación, se considera válido
+                    break;
+                case 'max_size_file':
+                    const objfile = document.getElementById(campo)?.files[0];
+                    if (objfile) {
+                        resultado = this.validaciones.max_size_file(objfile, valor);
+                        if (!resultado) {
+                            this.mostrar_error_campo(campo, mensaje);
+                            return mensaje;
+                        }else
+                            resultadoGlobal = resultado; // Si pasa la validación, se considera válido
+                    } else {
+                        console.warn(`El campo ${campo} no tiene un archivo asociado.`);
+                    }
+                    break;
+                case 'file_type':
+                    const objfileType = document.getElementById(campo)?.files[0];
+                    if (objfileType) {
+                        resultado = this.validaciones.file_type(objfileType, valor);
+                        if (!resultado) {
+                            this.mostrar_error_campo(campo, mensaje);
+                            return mensaje;
+                        }else
+                            resultadoGlobal = resultado; // Si pasa la validación, se considera válido
+                    } else {
+                        console.warn(`El campo ${campo} no tiene un archivo asociado.`);
+                    }
+                    break;
+                case 'format_name_file':
+                    const objfileFormat = document.getElementById(campo)?.files[0];
+                    if (objfileFormat) {
+                        resultado = this.validaciones.format_name_file(objfileFormat, valor);
+                        if (!resultado) {
+                            this.mostrar_error_campo(campo, mensaje);
+                            return mensaje;
+                        }else
+                            resultadoGlobal = resultado; // Si pasa la validación, se considera válido
+                    } else {
+                        console.warn(`El campo ${campo} no tiene un archivo asociado.`);
                     }
                     break;
     
@@ -123,16 +178,22 @@ class Dom_validations extends Dom{
 
 
     submit_test(action) {
-        const atributos  = this.getAttributes();
+        const atributos = this.getAttributes();
     
         if (!atributos) {
             console.error(`No se encontraron atributos para validaciones.`);
             return false; // No se puede proceder sin definiciones
         }
     
-        const errores = Object.keys(atributos).map(campo => {
+        // Filtrar atributos que tienen reglas de validación para la acción específica
+        const atributosFiltrados = Object.keys(atributos).filter(campo => {
+            const reglas = atributos[campo]?.validation_rules;
+            return reglas && reglas[action]; // Validar solo si hay reglas para la acción
+        });
+    
+        const errores = atributosFiltrados.map(campo => {
             const resultado = this.comprobarCampo(campo, action);
-            if (resultado !== true) {
+            if (resultado != true) {
                 console.error(`Error en el campo "${campo}": ${resultado}`);
             }
             return resultado; // Devolver el mensaje de error o true
@@ -143,6 +204,7 @@ class Dom_validations extends Dom{
     
         return !hayErrores; // Retornar `false` si hubo errores, `true` si todo está correcto
     }
+    
     check_special_tests(campo, valor) {
         if (campo == 'start_date_project') {
             let fecha = document.getElementById(campo).value;

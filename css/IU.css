@@ -11,16 +11,16 @@
 	width: 30px;
 }
 :root {
-    --primary: #5e3bee;
+    --primary:#33332d;
     --heading-background: #007BFF;
-    --heading-color: #282928;
+    --heading-color: #33332d;
     --bg-shade: #f5fcff;
     --github: #e62872;
     --darkblue: #1c1e53;
     --dark: #00000;
     --white: #fffff;
     --background-white: #f5f5f5;
-    --background-hover: #0056b3;
+    --background-hover: #afffdc;
   }
 body {
     font-family: "NType82" !important ;
@@ -72,9 +72,17 @@ nav.bordeado {
     cursor: pointer;
     border-radius: 5px;
 }
-
+#title_page{
+    font-size: 1.5rem;
+    margin: 0;
+    color: var(--bg-shade);
+    text-align: center;
+    font-weight: bold;
+    padding: 10px;
+    background-color: var(--heading-color);
+}
 nav.bordeado:hover {
-    background-color: #0056b3;
+    background-color: var(--background-hover);
 }
 .div_IU_form {
 	width:100%; /*Toma el 100% del ancho de la página*/
@@ -138,7 +146,7 @@ ol li {
 }
 
 ol li:hover {
-    background-color: #007BFF;
+    background-color: var(--background-hover);
     color: white;
 }
 
@@ -238,7 +246,7 @@ footer {
     margin-top: 10px;
 }
 .boton:hover {
-    background-color: #0056b3;
+    background-color: var(--background-hover);
 }
 /* --- ESTILO RESPONSIVE --- */
 
@@ -375,6 +383,6 @@ footer {
 
 /* Colores al pasar el mouse */
 #tabladatosalumnos tr:hover {
-    background-color: #f1f1f1; /* Fondo más claro */
+    background-color: var(--background-hover); /* Fondo más claro */
     cursor: pointer;
 }
