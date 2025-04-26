@@ -54,19 +54,19 @@ class analysis_preparation extends Entidad_Abstracta{
             document.getElementById('IU_form').innerHTML = form;
             
     }*/
-    cargar_formulario_dinamico(){
-        super.createForm('', this.def_estructura);
+    cargar_formulario_dinamico(action){
+        this.createForm(action, this.def_estructura);
     }
     createForm_ADD() {
-        this.cargar_formulario();
+        this.cargar_formulario('ADD');
         
         document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_ADD';
-        document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'block';
-        document.getElementById("nuevo_file_analysis_preparation").style.display = 'block';
+        //document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'block';
+        //document.getElementById("nuevo_file_analysis_preparation").style.display = 'block';
         //document.getElementById("label_id_analysis_preparation").style.display = 'none';
         //document.getElementById("id_analysis_preparation").style.display = 'none';
-        document.getElementById("label_file_analysis_preparation").style.display = 'none';
-        document.getElementById("file_analysis_preparation").style.display = 'none';
+        //document.getElementById("label_file_analysis_preparation").style.display = 'none';
+        //document.getElementById("file_analysis_preparation").style.display = 'none';
         //document.getElementById("link_file_analysis_preparation").style.display = 'none';
 
         this.validations.load_validations('ADD');
@@ -80,21 +80,21 @@ class analysis_preparation extends Entidad_Abstracta{
     }
 
     createForm_SEARCH() {
-        this.cargar_formulario();
+        this.cargar_formulario('SEARCH');
         
         document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_SEARCH';
 
-        document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
-        document.getElementById("nuevo_file_analysis_preparation").style.display = 'none';
-        document.getElementById("link_file_analysis_preparation").style.display = 'none';
-        document.getElementById('file_analysis_preparation').removeAttribute('required');
+        //document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
+        //document.getElementById("nuevo_file_analysis_preparation").style.display = 'none';
+        //document.getElementById("link_file_analysis_preparation").style.display = 'none';
+        //document.getElementById('file_analysis_preparation').removeAttribute('required');
 
         
 
         this.validations.load_validations('SEARCH');
         this.colocarboton('SEARCH');
         
-        document.getElementById("IU_form").setAttribute('onsubmit',"return validar.manejoVal.comprobar_submit('SEARCH');");
+        document.getElementById("IU_form").setAttribute('onsubmit',"return validar.submit_test('SEARCH');");
 		document.getElementById("IU_form").setAttribute('action',"javascript:validar.SEARCH();");
 
 		document.getElementById("div_IU_form").style.display = 'block';
@@ -102,24 +102,24 @@ class analysis_preparation extends Entidad_Abstracta{
     }
 
     createForm_EDIT(parametros) {
-        this.cargar_formulario();
+        this.cargar_formulario('EDIT');
         this.action = 'EDIT';
         super.load_data(parametros);
-        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_EDIT';
-        document.getElementById("id_analysis_preparation").setAttribute('readonly',true);
-        document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'block';
-        document.getElementById("nuevo_file_analysis_preparation").style.display = 'block';
-        document.getElementById('nuevo_file_analysis_preparation').removeAttribute('required');
+        //document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_EDIT';
+        //document.getElementById("id_analysis_preparation").setAttribute('readonly',true);
+        //document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'block';
+        //document.getElementById("nuevo_file_analysis_preparation").style.display = 'block';
+        //document.getElementById('nuevo_file_analysis_preparation').removeAttribute('required');
 
 
-        document.getElementById('file_analysis_preparation').setAttribute('readonly',true);
+        //document.getElementById('file_analysis_preparation').setAttribute('readonly',true);
 		
-        document.getElementById('link_file_analysis_preparation').innerHTML = this.cambiardatosespecialestabla('file_analysis_preparation', parametros.file_analysis_preparation);
+        document.getElementById('link_file_analysis_preparation').innerHTML = this.change_value_IU('file_analysis_preparation', parametros.file_analysis_preparation);
 
         this.validations.load_validations('EDIT');
         this.colocarboton('EDIT');
 
-		document.getElementById("IU_form").setAttribute('onsubmit',"return validar.manejoVal.comprobar_submit('EDIT');");
+		document.getElementById("IU_form").setAttribute('onsubmit',"return validar.submit_test('EDIT');");
 		document.getElementById("IU_form").setAttribute('action',"javascript:validar.EDIT();");
 
 		document.getElementById("div_IU_form").style.display = 'block';
@@ -127,7 +127,7 @@ class analysis_preparation extends Entidad_Abstracta{
     }
 
     createForm_DELETE(parametros) {
-        this.cargar_formulario();
+        this.cargar_formulario('DELETE');
         document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_DELETE';
        
 		document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';
@@ -148,7 +148,7 @@ class analysis_preparation extends Entidad_Abstracta{
     }
 
     createForm_SHOWCURRENT(parametros) {
-        this.cargar_formulario();
+        this.cargar_formulario('SHOWCURRENT');
         document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_SHOWCURRENT';
 
 		document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'none';

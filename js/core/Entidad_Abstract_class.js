@@ -26,14 +26,14 @@ class Entidad_Abstracta extends Dom {
         return valor;
     }
 
-    cargar_formulario(){
+    cargar_formulario(action){
 
 		if (eval(this.cargar_formularios_estatico)){
 			this.cargar_formularios_estatico();
 		}
 		else{
 			if (eval(this.cargar_formulario_dinamico)){
-				this.cargar_formulario_dinamico();
+				this.cargar_formulario_dinamico(action);
 			}
 			else{
 				alert('no existe formulario');
@@ -60,7 +60,7 @@ class Entidad_Abstracta extends Dom {
         .then((respuesta) => {
             
             //limpiar el formulario
-        	this.cargar_formulario();
+        	this.cargar_formulario('SEARCH');
 			//quito los class de la muestra de filas
 			document.getElementById('muestradatostabla').removeAttribute('class');
 
@@ -86,7 +86,7 @@ class Entidad_Abstracta extends Dom {
         	if (respuesta['ok']){
             
 	            //limpiar el formulario
-	            this.cargar_formulario();
+	            this.cargar_formulario('ADD');
 
 	            //poner el div del formulario no visible
 	            document.getElementById("div_IU_form").style.display = 'none';
@@ -115,7 +115,7 @@ class Entidad_Abstracta extends Dom {
         	if (respuesta['ok']){
             
 	            //limpiar el formulario
-	            this.cargar_formulario();
+	            this.cargar_formulario('DELETE');
 
 	            //poner el div del formulario no visible
 	            document.getElementById("div_IU_form").style.display = 'none';
@@ -143,7 +143,7 @@ class Entidad_Abstracta extends Dom {
         	if (respuesta['ok']){
             
 	            //limpiar el formulario
-	            this.cargar_formulario();
+	            this.cargar_formulario('EDIT');
 
 	            //poner el div del formulario no visible
 	            document.getElementById("div_IU_form").style.display = 'none';
