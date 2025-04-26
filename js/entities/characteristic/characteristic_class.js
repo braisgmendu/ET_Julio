@@ -7,10 +7,11 @@ class characteristic extends Entidad_Abstracta {
     this.columnasamostrar = estructura_characteristic.columnas_visibles_tabla;
     this.datosespecialestabla =
       estructura_characteristic.columnas_modificadas_tabla;
+      this.validations = new Dom_validations(new Validaciones_Atomicas, this.entidad);
     this.inicializar(this.entidad, this.def_estructura);
   }
 
-   cargar_formulario_estatico() {
+  /* cargar_formulario_estatico() {
         this.action = '';
 		//corregir el html, usar el formato de project para tipo de datos y categoria
         let form = `
@@ -81,5 +82,131 @@ class characteristic extends Entidad_Abstracta {
       texto += `<img src="./iconos/FILE.png" alt="Fichero"/>${valoratributo}</a>`;
       return texto;
     }
-  }
+  }*/
+    cargar_formulario_dinamico(action){
+      this.createForm(action, this.def_estructura);
+    }
+  
+    createForm_ADD() {
+      this.cargar_formulario('ADD');
+      
+      document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_ADD';
+      /*document.getElementById("label_nuevo_file_characteristic").style.display = 'block';
+      document.getElementById("nuevo_file_characteristic").style.display = 'block';
+      document.getElementById("label_id_characteristic").style.display = 'none';
+      document.getElementById("id_characteristic").style.display = 'none';
+      document.getElementById("label_file_characteristic").style.display = 'none';
+      document.getElementById("file_characteristic").style.display = 'none';
+      document.getElementById("link_file_characteristic").style.display = 'none';
+      */
+      this.validations.load_validations('ADD');
+      this.colocarboton('ADD');
+          
+      document.getElementById("IU_form").setAttribute('onsubmit',"return validar.validations.submit_test('ADD');");
+      document.getElementById("IU_form").setAttribute('action',"javascript:validar.ADD();");
+  
+      document.getElementById("div_IU_form").style.display = 'block';
+      setLang();
+    }
+  
+    // Métodos similares para SEARCH, EDIT, DELETE, SHOWCURRENT
+    createForm_SEARCH() {
+      this.cargar_formulario('EDIT');
+      
+      document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_SEARCH';
+  
+      /*document.getElementById("label_nuevo_file_characteristic").style.display = 'none';
+      document.getElementById("nuevo_file_characteristic").style.display = 'none';
+      document.getElementById("link_file_characteristic").style.display = 'none';
+  */
+      this.validations.load_validations('SEARCH');
+      this.colocarboton('SEARCH');
+  
+      document.getElementById("IU_form").setAttribute('onsubmit',"return validar.validations.submit_test('SEARCH');");
+      document.getElementById("IU_form").setAttribute('action',"javascript:validar.SEARCH();");
+  
+      document.getElementById("div_IU_form").style.display = 'block';
+      setLang();
+    }
+  
+    createForm_EDIT(parametros) {
+      this.cargar_formulario('EDIT');
+     
+  
+      this.action = 'EDIT';
+      this.load_data(parametros);
+      document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_EDIT';
+      /*document.getElementById("id_characteristic").setAttribute('readonly',true);
+      document.getElementById("label_nuevo_file_characteristic").style.display = 'block';
+      document.getElementById("nuevo_file_characteristic").style.display = 'block';
+      document.getElementById('nuevo_file_characteristic').removeAttribute('required');
+  
+      document.getElementById('file_characteristic').setAttribute('readonly',true);
+      document.getElementById('link_file_characteristic').innerHTML = this.cambiardatosespecialestabla('file_characteristic', parametros.file_characteristic);
+  */
+      this.validations.load_validations('EDIT');
+      this.colocarboton('EDIT');
+  
+      document.getElementById("IU_form").setAttribute('onsubmit',"return validar.validations.submit_test('EDIT');");
+      document.getElementById("IU_form").setAttribute('action',"javascript:validar.EDIT();");
+  
+      document.getElementById("div_IU_form").style.display = 'block';
+      setLang();
+    }
+  
+    createForm_DELETE(parametros) {
+      this.cargar_formulario('DELETE');
+
+      document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_' + this.entidad + '_DELETE';
+    
+      // Llenar el formulario con los datos proporcionados
+      this.load_data(parametros);
+      document.getElementById('link_file_characteristic').innerHTML = this.cambiardatosespecialestabla('file_characteristic', parametros.file_characteristic);
+    
+      // Desactivar el formulario para evitar modificaciones
+      //this.manejoAtrib.ponerNoActivo();
+      this.colocarboton('DELETE');
+    
+      document.getElementById("IU_form").setAttribute('action', "javascript:validar.DELETE();");
+      document.getElementById("div_IU_form").style.display = 'block';
+    
+      setLang();
+    }
+    
+    createForm_SHOWCURRENT(parametros) {
+      this.cargar_formulario('SHOWCURRENT');
+      document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_' + this.entidad + '_SHOWCURRENT';
+    
+      // Ocultar elementos no necesarios
+      /*document.getElementById("label_nuevo_file_characteristic").style.display = 'none';
+      document.getElementById("nuevo_file_characteristic").style.display = 'none';
+      document.getElementById("link_file_characteristic").style.display = 'none';
+    */
+      // Llenar el formulario con los datos proporcionados
+      this.load_data(parametros);
+      //document.getElementById('link_file_characteristic').innerHTML = this.cambiardatosespecialestabla('file_characteristic', parametros.file_characteristic);
+    
+      // Desactivar el formulario para evitar modificaciones
+      //this.manejoAtrib.ponerNoActivo();
+      document.getElementById("IU_form").setAttribute('onsubmit', "return true;");
+      document.getElementById("IU_form").setAttribute('action', "");
+    
+      document.getElementById("div_IU_form").style.display = 'block';
+    
+      setLang();
+    }
+    
+  
+    change_value_IU(atributo, valoratributo){
+      if (atributo === 'file_characteristic'){
+        if (valoratributo === ''){
+          return "no hay fichero";
+        }
+        let baseUrl = "http://193.147.87.202/ET2/filesuploaded/files_file_characteristic/";
+        let texto = `<a href="${baseUrl}${encodeURIComponent(valoratributo)}" target="_blank">`;
+        texto += `<img src="./iconos/FILE.png" alt="Fichero"/>${valoratributo}</a>`;
+        return texto;
+      }
+      }
+  
 }

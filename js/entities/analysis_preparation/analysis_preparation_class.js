@@ -104,7 +104,7 @@ class analysis_preparation extends Entidad_Abstracta{
     createForm_EDIT(parametros) {
         this.cargar_formulario('EDIT');
         this.action = 'EDIT';
-        super.load_data(parametros);
+        this.load_data(parametros);
         //document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_EDIT';
         //document.getElementById("id_analysis_preparation").setAttribute('readonly',true);
         //document.getElementById("label_nuevo_file_analysis_preparation").style.display = 'block';
