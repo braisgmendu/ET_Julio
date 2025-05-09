@@ -14,7 +14,7 @@ const estructura_analysis_preparation = {
             //component_visible_size: 9,
             validation_rules: {
                 SEARCH:{
-				    max_size: [9,'dni_max_size_KO'],
+				    max_size: [9,'id_analysis_preparation_format_KO'],
                     reg_exp :  ['^[0-9]$+', 'id_analysis_preparation_format_KO'],
                 }
             }
