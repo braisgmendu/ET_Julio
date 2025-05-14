@@ -111,7 +111,7 @@ class characteristic extends Entidad_Abstracta {
   
     // Métodos similares para SEARCH, EDIT, DELETE, SHOWCURRENT
     createForm_SEARCH() {
-      this.cargar_formulario('EDIT');
+      this.cargar_formulario('SEARCH');
       
       document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_'+this.entidad+'_SEARCH';
   
