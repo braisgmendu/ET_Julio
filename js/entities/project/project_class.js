@@ -1,14 +1,8 @@
 class project extends Entidad_Abstracta{
 
     constructor(){
-        super();
-        this.entidad = 'project';
-        this.def_estructura = estructura_project;
-        this.atributos = estructura_project.attributes_list;
-        this.columnasamostrar = estructura_project.columnas_visibles_tabla;
-        this.datosespecialestabla = estructura_project.columnas_modificadas_tabla;
-        this.validations = new Dom_validations(new Validaciones_Atomicas, this.entidad);
-        this.inicializar(this.entidad,this.def_estructura);
+        super('project', estructura_project);
+      
     }
 
     /*cargar_formulario_estatico(){
@@ -85,102 +79,7 @@ class project extends Entidad_Abstracta{
         document.getElementById("IU_form").innerHTML = formulario;
 
     } */
-    cargar_formulario_dinamico(action){
-        super.createForm(action, this.def_estructura);
-    }
-
-    createForm_ADD() {
-        this.cargar_formulario('ADD');
-        
-        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_' + this.entidad + '_ADD';
-
-        // Configuración específica de ADD
-
-        this.validations.load_validations('ADD');
-        this.colocarboton('ADD');
-        
-		document.getElementById("IU_form").setAttribute('onsubmit',"return validar.validations.submit_test('ADD');");
-        document.getElementById("IU_form").setAttribute('action', "javascript:validar.ADD();");
-
-        document.getElementById("div_IU_form").style.display = 'block';
-        setLang();
-    }
-
-    createForm_SEARCH() {
-        this.cargar_formulario('SEARCH');
-        
-        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_' + this.entidad + '_SEARCH';
-        this.validations.load_validations('SEARCH');
-        this.colocarboton('SEARCH');
-
-        document.getElementById("IU_form").setAttribute('onsubmit', "return validar.validations.submit_test('SEARCH');");
-        document.getElementById("IU_form").setAttribute('action', "javascript:validar.SEARCH();");
-
-        document.getElementById("div_IU_form").style.display = 'block';
-        setLang();
-    }
-
-    createForm_EDIT(parametros) {
-        this.cargar_formulario('EDIT');
-       
-
-        this.load_data(parametros);
-        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_' + this.entidad + '_EDIT';
-        document.getElementById('link_file_project').innerHTML = this.change_value_IU('file_project', parametros.file_project);
-		document.getElementById('start_date_project').value = this.change_value_IU('start_date_project',parametros.start_date_project);
-		document.getElementById('end_date_project').value = this.change_value_IU('end_date_project',parametros.start_date_project);
-
-
-
-        this.validations.load_validations('EDIT');
-        this.colocarboton('EDIT');
-
-        document.getElementById("IU_form").setAttribute('onsubmit', "return validar.validations.submit_test('EDIT');");
-        document.getElementById("IU_form").setAttribute('action', "javascript:validar.EDIT();");
-
-        document.getElementById("div_IU_form").style.display = 'block';
-        setLang();
-    }
-
-createForm_DELETE(parametros) {
-    this.cargar_formulario('DELETE');
-
-
-    
-    document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_' + this.entidad + '_DELETE';
-
-
-    this.load_data(parametros);
-    document.getElementById('link_file_project').innerHTML = this.change_value_IU('file_project', parametros.file_project);
-    document.getElementById('start_date_project').value = this.change_value_IU('start_date_project',parametros.start_date_project);
-    document.getElementById('end_date_project').value = this.change_value_IU('end_date_project',parametros.start_date_project);
-
-
-    this.colocarboton('DELETE');
-
-    document.getElementById("IU_form").setAttribute('action', "javascript:validar.DELETE();");
-
-    document.getElementById("div_IU_form").style.display = 'block';
-    setLang();
-    }
-
-    createForm_SHOWCURRENT(parametros) {
-        this.cargar_formulario('SHOWCURRENT');
-
-        this.load_data(parametros);
-        document.getElementById('class_contenido_titulo_form').className = 'text_contenido_titulo_form_' + this.entidad + '_SHOWCURRENT';
-
-        // Configuración específica de SHOWCURRENT
-       
-
-
-
-        document.getElementById("IU_form").setAttribute('onsubmit', "return true;");
-        document.getElementById("IU_form").setAttribute('action', "");
-
-        document.getElementById("div_IU_form").style.display = 'block';
-        setLang();
-    }
+   
     change_value_IU(atributo, valoratributo){
         if (atributo === 'file_project'){
             if (valoratributo === ''){

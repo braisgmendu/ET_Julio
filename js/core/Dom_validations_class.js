@@ -30,6 +30,7 @@ class Dom_validations extends Dom{
 
         return atributos;
     }
+    
 
     load_validations(action) {
         const elementos = document.forms['IU_form'].elements;

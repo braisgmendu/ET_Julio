@@ -7,66 +7,66 @@
     <link rel="stylesheet" type="text/css" href="css/IU.css" media="screen" />
     <title>Julio-ET - Gestión de Entidades</title>
     <!-- ficheros de idiomas -->
-    <script type="text/javascript" src="js/languages/idioma.js"></script>
-    <script type="text/javascript" src="js/languages/Textos_ES.js"></script>
-    <script type="text/javascript" src="js/languages/Textos_EN.js"></script>
+    <script type="text/javascript" src="./js/languages/idioma.js"></script>
+    <script type="text/javascript" src="./js/languages/Textos_ES.js"></script>
+    <script type="text/javascript" src="./js/languages/Textos_EN.js"></script>
     <!--ficheros del js_core-->
     <script
       type="text/javascript"
-      src="js/core/ExternalAccess_class.js"
+      src="./js/core/ExternalAccess_class.js"
     ></script>
-    <script type="text/javascript" src="js/tests/Tests_class.js"></script>
-    <script type="text/javascript" src="js/core/Dom_class.js"></script>
+    <script type="text/javascript" src="./js/tests/Tests_class.js"></script>
+    <script type="text/javascript" src="./js/core/Dom_class.js"></script>
     <script
       type="text/javascript"
-      src="js/core/Dom_validations_class.js"
+      src="./js/core/Dom_validations_class.js"
     ></script>
-    <script type="text/javascript" src="js/core/Validaciones_class.js"></script>
+    <script type="text/javascript" src="./js/core/Validaciones_class.js"></script>
     <!--ficheros de js_base-->
     <script
       type="text/javascript"
-      src="js/core/Entidad_Abstract_class.js"
+      src="./js/core/Entidad_Abstract_class.js"
     ></script>
 
     <!--ficheros js_app-->
     <!--analaysis_preparation-->
     <script
       type="text/javascript"
-      src="js/entities/analysis_preparation/analysis_preparation_class.js"
+      src="./js/entities/analysis_preparation/analysis_preparation_class.js"
     ></script>
     <script
       type="text/javascript"
-      src="js/entities/analysis_preparation/analysis_preparation_estructura.js"
+      src="./js/entities/analysis_preparation/analysis_preparation_estructura.js"
     ></script>
     <script
       type="text/javascript"
-      src="js/entities/analysis_preparation/tests_analysis_preparation.js"
+      src="./js/entities/analysis_preparation/tests_analysis_preparation.js"
     ></script>
     <!--project-->
     <script
       type="text/javascript"
-      src="js/entities/project/project_class.js"
+      src="./js/entities/project/project_class.js"
     ></script>
     <script
       type="text/javascript"
-      src="js/entities/project/project_estructura.js"
+      src="./js/entities/project/project_estructura.js"
     ></script>
     <script
       type="text/javascript"
-      src="js/entities/project/tests_project.js"
+      src="./js/entities/project/tests_project.js"
     ></script>
     <!--characterisitic-->
     <script
       type="text/javascript"
-      src="js/entities/characteristic/characteristic_class.js"
+      src="./js/entities/characteristic/characteristic_class.js"
     ></script>
     <script
       type="text/javascript"
-      src="js/entities/characteristic/characteristic_estructura.js"
+      src="./js/entities/characteristic/characteristic_estructura.js"
     ></script>
     <script
       type="text/javascript"
-      src="js/entities/characteristic/tests_characteristic.js"
+      src="./js/entities/characteristic/tests_characteristic.js"
     ></script>
 
     <script
@@ -156,7 +156,7 @@
               id="imgADD"
               class="img--button"
               src="assets/icons/ADD.png"
-              onclick="validar.createForm_ADD();"
+              onclick="validar.createFormGenerico('ADD');"
             />
             </button>
             <button id="botonSEARCH" class="boton">
@@ -164,7 +164,7 @@
               id="imgSEARCH"
               class="img--button"
               src="assets/icons/SEARCH.png"
-              onclick="validar.createForm_SEARCH();"
+              onclick="validar.createFormGenerico('SEARCH');"
             />
             </button>
             

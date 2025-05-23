@@ -225,7 +225,7 @@ class Dom {
         "onclick",
         "validar.modificarcolumnasamostrar('" + atributo + "');"
       );
-      if (this.columnasamostrar.includes(atributo)) {
+      if (this.def_estructura.columnas_visibles_tabla.includes(atributo)) {
         optionselect.selected = true;
       }
       document.getElementById("seleccioncolumnas").append(optionselect);
@@ -330,18 +330,18 @@ class Dom {
 
   modificarcolumnasamostrar(atributo) {
     let nuevascolumnas = Array();
-    if (this.columnasamostrar.includes(atributo)) {
+    if (this.def_estructura.columnas_visibles_tabla.includes(atributo)) {
       // borrar ese atributo
-      for (let i = 0; i < this.columnasamostrar.length; i++) {
-        if (this.columnasamostrar[i] == atributo) {
+      for (let i = 0; i < this.def_estructura.columnas_visibles_tabla.length; i++) {
+        if (this.def_estructura.columnas_visibles_tabla[i] == atributo) {
         } else {
-          nuevascolumnas.push(this.columnasamostrar[i]);
+          nuevascolumnas.push(this.def_estructura.columnas_visibles_tabla[i]);
         }
       }
-      this.columnasamostrar = nuevascolumnas;
+      this.def_estructura.columnas_visibles_tabla = nuevascolumnas;
     } else {
       // añadir
-      this.columnasamostrar.push(atributo);
+      this.def_estructura.columnas_visibles_tabla.push(atributo);
     }
 
     this.crearTablaDatos();
@@ -349,7 +349,7 @@ class Dom {
 
   mostrarocultarcolumnas() {
     for (let columna of this.atributos) {
-      if (this.columnasamostrar.includes(columna)) {
+      if (this.def_estructura.columnas_visibles_tabla.includes(columna)) {
       } else {
         //document.querySelector("th[class='"+columna+" tabla-th-"+columna+"']").style.display = 'none';
         document.querySelector("th[class='" + columna + "']").style.display =
@@ -387,7 +387,8 @@ class Dom {
     boton.className = "boton";
     opcion.className = "img--button";
     opcion.src = "assets/icons/" + accion + ".png";
-    let textoonclick = "validar.createForm_" + accion + "(" + parametros + ");";
+    let textoonclick = "validar.createFormGenerico('" + accion + "', " + parametros + ");"
+
     opcion.setAttribute("onclick", textoonclick);
     boton.appendChild(opcion);
     columna.appendChild(boton);

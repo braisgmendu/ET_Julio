@@ -1,172 +1,171 @@
+
+
 class Entidad_Abstracta extends Dom {
+  constructor(entidad, def_estructura) {
 
-    constructor(){
-
-      super()
-    }
-    inicializar(nombreEntidad,estructura){
-
-		if (eval(this.datosespecialestabla)){}
+    super();
+	if (eval(this.datosespecialestabla)){}
 		else{
 			this.datosespecialestabla = Array();
-		}
-        
-        this.nombreEntidad = nombreEntidad;
-        this.estructura = estructura;
-		this.access_functions = new ExternalAccess();
-        this.tests = new test_IU();
-        document.getElementById("workspace").style.display = 'block';
-		this.cerrar_test()
-		this.SEARCH();
-
-
 	}
+	this.entidad = entidad;
+	this.def_estructura = def_estructura; 
+	this.domValidations = new Dom_validations(new Validaciones_Atomicas(), entidad);
+	this.access_functions = new ExternalAccess();
+	this.tests = new test_IU();
+	document.getElementById("workspace").style.display = "block";
+    this.cerrar_test();
+    this.SEARCH();
 
-    change_value_IU(atributo, valor){
-        return valor;
+  }
+
+  createFormGenerico(action, parametros = null) {
+    this.cargar_formulario(action);
+
+    if (parametros) {
+      this.load_data(parametros);
+      document.getElementById("link_file_" + this.entidad).innerHTML =
+        this.change_value_IU(
+          "file_" + this.entidad,
+          parametros["file_" + this.entidad]
+        );
     }
 
-    cargar_formulario(action){
+    document.getElementById("class_contenido_titulo_form").className =
+      "text_contenido_titulo_form_" + this.entidad + "_" + action;
 
-		if (eval(this.cargar_formularios_estatico)){
-			this.cargar_formularios_estatico();
-		}
-		else{
-			if (eval(this.cargar_formulario_dinamico)){
-				this.cargar_formulario_dinamico(action);
-			}
-			else{
-				alert('no existe formulario');
-			}
-		}
+    this.domValidations.load_validations(action);
+    this.colocarboton(action);
 
-	}
-    crearTablaDatos(){
+    document
+      .getElementById("IU_form")
+      .setAttribute(
+        "onsubmit",
+        "return validar.domValidations.submit_test('" + action + "');"
+      );
+    document
+      .getElementById("IU_form")
+      .setAttribute("action", "javascript:validar." + action + "();");
+    document.getElementById("div_IU_form").style.display = "block";
+    setLang();
+  }
+  change_value_IU(atributo, valor) {
+    return valor;
+  }
 
-		document.getElementById("id_tabla_datos").style.display = 'block';
+  change_value_IU(atributo, valor) {
+    return valor;
+  }
 
-		//construir tabla
-		this.hacertabla();
-		//construir select
-		this.construirSelect();
-		
-		//ocultar segun columnasamostrar
-		if (this.datos != "") {this.mostrarocultarcolumnas()};
-
-	}
-    async SEARCH(){
-    
-        await this.access_functions.back_request('IU_form', this.entidad, 'SEARCH')
-        .then((respuesta) => {
-            
-            //limpiar el formulario
-        	this.cargar_formulario('SEARCH');
-			//quito los class de la muestra de filas
-			document.getElementById('muestradatostabla').removeAttribute('class');
-
-            //poner el div del formulario no visible
-            document.getElementById("div_IU_form").style.display = 'none';
-
-            this.datos = respuesta['resource'];
-			this.atributos = Object.keys(respuesta['criteriosbusqueda']);
-           
-           	this.crearTablaDatos();
-           
-			setLang();
-
-        });
-    
+  cargar_formulario(action) {
+    if (eval(this.cargar_formularios_estatico)) {
+      this.cargar_formularios_estatico();
+    } else {
+      this.createForm(action, this.def_estructura);
     }
+  }
+  crearTablaDatos() {
+    document.getElementById("id_tabla_datos").style.display = "block";
 
-    async ADD(){
-    
-        await this.access_functions.back_request('IU_form', this.entidad, 'ADD')
-        .then((respuesta) => {
+    //construir tabla
+    this.hacertabla();
+    //construir select
+    this.construirSelect();
 
-        	if (respuesta['ok']){
-            
-	            //limpiar el formulario
-	            this.cargar_formulario('ADD');
-
-	            //poner el div del formulario no visible
-	            document.getElementById("div_IU_form").style.display = 'none';
-
-	            this.SEARCH();
-
-	        }
-	        else{
-				
-				// mostrar mensaje error action
-	        	// alert('error : '+respuesta['code']);
-
-				// Usando modal
-				this.abrirModalError(respuesta['code']);
-	        }
-
-        });
-    
+    //ocultar segun columnasamostrar
+    if (this.datos != "") {
+      this.mostrarocultarcolumnas();
     }
+  }
+  async SEARCH() {
+    await this.access_functions
+      .back_request("IU_form", this.entidad, "SEARCH")
+      .then((respuesta) => {
+        //limpiar el formulario
+        this.cargar_formulario("SEARCH");
+        //quito los class de la muestra de filas
+        document.getElementById("muestradatostabla").removeAttribute("class");
 
-    async DELETE(){
-    
-        await this.access_functions.back_request('IU_form', this.entidad, 'DELETE')
-        .then((respuesta) => {
+        //poner el div del formulario no visible
+        document.getElementById("div_IU_form").style.display = "none";
 
-        	if (respuesta['ok']){
-            
-	            //limpiar el formulario
-	            this.cargar_formulario('DELETE');
+        this.datos = respuesta["resource"];
+        this.atributos = Object.keys(respuesta["criteriosbusqueda"]);
 
-	            //poner el div del formulario no visible
-	            document.getElementById("div_IU_form").style.display = 'none';
+        this.crearTablaDatos();
 
-	            this.SEARCH();
-	        }
-	        else{
+        setLang();
+      });
+  }
 
-	        	// mostrar mensaje error action
-	        	// alert('error : '+respuesta['code']);
+  async ADD() {
+    await this.access_functions
+      .back_request("IU_form", this.entidad, "ADD")
+      .then((respuesta) => {
+        if (respuesta["ok"]) {
+          //limpiar el formulario
+          this.cargar_formulario("ADD");
 
-				// Usando modal
-				this.abrirModalError(respuesta['code']);
-	        }
+          //poner el div del formulario no visible
+          document.getElementById("div_IU_form").style.display = "none";
 
-        });
-    
-    }
+          this.SEARCH();
+        } else {
+          // mostrar mensaje error action
+          // alert('error : '+respuesta['code']);
 
-    async EDIT(){
-    
-        await this.access_functions.back_request('IU_form', this.entidad, 'EDIT')
-        .then((respuesta) => {
+          // Usando modal
+          this.abrirModalError(respuesta["code"]);
+        }
+      });
+  }
 
-        	if (respuesta['ok']){
-            
-	            //limpiar el formulario
-	            this.cargar_formulario('EDIT');
+  async DELETE() {
+    await this.access_functions
+      .back_request("IU_form", this.entidad, "DELETE")
+      .then((respuesta) => {
+        if (respuesta["ok"]) {
+          //limpiar el formulario
+          this.cargar_formulario("DELETE");
 
-	            //poner el div del formulario no visible
-	            document.getElementById("div_IU_form").style.display = 'none';
+          //poner el div del formulario no visible
+          document.getElementById("div_IU_form").style.display = "none";
 
-	            this.SEARCH();
+          this.SEARCH();
+        } else {
+          // mostrar mensaje error action
+          // alert('error : '+respuesta['code']);
 
-	        }
-	        else{
+          // Usando modal
+          this.abrirModalError(respuesta["code"]);
+        }
+      });
+  }
 
-	        	// mostrar mensaje error action
-	        	// alert('error : '+respuesta['code']);
+  async EDIT() {
+    await this.access_functions
+      .back_request("IU_form", this.entidad, "EDIT")
+      .then((respuesta) => {
+        if (respuesta["ok"]) {
+          //limpiar el formulario
+          this.cargar_formulario("EDIT");
 
-				// Usando modal
-				this.abrirModalError(respuesta['code']);
-	        }
+          //poner el div del formulario no visible
+          document.getElementById("div_IU_form").style.display = "none";
 
-        });
-    
-    }
+          this.SEARCH();
+        } else {
+          // mostrar mensaje error action
+          // alert('error : '+respuesta['code']);
 
-	cambiacolumnastabla(atributo){
+          // Usando modal
+          this.abrirModalError(respuesta["code"]);
+        }
+      });
+  }
 
-		document.querySelector("th[class='"+atributo+"']").style.display = 'none';
-
-	}
+  cambiacolumnastabla(atributo) {
+    document.querySelector("th[class='" + atributo + "']").style.display =
+      "none";
+  }
 }
