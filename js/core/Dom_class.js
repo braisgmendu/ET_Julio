@@ -62,7 +62,7 @@ class Dom {
     if (nombreAtributo.startsWith("nuevo_file_")) {
 		return null; // Excluir estos campos en SEARCH
 	}
-	console.log("nombreAtributo", nombreAtributo);
+	
     
     return this.createField(nombreAtributo, def); // Campos sin restricciones específicas
   }

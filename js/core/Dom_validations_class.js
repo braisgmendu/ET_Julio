@@ -9,25 +9,7 @@ class Dom_validations extends Dom{
     getAttributes() {
         let atributos;
 
-        switch (this.entidad) {
-            case 'analysis_preparation':
-                atributos = estructura_analysis_preparation.attributes;
-                break;
-            case 'characteristic':
-                atributos = estructura_characteristic.attributes;
-                break;
-            case 'project':
-                atributos = estructura_project.attributes;
-                break;
-            default:
-                console.error(`No se encontraron definiciones de validaciones para la entidad: ${this.entidad}`);
-                return null;
-        }
-
-        if (!atributos) {
-            console.warn(`No se encontraron definiciones para la entidad: ${this.entidad}, acción: ${action}`);
-        }
-
+        atributos = eval('estructura_'+this.entidad+'.attributes'); 
         return atributos;
     }
     
@@ -47,19 +29,27 @@ class Dom_validations extends Dom{
 
     comprobarCampo(campo, action) {
         let mensajeError = true;
-        const atributos = this.getAttributes(); //Definiciones de test para una determinada accion de una clase
+        const atributos = this.getAttributes();
 
-        if (atributos[campo] ==null) {
+        if (atributos[campo] == null) {
             console.warn(`No se pueden comprobar validaciones porque no existen definiciones para la acción: ${action}`);
-            return true; // Si no hay definiciones, asumimos que es válido
+            return true;
         }
 
         const validacionesCampo = atributos[campo]?.validation_rules;
 
         if (!validacionesCampo) {
             console.warn(`No hay validaciones definidas para el campo: ${campo} y acción: ${action}`);
-            return true; // Si no hay validaciones, asumimos que es válido
+            return true;
         }
+
+        // --- NUEVO: comprobación de validación especial ---
+        const resultadoEspecial = this.check_special_tests(campo);
+        if (resultadoEspecial !== true) {
+            this.mostrar_error_campo(campo, `Error especial en el campo: ${campo}`);
+            return `Error especial en el campo: ${campo}`;
+        }
+        // --------------------------------------------------
 
         let resultadoGlobal = false;
         
@@ -205,8 +195,20 @@ class Dom_validations extends Dom{
     
         return !hayErrores; // Retornar `false` si hubo errores, `true` si todo está correcto
     }
+
+check_special_tests(campo) {
+    const methodName = `check_especial_tests_${campo}`;
+
+    if (typeof this[methodName] === 'function') {
+        return this[methodName]();
+    }else {
+        console.warn(`No hay un método especial definido para el campo: ${campo}`);
+        return true; // Si no hay método, asumimos que es válido
+    }
     
-    check_special_tests(campo, valor) {
+}
+/*
+    check_special_tests(campo) {
         if (campo == 'start_date_project') {
             let fecha = document.getElementById(campo).value;
             let fechaf = fecha.split("/");
@@ -265,6 +267,7 @@ class Dom_validations extends Dom{
             return true;
         }
     }
+
     /*validacionesespeciales2(atributo, tipoValidacion) {
         if (['start_date_project', 'end_date_project'].includes(atributo)) {
             if (tipoValidacion === 'fechavalida') {

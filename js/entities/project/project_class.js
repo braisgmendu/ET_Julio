@@ -79,7 +79,9 @@ class project extends Entidad_Abstracta{
         document.getElementById("IU_form").innerHTML = formulario;
 
     } */
-   
+   check_special_test_END_DATE_PROJECT(){
+    
+   }
     change_value_IU(atributo, valoratributo){
         if (atributo === 'file_project'){
             if (valoratributo === ''){
