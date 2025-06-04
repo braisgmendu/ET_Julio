@@ -12,7 +12,7 @@ class Entidad_Abstracta extends Dom {
 	this.def_estructura = def_estructura; 
 	this.domValidations = new Dom_validations(new Validaciones_Atomicas(), entidad);
 	this.access_functions = new ExternalAccess();
-	this.tests = new test_IU();
+	this.tests = new test_IU(this.entidad,this);
 	document.getElementById("workspace").style.display = "block";
     this.cerrar_test();
     this.SEARCH();
