@@ -53,9 +53,6 @@ class Entidad_Abstracta extends Dom {
     return valor;
   }
 
-  change_value_IU(atributo, valor) {
-    return valor;
-  }
 
   cargar_formulario(action) {
     if (eval(this.cargar_formularios_estatico)) {

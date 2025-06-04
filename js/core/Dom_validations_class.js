@@ -35,7 +35,7 @@ class Dom_validations extends Dom{
             console.warn(`No se pueden comprobar validaciones porque no existen definiciones para la acción: ${action}`);
             return true;
         }
-
+        // Comprobar si el campo tiene validaciones definidas
         const validacionesCampo = atributos[campo]?.validation_rules;
 
         if (!validacionesCampo) {
@@ -196,16 +196,16 @@ class Dom_validations extends Dom{
         return !hayErrores; // Retornar `false` si hubo errores, `true` si todo está correcto
     }
 
-check_special_tests(campo) {
-    const methodName = `check_especial_tests_${campo}`;
+check_special_tests(atributo) {
+    const methodName = `check_especial_tests_${atributo}`;
 
     if (typeof this[methodName] === 'function') {
         return this[methodName]();
     }else {
-        console.warn(`No hay un método especial definido para el campo: ${campo}`);
+        console.warn(`No hay un método especial definido para el campo: ${atributo}`);
         return true; // Si no hay método, asumimos que es válido
     }
-    
+     
 }
 /*
     check_special_tests(campo) {
