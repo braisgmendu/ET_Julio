@@ -1,6 +1,8 @@
 class test_IU {
-    constructor(){
+    constructor(entidad, instance){
         this.dom = new Dom();
+        this.entidad = entidad;
+        this.instance = instance;
         // mostrar boton de test una vez creada la clase de entidad
         this.dom.mostrar_boton_test();
         
@@ -17,17 +19,17 @@ class test_IU {
         document.getElementById('salidaresultadosprueba').innerHTML = '';
         document.getElementById('titulo_modal').className = 'titulo_modal_'+this.entidad;
 
-        if (typeof this.mostrarModal === 'function') {
-            this.mostrarModal(); // Asegura que se llame al método de la subclase
+        if (typeof this.dom.mostrarModal === 'function') {
+            this.dom.mostrarModal(); // Asegura que se llame al método de la subclase
         } else {
             console.error('mostrarModal no está definido en esta instancia');
         }
         this.resolve_def_test();
         this.resolve_pruebas();
 
-        this.array_def = eval('def_tests_'+this.entidad);
-        this.array_pruebas = eval('pruebas_'+this.entidad);
-        this.array_pruebas_file = eval('pruebas_file_'+this.entidad);
+        this.array_def = eval(this.entidad + '_def_tests');
+        this.array_tests = eval(this.entidad+ '_tests');
+        this.array_tests_file = eval(this.entidad+ '_tests_files');
 
         this.test_entidad();
         this.test_entidad_files();
@@ -50,25 +52,26 @@ class test_IU {
 
     test_entidad(){
 
-        this.validaciones = new construccionValidaciones(new validacionesatomicas(), this.entidad);
+        this.validaciones = new Dom_validations(new Validaciones_Atomicas(), this.entidad);
 
         // construyo el titulo de la tabla de muestra
         let salidatest = `<tr><th>NumDefTest</th><th>NumPrueba</th><th>campo</th><th>Prueba</th><th>Accion</th><th>valor</th><th>Respuesta Test</th><th>Respuesta esperada</th><th>Resultado</th></tr>`
-        for (let i = 0; i < this.array_pruebas.length; i++) {
+        for (let i = 0; i < this.array_tests.length; i++) {
+            let campotest = this.array_tests[i][1];
+            let numdeftest = this.array_tests[i][2];
+            let numprueba = this.array_tests[i][3];
+            let acciontest = this.array_tests[i][4];
+            let valortest = this.array_tests[i][5];
+            let respuestatest = this.array_tests[i][6]; //respuestatest = loquesea_KO / true
             // Cargo formulario limpio
-            this.cargar_formulario();
+            this.instance.cargar_formulario(acciontest);
         
             // Cargo el botón porque sino da un error en la función de dibujado del mensaje de error
             let botonsumit = document.createElement('input');
             botonsumit.id = 'submit_button';
             document.getElementById('IU_form').append(botonsumit);
         
-            let campotest = this.array_pruebas[i][1];
-            let numdeftest = this.array_pruebas[i][2];
-            let numprueba = this.array_pruebas[i][3];
-            let acciontest = this.array_pruebas[i][4];
-            let valortest = this.array_pruebas[i][5];
-            let respuestatest = this.array_pruebas[i][6]; //respuestatest = loquesea_KO / true
+           
         
             // Recupero la definición del test correspondiente
             let def = this.devolver_def(numdeftest);
@@ -137,23 +140,24 @@ class test_IU {
         }
 
     test_entidad_files(){
-        this.validaciones = new construccionValidaciones(new validacionesatomicas(), this.entidad);
+        this.validaciones = new Dom_validations(new Validaciones_Atomicas(), this.entidad);
         let salidatest = `<tr><th>NumDefTest</th><th>NumPrueba</th><th>Campo</th><th>Prueba</th><th>Accion</th><th>valor</th><th>Respuesta Test</th><th>Respuesta esperada</th><th>Resultado</th></tr>`
 
-            for (let i = 0; i < this.array_pruebas_file.length; i++) {
+            for (let i = 0; i < this.array_tests_file.length; i++) {
+                let campotest = this.array_tests_file[i][1];
+                let numdeftest = this.array_tests_file[i][2];
+                let numprueba = this.array_tests_file[i][3];
+                let acciontest = this.array_tests_file[i][4];
+                let clasedetest = this.array_tests_file[i][5];
+                let valortest = this.array_tests_file[i][6];
+                let respuestatest = this.array_tests_file[i][7];
                 // Cargo formulario limpio
-                this.cargar_formulario();
+                this.instance.cargar_formulario(acciontest);
                 let botonsumit = document.createElement('input');
                 botonsumit.id = 'submit_button';
                 document.getElementById('IU_form').append(botonsumit);
             
-                let campotest = this.array_pruebas_file[i][1];
-                let numdeftest = this.array_pruebas_file[i][2];
-                let numprueba = this.array_pruebas_file[i][3];
-                let acciontest = this.array_pruebas_file[i][4];
-                let clasedetest = this.array_pruebas_file[i][5];
-                let valortest = this.array_pruebas_file[i][6];
-                let respuestatest = this.array_pruebas_file[i][7];
+                
             
                 // Construyo objeto file y relleno valor para prueba
                 if (valortest.length !== 0) {
@@ -169,7 +173,7 @@ class test_IU {
                 }
             
                 // Coloco validaciones para la acción
-                this.validaciones.colocarValidaciones(acciontest);
+                this.validaciones.load_validations(acciontest);
             
                 // Llamo a comprobarCampo
                 const resultadotest = this.validaciones.comprobarCampo(campotest, acciontest);
@@ -200,7 +204,7 @@ class test_IU {
 
     verificarDefTest(){
 
-        let probe_def = eval("def_tests_"+this.entidad);
+        let probe_def = eval(this.entidad + '_def_tests');
         let filacorrecta = true;
 
         let salidatabla = "<tr><th>Entidad</><th>Campo</th><th>Num. DefTest</th><th colspan='7'>Datos</th>";
@@ -247,7 +251,7 @@ class test_IU {
 
     verificarPruebas(){
 
-        let probe_def = eval("pruebas_"+this.entidad);
+        let probe_def = eval(this.entidad + '_tests');
         let filacorrecta = true;
 
         let salidatabla = "<tr><th>Entidad</><th>Campo</th><th>Num.Def</th><th>Num.Prob</th><th colspan='6'>Datos</th>";
@@ -295,7 +299,7 @@ class test_IU {
 
     verificarPruebas_file(){
 
-        let probe_def = eval("pruebas_file_"+this.entidad);
+        let probe_def = eval(this.entidad+ '_tests_files');
         let filacorrecta = true;
 
         let salidatabla = "<tr><th>Entidad</><th>Campo</th><th>Num.Def</th><th>Num.Prob</th><th colspan='8'>Datos</th>";

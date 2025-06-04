@@ -51,15 +51,15 @@
             validation_rules: {
                 ADD:{
                     reg_exp : ['([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})*?', 'start_date_project_format_KO'],
-                    personalized: "personalized_validation_nombreatributo($extravalues)", 
+                    //personalized: "personalized_validation_nombreatributo($extravalues)", 
                 },
                 EDIT:{
                     reg_exp : ['([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})*?', 'start_date_project_format_KO'],
-                    personalized: "personalized_validation_nombreatributo($extravalues)", 
+                    //personalized: "personalized_validation_nombreatributo($extravalues)", 
                 },
                 SEARCH:{
                     reg_exp : ['([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})*?', 'start_date_project_format_KO'],
-                    personalized: "personalized_validation_nombreatributo($extravalues)", 
+                    //personalized: "personalized_validation_nombreatributo($extravalues)", 
                 }
             }
         },
@@ -72,15 +72,15 @@
             validation_rules: {
                 ADD:{
                     reg_exp : ['([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})*?', 'end_date_project_format_KO'],
-                    personalized: "personalized_validation_nombreatributo($extravalues)", 
+                    //personalized: "personalized_validation_nombreatributo($extravalues)", 
                 },
                 EDIT:{
                     reg_exp : ['([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})*?', 'end_date_project_format_KO'],
-                    personalized: "personalized_validation_nombreatributo($extravalues)", 
+                    //personalized: "personalized_validation_nombreatributo($extravalues)", 
                 },
                 SEARCH:{
                     reg_exp : ['([0-9]{1,2}\/[0-9]{1,2}\/[0-9]{4})*?', 'end_date_project_format_KO'],
-                    personalized: "personalized_validation_nombreatributo($extravalues)", 
+                    //personalized: "personalized_validation_nombreatributo($extravalues)", 
                 }
             }
         },
@@ -202,16 +202,16 @@
                 ADD:{
                     min_size : [6, 'code_project_min_size_KO'],
 				    max_size: [50,'code_project_max_size_KO'],
-                    reg_exp : ['^[A-Za-zñÑ!¡¿?/\\:.;(),*"\' -]+$', 'code_project_format_KO'],
+                    reg_exp : ['^[A-Za-zñÑ!¡¿?\/\:\.\;\(\)\,\*\"\'-]+$', 'code_project_format_KO'],
                 },
                 EDIT:{
                     min_size : [6, 'code_project_min_size_KO'],
 				    max_size: [50,'code_project_max_size_KO'],
-                    reg_exp : ['^[A-Za-zñÑ!¡¿?/\\:.;(),*"\' -]*$', 'code_project_format_KO'],
+                    reg_exp : ['^[A-Za-zñÑ!¡¿?\/\:\.\;\(\)\,\*\"\'-]*$', 'code_project_format_KO'],
                 },
                 SEARCH:{
 				    max_size: [50,'code_project_max_size_KO'],
-                    reg_exp : ['^[A-Za-zñÑ!¡¿?/\\:.;(),*"\' -]*$', 'code_project_format_KO'],
+                    reg_exp : ['^[A-Za-zñÑ!¡¿?\/\:\.\;\(\)\,\*\"\'-]*$', 'code_project_format_KO'],
                 }
             }
         }, 

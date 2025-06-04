@@ -1,7 +1,8 @@
 class Dom {
 	
   constructor() {
-	this.form = document.getElementById("IU_form");
+
+	  this.form = document.getElementById("IU_form");
   }
 
   createForm(action, estructura) {
@@ -132,60 +133,6 @@ class Dom {
     return div;
   }
 
-  /*createForm(action, estructura) {
-		const form = document.getElementById('IU_form');
-		form.innerHTML = ''; // Limpiar formulario previo
-	
-		if (!estructura || typeof estructura !== 'object') {
-			console.error('Estructura inválida');
-			return;
-		}
-	
-		const atributos = estructura.attributes;
-		const lista_atributos = estructura.attributes_list;
-	
-		for (const nombreAtributo of lista_atributos) {
-			const def = atributos[nombreAtributo];
-			if (!def) continue;
-	
-			const div = document.createElement('div');
-			const campo = document.createElement(def.html.tag);
-	
-			// Setear tipo si aplica (como input[type="text"], input[type="file"]...)
-			if (def.html.type) {
-				campo.setAttribute('type', def.html.type);
-			}
-	
-			// Asignar atributos comunes
-			campo.setAttribute('id', nombreAtributo);
-			campo.setAttribute('name', nombreAtributo);
-	
-			// Si no es oculto, crear label
-			if (def.html.type !== 'hidden') {
-				const label = document.createElement('label');
-				label.setAttribute('id', 'label_' + nombreAtributo);
-				label.setAttribute('name', 'label_' + nombreAtributo);
-				label.setAttribute('for', nombreAtributo);
-				label.textContent = nombreAtributo; // Puedes cambiar esto por un texto más amigable si tienes etiquetas traducidas
-				div.appendChild(label);
-			}
-	
-			// Crear y agregar elementos de error
-			const errorSpan = document.createElement('span');
-			errorSpan.id = 'div_error_' + nombreAtributo;
-			const errorA = document.createElement('a');
-			errorA.id = 'error_' + nombreAtributo;
-			errorSpan.appendChild(errorA);
-	
-			// Agregar campo y errores al contenedor
-			div.appendChild(campo);
-			div.appendChild(errorSpan);
-	
-			// Agregar div al formulario
-			form.appendChild(div);
-			
-		}
-	}*/
   colocarboton(action) {
     let divboton = document.createElement("div");
     divboton.id = "div_boton";
@@ -424,13 +371,13 @@ class Dom {
     this.cerrar_test();
   }
 
-  ocultar_boton_test() {
-    document.getElementById("botonTEST").style.display = "none";
-  }
+  ocultar_boton_test(){
+        document.getElementById('botonTEST').style.display = 'none';
+    }
 
-  mostrar_boton_test() {
-    document.getElementById("botonTEST").style.display = "inline";
-  }
+    mostrar_boton_test(){
+        document.getElementById('botonTEST').style.display = 'inline';
+    }
 
   abrirModalError(errorMsg) {
     document.getElementById("error_action_modal").style.display = "block";
