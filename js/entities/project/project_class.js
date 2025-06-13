@@ -1,5 +1,15 @@
+/**
+ * @class project
+ * @extends Entidad_Abstracta
+ * @description Clase para la gestión de proyectos.
+ * Maneja las operaciones CRUD y validaciones específicas para esta entidad.
+ */
 class project extends Entidad_Abstracta{
 
+    /**
+     * @constructor
+     * @description Constructor de la clase project
+     */
     constructor(){
         super('project', estructura_project);
       
@@ -79,6 +89,11 @@ class project extends Entidad_Abstracta{
         document.getElementById("IU_form").innerHTML = formulario;
 
     } */
+   /**
+    * @method check_special_test_END_DATE_PROJECT
+    * @description Verifica la fecha de finalización del proyecto
+    * @returns {boolean} true si la fecha es válida, false en caso contrario
+    */
    check_special_test_END_DATE_PROJECT(){
     
    }

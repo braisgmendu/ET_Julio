@@ -3,6 +3,13 @@ class Dom {
   constructor() {
 
 	  this.form = document.getElementById("IU_form");
+      this.columnas_test_disponibles = [
+        'NumDefTest', 'NumPrueba', 'campo', 'Prueba', 'Accion', 
+        'valor', 'Respuesta Test', 'Respuesta esperada', 'Resultado'
+    ];
+    this.columnas_test_visibles = [
+        'campo', 'Prueba', 'Accion', 'valor', 'Respuesta Test', 'Resultado'
+    ]; // Columnas visibles por defecto
   }
 
   createForm(action, estructura) {
@@ -402,4 +409,136 @@ class Dom {
     const modal = document.getElementById("modalResultados");
     modal.style.display = "none"; // Ocultar el modal
   }
+  // Método para construir el select de columnas de test
+construirSelectTest() {
+    const selectElement = document.getElementById("seleccioncolumnastest");
+    if (!selectElement) {
+        console.error("Elemento seleccioncolumnastest no encontrado");
+        return;
+    }
+    
+    selectElement.innerHTML = "";
+
+    for (let columna of this.columnas_test_disponibles) {
+        let optionselect = document.createElement("option");
+        optionselect.className = columna;
+        optionselect.innerHTML = columna;
+        optionselect.setAttribute(
+            "onclick",
+            "window.testInstance.modificarColumnasTest('" + columna + "');"
+        );
+        if (this.columnas_test_visibles.includes(columna)) {
+            optionselect.selected = true;
+        }
+        selectElement.appendChild(optionselect);
+    }
+    setLang();
+}
+
+// Método para modificar las columnas visibles en test
+modificarColumnasTest(columna) {
+    let nuevascolumnas = [];
+    
+    if (this.columnas_test_visibles.includes(columna)) {
+        // Remover la columna
+        for (let i = 0; i < this.columnas_test_visibles.length; i++) {
+            if (this.columnas_test_visibles[i] !== columna) {
+                nuevascolumnas.push(this.columnas_test_visibles[i]);
+            }
+        }
+        this.columnas_test_visibles = nuevascolumnas;
+    } else {
+        // Añadir la columna
+        this.columnas_test_visibles.push(columna);
+    }
+    
+    // Actualizar la visualización de las tablas de test
+    this.actualizarVisibilidadColumnasTest();
+}
+
+// Método para actualizar la visibilidad de las columnas en las tablas de test
+actualizarVisibilidadColumnasTest() {
+    const tablas = ['salidaresultadosprueba', 'tablaresultadostest', 'tablaresultadosprueba'];
+    
+    tablas.forEach(tablaId => {
+        const tabla = document.getElementById(tablaId);
+        if (tabla) {
+            this.aplicarVisibilidadColumnas(tabla);
+        }
+    });
+}
+
+// Método auxiliar para aplicar visibilidad a una tabla específica
+aplicarVisibilidadColumnas(tabla) {
+    // Obtener todas las filas de la tabla
+    const filas = tabla.querySelectorAll('tr');
+    
+    filas.forEach(fila => {
+        const celdas = fila.querySelectorAll('th, td');
+        celdas.forEach((celda, index) => {
+            if (index < this.columnas_test_disponibles.length) {
+                const nombreColumna = this.columnas_test_disponibles[index];
+                if (this.columnas_test_visibles.includes(nombreColumna)) {
+                    celda.style.display = '';
+                } else {
+                    celda.style.display = 'none';
+                }
+            }
+        });
+    });
+}
+
+// Método para construir el DOM del test con el selector de columnas
+construirDomTest() {
+    // Crear el contenedor del selector si no existe
+    let selectorContainer = document.getElementById("selector_columnas_test");
+    if (!selectorContainer) {
+        selectorContainer = document.createElement("div");
+        selectorContainer.id = "selector_columnas_test";
+        selectorContainer.innerHTML = `
+            <label for="seleccioncolumnastest">Seleccionar columnas a mostrar:</label>
+            <select id="seleccioncolumnastest" multiple size="6"></select>
+            <button type="button" onclick="validar.dom.resetColumnasTest()">Resetear</button>
+        `;
+        
+        // Insertar antes de las tablas de resultados
+        const contenidoTests = document.getElementById("contenidoTests");
+        if (contenidoTests) {
+            contenidoTests.insertBefore(selectorContainer, contenidoTests.firstChild);
+        }
+    }
+    
+    // Construir el select
+    this.construirSelectTest();
+}
+
+// Método para resetear las columnas a la configuración por defecto
+resetColumnasTest() {
+    this.columnas_test_visibles = [
+        'campo', 'Prueba', 'Accion', 'valor', 'Respuesta Test', 'Resultado'
+    ];
+    this.construirSelectTest();
+    this.actualizarVisibilidadColumnasTest();
+}
+
+// Método mejorado para crear encabezados de tabla con identificadores
+crearEncabezadoTest(columnas) {
+    let salidatest = '<tr>';
+    columnas.forEach((columna, index) => {
+        salidatest += `<th data-columna="${columna}">${columna}</th>`;
+    });
+    salidatest += '</tr>';
+    return salidatest;
+}
+
+// Método para crear fila de datos con identificadores
+crearFilaTest(datos) {
+    let fila = '<tr>';
+    this.columnas_test_disponibles.forEach(columna => {
+        const valor = datos[columna] || '';
+        fila += `<td data-columna="${columna}">${valor}</td>`;
+    });
+    fila += '</tr>';
+    return fila;
+}
 }

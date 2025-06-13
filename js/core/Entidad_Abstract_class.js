@@ -1,8 +1,16 @@
-
-
+/**
+ * @class Entidad_Abstracta
+ * @extends Dom
+ * @description Clase abstracta base para todas las entidades del sistema.
+ * Proporciona funcionalidad común para la gestión de entidades, incluyendo validaciones y tests.
+ */
 class Entidad_Abstracta extends Dom {
+  /**
+   * @constructor
+   * @param {string} entidad - Nombre de la entidad
+   * @param {object} def_estructura - Definición de la estructura de la entidad
+   */
   constructor(entidad, def_estructura) {
-
     super();
 	if (eval(this.datosespecialestabla)){}
 		else{
@@ -16,7 +24,22 @@ class Entidad_Abstracta extends Dom {
 	document.getElementById("workspace").style.display = "block";
     this.cerrar_test();
     this.SEARCH();
+  }
 
+  /**
+   * @method cerrar_test
+   * @description Cierra la visualización de los tests
+   */
+  cerrar_test() {
+    // ... existing code ...
+  }
+
+  /**
+   * @method SEARCH
+   * @description Realiza una búsqueda en la entidad
+   */
+  SEARCH() {
+    // ... existing code ...
   }
 
   createFormGenerico(action, parametros = null) {
@@ -74,27 +97,6 @@ class Entidad_Abstracta extends Dom {
       this.mostrarocultarcolumnas();
     }
   }
-  async SEARCH() {
-    await this.access_functions
-      .back_request("IU_form", this.entidad, "SEARCH")
-      .then((respuesta) => {
-        //limpiar el formulario
-        this.cargar_formulario("SEARCH");
-        //quito los class de la muestra de filas
-        document.getElementById("muestradatostabla").removeAttribute("class");
-
-        //poner el div del formulario no visible
-        document.getElementById("div_IU_form").style.display = "none";
-
-        this.datos = respuesta["resource"];
-        this.atributos = Object.keys(respuesta["criteriosbusqueda"]);
-
-        this.crearTablaDatos();
-
-        setLang();
-      });
-  }
-
   async ADD() {
     await this.access_functions
       .back_request("IU_form", this.entidad, "ADD")

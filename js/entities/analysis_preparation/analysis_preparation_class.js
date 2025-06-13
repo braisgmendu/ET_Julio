@@ -1,5 +1,15 @@
+/**
+ * @class analysis_preparation
+ * @extends Entidad_Abstracta
+ * @description Clase para la gestión de análisis de preparación.
+ * Maneja las operaciones CRUD y validaciones específicas para esta entidad.
+ */
 class analysis_preparation extends Entidad_Abstracta{
 
+    /**
+     * @constructor
+     * @description Constructor de la clase analysis_preparation
+     */
     constructor(){
         super('analysis_preparation', estructura_analysis_preparation);
         

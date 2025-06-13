@@ -203,17 +203,23 @@ footer {
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 90%;
+    max-height: 90vh;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
 }
 
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
 }
 
 .modal-header h2 {
@@ -224,12 +230,37 @@ footer {
     font-size: 1.5rem;
     cursor: pointer;
 }
+
 #div_IU_test {
-    padding: 20px; /* Espaciado interno */
-    overflow-y: auto; /* Habilita el scroll para el contenido */
+    padding: 20px;
+    overflow-y: auto;
     overflow-x: auto;
-    flex-grow: 1; /* Ocupa todo el espacio restante */
+    flex-grow: 1;
+    max-height: calc(90vh - 100px);
+}
+
+#div_resultado_prueba {
+    overflow-x: auto;
+    margin-top: 20px;
+}
+
+#resultado_prueba {
+    min-width: 100%;
+    border-collapse: collapse;
+}
+
+#resultado_prueba th,
+#resultado_prueba td {
+    padding: 8px;
+    border: 1px solid #dee2e6;
     white-space: nowrap;
+}
+
+#resultado_prueba th {
+    background-color: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .close:hover,
@@ -399,4 +430,63 @@ footer {
 #tabladatosalumnos tr:hover {
     background-color: var(--background-hover); /* Fondo más claro */
     cursor: pointer;
+}
+
+#selector_columnas_test {
+    border-radius: 5px;
+}
+
+#seleccioncolumnastest {
+    font-family: monospace;
+    font-size: 12px;
+}
+
+#seleccioncolumnastest option {
+    padding: 2px 5px;
+}
+
+#seleccioncolumnastest option:hover {
+    background-color: #e6f3ff;
+}
+
+/* Estilos para columnas ocultas */
+table th[style*="display: none"],
+table td[style*="display: none"] {
+    display: none !important;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.title_page {
+    margin: 0;
+    font-size: 1.5em;
+    color: #2c3e50;
+}
+
+.img--button {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.img--button:hover {
+    transform: scale(1.1);
 }

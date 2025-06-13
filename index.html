@@ -1,300 +1,221 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-    <link rel="stylesheet" type="text/css" href="css/IU.css" media="screen" />
-    <title>Julio-ET - Gestión de Entidades</title>
-    <!-- ficheros de idiomas -->
-    <script type="text/javascript" src="./js/languages/idioma.js"></script>
-    <script type="text/javascript" src="./js/languages/Textos_ES.js"></script>
-    <script type="text/javascript" src="./js/languages/Textos_EN.js"></script>
-    <!--ficheros del js_core-->
-    <script
-      type="text/javascript"
-      src="./js/core/ExternalAccess_class.js"
-    ></script>
-    <script type="text/javascript" src="./js/tests/Tests_class.js"></script>
-    <script type="text/javascript" src="./js/tests/test_definitions.js"></script>
-    <script type="text/javascript" src="./js/core/Dom_class.js"></script>
-    <script
-      type="text/javascript"
-      src="./js/core/Dom_validations_class.js"
-    ></script>
-    <script type="text/javascript" src="./js/core/Validaciones_class.js"></script>
-    <!--ficheros de js_base-->
-    <script
-      type="text/javascript"
-      src="./js/core/Entidad_Abstract_class.js"
-    ></script>
 
-    <!--ficheros js_app-->
-    <!--analaysis_preparation-->
-    <script
-      type="text/javascript"
-      src="./js/entities/analysis_preparation/analysis_preparation_class.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="./js/entities/analysis_preparation/analysis_preparation_estructura.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="./js/entities/analysis_preparation/tests_analysis_preparation.js"
-    ></script>
-    <!--project-->
-    <script
-      type="text/javascript"
-      src="./js/entities/project/project_class.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="./js/entities/project/project_estructura.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="./js/entities/project/tests_project.js"
-    ></script>
-    <!--characterisitic-->
-    <script
-      type="text/javascript"
-      src="./js/entities/characteristic/characteristic_class.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="./js/entities/characteristic/characteristic_estructura.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="./js/entities/characteristic/tests_characteristic.js"
-    ></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <link rel="stylesheet" type="text/css" href="css/IU.css" media="screen" />
+  <title>Julio-ET - Gestión de Entidades</title>
+  <!-- ficheros de idiomas -->
+  <script type="text/javascript" src="./js/languages/idioma.js"></script>
+  <script type="text/javascript" src="./js/languages/Textos_ES.js"></script>
+  <script type="text/javascript" src="./js/languages/Textos_EN.js"></script>
+  <!--ficheros del js_core-->
+  <script type="text/javascript" src="./js/core/ExternalAccess_class.js"></script>
+  <script type="text/javascript" src="./js/tests/Tests_class.js"></script>
+  <script type="text/javascript" src="./js/tests/test_definitions.js"></script>
+  <script type="text/javascript" src="./js/core/Dom_class.js"></script>
+  <script type="text/javascript" src="./js/core/Dom_validations_class.js"></script>
+  <script type="text/javascript" src="./js/core/Validaciones_class.js"></script>
+  <!--ficheros de js_base-->
+  <script type="text/javascript" src="./js/core/Entidad_Abstract_class.js"></script>
 
-    <script
-      type="text/javascript"
-      src="data/Julio_Datos_BraisGonzalez.js"
-    ></script>
+  <!--ficheros js_app-->
+  <!--analaysis_preparation-->
+  z
+  <script type="text/javascript" src="./js/entities/analysis_preparation/analysis_preparation_class.js"></script>
+  <script type="text/javascript" src="./js/entities/analysis_preparation/analysis_preparation_estructura.js"></script>
+  <script type="text/javascript" src="./js/entities/analysis_preparation/tests_analysis_preparation.js"></script>
+  <!--project-->
+  <script type="text/javascript" src="./js/entities/project/project_class.js"></script>
+  <script type="text/javascript" src="./js/entities/project/project_estructura.js"></script>
+  <script type="text/javascript" src="./js/entities/project/tests_project.js"></script>
+  <!--characterisitic-->
+  <script type="text/javascript" src="./js/entities/characteristic/characteristic_class.js"></script>
+  <script type="text/javascript" src="./js/entities/characteristic/characteristic_estructura.js"></script>
+  <script type="text/javascript" src="./js/entities/characteristic/tests_characteristic.js"></script>
 
-    <!-- este es el script que carga las librerias ajax que usamos para acceder al back -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  </head>
-  <body>
-    <header id="header_page" class="bordeado">
-      <h1 class="text_titulo_app"></h1>
-      <button id="menu-toggle" class="hamburger" onclick="toggleMenu()">
-        &#9776;
-        <!-- Código para el icono hamburguesa -->
-      </button>
-      <nav id="menu-navigation">
-        <img
-          src="assets/icons/Spain.png"
-          class="iconos"
-          onclick="setLang('ES');"
-        />
-        <img
-          src="assets/icons/United-Kingdom.png"
-          class="iconos"
-          onclick="setLang('EN');"
-        />
-        <img
-          id="botonTEST"
-          src="assets/icons/TEST.png"
-          onclick="validar.tests.test_run();"
-        />
-        <a href="API.html"
-          ><img
-            src="assets/icons/icono_api.png"
-            alt="Documentación API"
-            class="iconos"
-        /></a>
-      </nav>
-    </header>
+  <script type="text/javascript" src="data/Julio_Datos_BraisGonzalez.js"></script>
 
-    <main>
-      <nav class="bordeado">
-        <span class="info_personal" onclick="toggleSeccion()"
-          >Información grupo</span
-        >
-      </nav>
-      <nav class="bordeado">
-        <span class="text_titulo_menu" onclick="menu_work();"
-          >Opciones de ménu</span
-        >
-      </nav>
+  <!-- este es el script que carga las librerias ajax que usamos para acceder al back -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
 
-      <div id="div-menu">
-        <ol>
-          <li class="opcionmenu">
-            <span
-              class="text_project"
-              onclick="validar = new project();"
-            ></span>
-          </li>
-          <li class="opcionmenu">
-            <span
-              class="text_analysis_prep"
-              onclick="validar = new analysis_preparation();"
-            ></span>
-          </li>
-          <li class="opcionmenu">
-            <span
-              class="text_characteristic"
-              onclick="validar = new characteristic();"
-            ></span>
-          </li>
-        </ol>
+<body>
+  <header id="header_page" class="bordeado">
+    <h1 class="text_titulo_app"></h1>
+    <button id="menu-toggle" class="hamburger" onclick="toggleMenu()">
+      &#9776;
+      <!-- Código para el icono hamburguesa -->
+    </button>
+    <nav id="menu-navigation">
+      <img src="assets/icons/Spain.png" class="iconos" onclick="setLang('ES');" />
+      <img src="assets/icons/United-Kingdom.png" class="iconos" onclick="setLang('EN');" />
+      <img id="botonTEST" src="assets/icons/TEST.png" onclick="validar.tests.test_run();" />
+      <a href="API.html"><img src="assets/icons/icono_api.png" alt="Documentación API" class="iconos" /></a>
+    </nav>
+  </header>
+
+  <main>
+    <nav class="bordeado">
+      <span class="info_personal" onclick="toggleSeccion()">Información grupo</span>
+    </nav>
+    <nav class="bordeado">
+      <span class="text_titulo_menu" onclick="menu_work();">Opciones de ménu</span>
+    </nav>
+
+    <div id="div-menu">
+      <ol>
+        <li class="opcionmenu">
+          <span class="text_project" onclick="validar = new project();"></span>
+        </li>
+        <li class="opcionmenu">
+          <span class="text_analysis_prep" onclick="validar = new analysis_preparation();"></span>
+        </li>
+        <li class="opcionmenu">
+          <span class="text_characteristic" onclick="validar = new characteristic();"></span>
+        </li>
+      </ol>
+    </div>
+    <section id="workspace">
+      <section id="grupoInfo"></section>
+      <div id="title_page" class="bordeado">
+        <spam id="text_title_page" class="">titulo de pagina de entidad</spam>
       </div>
-      <section id="workspace">
-        <section id="grupoInfo"></section>
-        <div id="title_page" class="bordeado">
-          <spam id="text_title_page" class="">titulo de pagina de entidad</spam>
-        </div>
 
-        <div id="id_tabla_datos">
-          <div id="addysearch">
-            <button id="botonADD" class="boton">
-                <img
-              id="imgADD"
-              class="img--button"
-              src="assets/icons/ADD.png"
-              onclick="validar.createFormGenerico('ADD');"
-            />
-            </button>
-            <button id="botonSEARCH" class="boton">
-                <img
-              id="imgSEARCH"
-              class="img--button"
-              src="assets/icons/SEARCH.png"
-              onclick="validar.createFormGenerico('SEARCH');"
-            />
-            </button>
-            
-
-            <select id="seleccioncolumnas" size="2" multiple></select>
-          </div>
-
-          <table id="tabladatosalumnos">
-            <thead id="titulostablacabecera"></thead>
-            <tbody id="muestradatostabla"></tbody>
-          </table>
-
-          <br />
-          <button id="botonBACK" class="boton">
-            <img
-              id="imgBACK"
-              class="img--button"
-              src="assets/icons/BACK.png"
-              onclick="validar.cerrar_tabla();"
-            />
+      <div id="id_tabla_datos">
+        <div id="addysearch">
+          <button id="botonADD" class="boton">
+            <img id="imgADD" class="img--button" src="assets/icons/ADD.png"
+              onclick="validar.createFormGenerico('ADD');" />
           </button>
-        </div>
-      </section>
-
-      <div class="div_IU_form" id="div_IU_form">
-        <div class="contenidoForm" id="contenidoForm">
-          <div class="class_titulo_form">
-            <spam id="class_contenido_titulo_form" class=""
-              >titulo para el formulario de este tamano</spam
-            >
-          </div>
-          <form
-            id="IU_form"
-            name="IU_form"
-            method="POST"
-            enctype="multipart/form-data"
-            class="formulario"
-          ></form>
-          <br />
-          <button id="botonBACK" class="boton">
-            <img
-                id="imgBACK"
-                class="img--button"
-              src="assets/icons/BACK.png"
-              onclick="validar.cerrar_formulario();"
-            />
+          <button id="botonSEARCH" class="boton">
+            <img id="imgSEARCH" class="img--button" src="assets/icons/SEARCH.png"
+              onclick="validar.createFormGenerico('SEARCH');" />
           </button>
+
+          <select id="seleccioncolumnas" size="2" multiple></select>
         </div>
-      </div>
 
-      <div id="modalResultados" class="modal">
-        <div class="modal-content">
-          <!-- Cabecera del Modal -->
-          <div class="modal-header">
-            <h2 id="titulo_modal"></h2>
-            <span class="close" onclick="validar.cerrarModal()">&times;</span>
-          </div>
-          <div id="div_IU_test">
-            <div id="contenidoTests">
-              <h1 id="res_estructura_tests" class="res_estructura_tests"></h1>
-              <p id="resultadodeftest"></p>
-              <table border="1">
-                <tbody id="tablaresultadostest"></tbody>
-              </table>
-            </div>
-            <div id="contenidoPruebas">
-              <h1
-                id="res_estructura_pruebas"
-                class="res_estructura_pruebas"
-              ></h1>
-              <p id="resultadodefpruebas"></p>
-              <div id="div_tabla_prueba">
-                <table id="tabla_prueba" border="1">
-                  <tbody id="tablaresultadosprueba"></tbody>
-                </table>
-              </div>
-            </div>
-            <div id="resultadopruebas">
-              <h1 id="res_pruebas" class="res_pruebas"></h1>
-              <p id="resultadotest"></p>
-              <div id="div_resultado_prueba">
-                <table id="resultado_prueba" border="1">
-                  <tbody id="salidaresultadosprueba"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+        <table id="tabladatosalumnos">
+          <thead id="titulostablacabecera"></thead>
+          <tbody id="muestradatostabla"></tbody>
+        </table>
+
+        <br />
+        <button id="botonBACK" class="boton">
+          <img id="imgBACK" class="img--button" src="assets/icons/BACK.png" onclick="validar.cerrar_tabla();" />
+        </button>
+      </div>
+    </section>
+
+    <div class="div_IU_form" id="div_IU_form">
+      <div class="contenidoForm" id="contenidoForm">
+        <div class="class_titulo_form">
+          <spam id="class_contenido_titulo_form" class="">titulo para el formulario de este tamano</spam>
         </div>
+        <form id="IU_form" name="IU_form" method="POST" enctype="multipart/form-data" class="formulario"></form>
+        <br />
+        <button id="botonBACK" class="boton">
+          <img id="imgBACK" class="img--button" src="assets/icons/BACK.png" onclick="validar.cerrar_formulario();" />
+        </button>
       </div>
-    </main>
-
-    <footer class="bordeado">
-      <p class="footer">2025 Gestión de Entidades - Proyecto ET3</p>
-    </footer>
-    <!-- Overlay para acompañar el modal -->
-    <div id="modal_action_overlay"></div>
-
-    <!-- Modal para mostrar los errores de accion -->
-    <div id="error_action_modal">
-      <span id="error_action_msg"></span>
-      <!--<img src="./iconos/BACK.png" onclick="cerrarModalError();" />-->
-      <button onclick="validar.cerrarModalError()">X</button>
     </div>
 
-    <script type="text/javascript">
-      document.getElementById("div-menu").style.display = "none";
-      document.getElementById("div_IU_form").style.display = "none";
-      document.getElementById("id_tabla_datos").style.display = "none";
-      document.getElementById("title_page").style.display = "none";
-      document.getElementById("botonTEST").style.display = "none";
-      document.getElementById("div_IU_test").style.display = "none";
-      // poner no visible el modal de error de accion
-      document.getElementById("error_action_modal").style.display = "none";
+    <div id="modalResultados" class="modal">
+      <div class="modal-content">
+        <!-- Cabecera del Modal -->
+        <div class="modal-header">
+          <h2 id="titulo_modal"></h2>
+          <span class="close" onclick="validar.cerrarModal()">&times;</span>
+        </div>
+        <div id="div_IU_test">
+          <div id="contenidoTests">
+            <h1 id="res_estructura_tests" class="res_estructura_tests"></h1>
+            <p id="resultadodeftest"></p>
+            <table border="1">
+              <tbody id="tablaresultadostest"></tbody>
+            </table>
+          </div>
+          <div id="contenidoPruebas">
+            <h1 id="res_estructura_pruebas" class="res_estructura_pruebas"></h1>
+            <p id="resultadodefpruebas"></p>
+            <div id="div_tabla_prueba">
+              <table id="tabla_prueba" border="1">
+                <tbody id="tablaresultadosprueba"></tbody>
+              </table>
+            </div>
+          </div>
+          <div id="resultadopruebas">
+            <h1 id="res_pruebas" class="res_pruebas"></h1>
+            <p id="resultadotest"></p>
+            <div id="selector_columnas_test"
+              style="margin: 10px 0; padding: 10px; border: 1px solid #ccc; background-color: #f9f9f9;">
+              <label for="seleccioncolumnastest">Seleccionar columnas a mostrar:</label>
+              <select id="seleccioncolumnastest" multiple size="6" style="width: 100%; margin: 5px 0;">
+                <!-- Las opciones se generan dinámicamente -->
+              </select>
+              <div style="margin-top: 5px;">
+                <button type="button" onclick="window.testInstance.resetColumnasTest()" style="padding: 5px 10px;">
+                  Resetear columnas
+                </button>
+                <span style="font-size: small; color: #666; margin-left: 10px;">
+                  Usa Ctrl+Click para seleccionar múltiples columnas
+                </span>
+              </div>
+            </div>
 
-      function menu_work() {
-        if (document.getElementById("div-menu").style.display == "none") {
-          document.getElementById("div-menu").style.display = "block";
-        } else {
-          document.getElementById("div-menu").style.display = "none";
-        }
-      }
+            <div id="div_resultado_prueba">
+              <table id="resultado_prueba" border="1">
+                <tbody id="salidaresultadosprueba"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
 
-      setLang("");
-    </script>
-    <script type="text/javascript">
-      function toggleMenu() {
-        const menu = document.getElementById("menu-navigation");
-        menu.classList.toggle("active"); // Alterna la clase 'active' para mostrar/ocultar el menú
+  <footer class="bordeado">
+    <p class="footer">2025 Gestión de Entidades - Proyecto ET3</p>
+  </footer>
+  <!-- Overlay para acompañar el modal -->
+  <div id="modal_action_overlay"></div>
+
+  <!-- Modal para mostrar los errores de accion -->
+  <div id="error_action_modal">
+    <span id="error_action_msg"></span>
+    <!--<img src="./iconos/BACK.png" onclick="cerrarModalError();" />-->
+    <button onclick="validar.cerrarModalError()">X</button>
+  </div>
+
+  <script type="text/javascript">
+    document.getElementById("div-menu").style.display = "none";
+    document.getElementById("div_IU_form").style.display = "none";
+    document.getElementById("id_tabla_datos").style.display = "none";
+    document.getElementById("title_page").style.display = "none";
+    document.getElementById("botonTEST").style.display = "none";
+    document.getElementById("div_IU_test").style.display = "none";
+    // poner no visible el modal de error de accion
+    document.getElementById("error_action_modal").style.display = "none";
+
+    function menu_work() {
+      if (document.getElementById("div-menu").style.display == "none") {
+        document.getElementById("div-menu").style.display = "block";
+      } else {
+        document.getElementById("div-menu").style.display = "none";
       }
-    </script>
-  </body>
+    }
+
+    setLang("");
+  </script>
+  <script type="text/javascript">
+    function toggleMenu() {
+      const menu = document.getElementById("menu-navigation");
+      menu.classList.toggle("active"); // Alterna la clase 'active' para mostrar/ocultar el menú
+    }
+  </script>
+</body>
+
 </html>

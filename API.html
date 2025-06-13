@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación API - ET Julio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #2980b9;
+            margin-top: 30px;
+        }
+
+        .class-section {
+            background: #f8f9fa;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .method {
+            background: white;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+        }
+
+        .method-name {
+            color: #e74c3c;
+            font-weight: bold;
+        }
+
+        .param-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 10px 0;
+        }
+
+        .param-table th, .param-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .param-table th {
+            background-color: #f5f5f5;
+        }
+
+        .return-section {
+            margin-top: 10px;
+            padding: 10px;
+            background: #e8f4f8;
+            border-radius: 3px;
+        }
+
+        .category-title {
+            color: #2c3e50;
+            font-size: 1.5em;
+            margin-top: 40px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+
+        .extends-info {
+            color: #7f8c8d;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Documentación API - ET Julio</h1>
+        
+        <div class="category-title">Clases para Validaciones</div>
+        
+        <div class="class-section">
+            <h2>Validaciones_Atomicas</h2>
+            <p>Clase que contiene las validaciones atómicas para los campos del formulario. Proporciona métodos para validar tamaños, expresiones regulares, tipos de archivo y formatos.</p>
+            
+            <div class="method">
+                <div class="method-name">constructor()</div>
+                <p>Constructor de la clase Validaciones_Atomicas</p>
+            </div>
+
+            <div class="method">
+                <div class="method-name">min_size(id, parametro)</div>
+                <p>Valida que el tamaño del campo sea mayor o igual al parámetro especificado</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>string</td>
+                        <td>ID del campo a validar</td>
+                    </tr>
+                    <tr>
+                        <td>parametro</td>
+                        <td>number</td>
+                        <td>Tamaño mínimo permitido</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si el tamaño es válido, false en caso contrario
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">max_size(campo, param)</div>
+                <p>Valida que el tamaño del campo sea menor o igual al parámetro especificado</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>campo</td>
+                        <td>string</td>
+                        <td>ID del campo a validar</td>
+                    </tr>
+                    <tr>
+                        <td>param</td>
+                        <td>number</td>
+                        <td>Tamaño máximo permitido</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si el tamaño es válido, false en caso contrario
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">reg_exp(campo, param)</div>
+                <p>Valida que el campo cumpla con la expresión regular especificada</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>campo</td>
+                        <td>string</td>
+                        <td>ID del campo a validar</td>
+                    </tr>
+                    <tr>
+                        <td>param</td>
+                        <td>string</td>
+                        <td>Expresión regular a validar</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si el campo cumple con la expresión regular, false en caso contrario
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">max_size_file(objfile, maxsize)</div>
+                <p>Valida que el tamaño del archivo sea menor o igual al parámetro especificado</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>objfile</td>
+                        <td>File</td>
+                        <td>Archivo a validar</td>
+                    </tr>
+                    <tr>
+                        <td>maxsize</td>
+                        <td>number</td>
+                        <td>Tamaño máximo permitido en bytes</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si el tamaño es válido, false en caso contrario
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">file_type(objfile, array_tipos)</div>
+                <p>Valida que el tipo de archivo esté en la lista de tipos permitidos</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>objfile</td>
+                        <td>File</td>
+                        <td>Archivo a validar</td>
+                    </tr>
+                    <tr>
+                        <td>array_tipos</td>
+                        <td>Array&lt;string&gt;</td>
+                        <td>Lista de tipos MIME permitidos</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si el tipo es válido, false en caso contrario
+                </div>
+            </div>
+        </div>
+
+        <div class="class-section">
+            <h2>Dom_validations</h2>
+            <p class="extends-info">Extiende de: Dom</p>
+            <p>Clase que maneja las validaciones del DOM, extendiendo la funcionalidad de la clase Dom. Gestiona la validación de campos del formulario según las reglas definidas para cada acción.</p>
+            
+            <div class="method">
+                <div class="method-name">constructor(validaciones, entidad)</div>
+                <p>Constructor de la clase Dom_validations</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>validaciones</td>
+                        <td>Validaciones_Atomicas</td>
+                        <td>Instancia de la clase de validaciones atómicas</td>
+                    </tr>
+                    <tr>
+                        <td>entidad</td>
+                        <td>string</td>
+                        <td>Nombre de la entidad a validar</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="method">
+                <div class="method-name">load_validations(action)</div>
+                <p>Carga las validaciones definidas para una acción específica</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>action</td>
+                        <td>string</td>
+                        <td>Acción para la que cargar las validaciones (ADD, EDIT, SEARCH, DELETE)</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="method">
+                <div class="method-name">comprobarCampo(campo, action)</div>
+                <p>Valida un campo según las reglas definidas para la acción especificada</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>campo</td>
+                        <td>string</td>
+                        <td>ID del campo a validar</td>
+                    </tr>
+                    <tr>
+                        <td>action</td>
+                        <td>string</td>
+                        <td>Acción que se está realizando (ADD, EDIT, SEARCH, DELETE)</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si el campo es válido, false en caso contrario
+                </div>
+            </div>
+        </div>
+
+        <div class="category-title">Clases para Tests</div>
+        
+        <div class="class-section">
+            <h2>test_IU</h2>
+            <p>Clase principal para la gestión y ejecución de tests de la interfaz de usuario. Maneja la ejecución de tests, la visualización de resultados y la gestión de columnas en las tablas de resultados.</p>
+            
+            <div class="method">
+                <div class="method-name">constructor(entidad, instance)</div>
+                <p>Constructor de la clase test_IU</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>entidad</td>
+                        <td>string</td>
+                        <td>Nombre de la entidad a testear</td>
+                    </tr>
+                    <tr>
+                        <td>instance</td>
+                        <td>object</td>
+                        <td>Instancia de la entidad a testear</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="method">
+                <div class="method-name">test_run()</div>
+                <p>Ejecuta todos los tests definidos para la entidad</p>
+            </div>
+
+            <div class="method">
+                <div class="method-name">modificarColumnasTest(columna)</div>
+                <p>Modifica las columnas visibles en la tabla de resultados de tests</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>columna</td>
+                        <td>string</td>
+                        <td>Nombre de la columna a modificar</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div class="category-title">Clases Base</div>
+        
+        <div class="class-section">
+            <h2>Dom</h2>
+            <p>Clase base para la gestión y manipulación del DOM. Proporciona funcionalidades para interactuar con elementos HTML, gestionar modales y manipular la interfaz de usuario.</p>
+            
+            <div class="method">
+                <div class="method-name">constructor()</div>
+                <p>Constructor de la clase Dom</p>
+            </div>
+
+            <div class="method">
+                <div class="method-name">mostrarModal()</div>
+                <p>Muestra el modal de resultados de tests</p>
+                <div class="return-section">
+                    <strong>Retorna:</strong> void
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">cerrarModal()</div>
+                <p>Cierra el modal de resultados de tests</p>
+                <div class="return-section">
+                    <strong>Retorna:</strong> void
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">getElement(id)</div>
+                <p>Obtiene un elemento del DOM por su ID</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>string</td>
+                        <td>ID del elemento a obtener</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> HTMLElement - El elemento encontrado o null si no existe
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">getValue(id)</div>
+                <p>Obtiene el valor de un elemento del DOM</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>string</td>
+                        <td>ID del elemento</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> string - El valor del elemento o cadena vacía si no existe
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">setValue(id, value)</div>
+                <p>Establece el valor de un elemento del DOM</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>string</td>
+                        <td>ID del elemento</td>
+                    </tr>
+                    <tr>
+                        <td>value</td>
+                        <td>string</td>
+                        <td>Valor a establecer</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> void
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">addClass(id, className)</div>
+                <p>Añade una clase CSS a un elemento</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>string</td>
+                        <td>ID del elemento</td>
+                    </tr>
+                    <tr>
+                        <td>className</td>
+                        <td>string</td>
+                        <td>Nombre de la clase a añadir</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> void
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">removeClass(id, className)</div>
+                <p>Elimina una clase CSS de un elemento</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>string</td>
+                        <td>ID del elemento</td>
+                    </tr>
+                    <tr>
+                        <td>className</td>
+                        <td>string</td>
+                        <td>Nombre de la clase a eliminar</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> void
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">showElement(id)</div>
+                <p>Muestra un elemento del DOM</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>string</td>
+                        <td>ID del elemento a mostrar</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> void
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">hideElement(id)</div>
+                <p>Oculta un elemento del DOM</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>id</td>
+                        <td>string</td>
+                        <td>ID del elemento a ocultar</td>
+                    </tr>
+                </table>
+                <div class="return-section">
+                    <strong>Retorna:</strong> void
+                </div>
+            </div>
+        </div>
+
+        <div class="class-section">
+            <h2>Entidad_Abstracta</h2>
+            <p class="extends-info">Extiende de: Dom</p>
+            <p>Clase abstracta base para todas las entidades del sistema. Proporciona funcionalidad común para la gestión de entidades, incluyendo validaciones y tests.</p>
+            
+            <div class="method">
+                <div class="method-name">constructor(entidad, def_estructura)</div>
+                <p>Constructor de la clase Entidad_Abstracta</p>
+                <table class="param-table">
+                    <tr>
+                        <th>Parámetro</th>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                    </tr>
+                    <tr>
+                        <td>entidad</td>
+                        <td>string</td>
+                        <td>Nombre de la entidad</td>
+                    </tr>
+                    <tr>
+                        <td>def_estructura</td>
+                        <td>object</td>
+                        <td>Definición de la estructura de la entidad</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="method">
+                <div class="method-name">add()</div>
+                <p>Añade una nueva entidad</p>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si se añadió correctamente, false en caso contrario
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">edit()</div>
+                <p>Edita una entidad existente</p>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si se editó correctamente, false en caso contrario
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">search()</div>
+                <p>Busca entidades según criterios</p>
+                <div class="return-section">
+                    <strong>Retorna:</strong> Array - Lista de entidades encontradas
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">delete()</div>
+                <p>Elimina una entidad</p>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si se eliminó correctamente, false en caso contrario
+                </div>
+            </div>
+
+            <div class="method">
+                <div class="method-name">runTests()</div>
+                <p>Ejecuta los tests de la entidad</p>
+                <div class="return-section">
+                    <strong>Retorna:</strong> void
+                </div>
+            </div>
+        </div>
+
+        <div class="category-title">Clases de Entidades</div>
+        
+        <div class="class-section">
+            <h2>analysis_preparation</h2>
+            <p class="extends-info">Extiende de: Entidad_Abstracta</p>
+            <p>Clase para la gestión de análisis de preparación. Maneja las operaciones CRUD y validaciones específicas para esta entidad.</p>
+        </div>
+
+        <div class="class-section">
+            <h2>characteristic</h2>
+            <p class="extends-info">Extiende de: Entidad_Abstracta</p>
+            <p>Clase para la gestión de características. Maneja las operaciones CRUD y validaciones específicas para esta entidad.</p>
+        </div>
+
+        <div class="class-section">
+            <h2>project</h2>
+            <p class="extends-info">Extiende de: Entidad_Abstracta</p>
+            <p>Clase para la gestión de proyectos. Maneja las operaciones CRUD y validaciones específicas para esta entidad.</p>
+            
+            <div class="method">
+                <div class="method-name">check_special_test_END_DATE_PROJECT()</div>
+                <p>Verifica la fecha de finalización del proyecto</p>
+                <div class="return-section">
+                    <strong>Retorna:</strong> boolean - true si la fecha es válida, false en caso contrario
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

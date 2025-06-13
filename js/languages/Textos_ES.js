@@ -218,7 +218,7 @@ let textos_ES = {
     'nuevo_file_analysis_preparation_name_min_size_KO':'Tamaño del nombre del fichero insuficiente. Tiene que ser un tamaño de entre 7 y 100 caracteres sin espacios.',
     'nuevo_file_analysis_preparation_name_format_KO':'Los caracteres introducidos como nombre de fichero son incorrectos. Tienen que ser alfabeticos con acentos y/o puntos, sin espacios ni ñ.',
     
-    'nuevo_file_analysis_preparation_name_max_size_KO':'Excede el tamaño maximo del nombre del fichero. Tiene que ser un tamaño de entre 7 y 10 caracteres sin espacios.',
+    'nuevo_file_analysis_preparation_name_max_size_KO':'Excede el tamaño maximo del nombre del fichero. Tiene que ser un tamaño de entre 7 y 100 caracteres sin espacios.',
     // nuevo file project
     'nuevo_file_project_empty_KO':'No se añadio un fichero nuevo.',
     'nuevo_file_project_file_max_size_KO':'Excede el tamaño maximo de fichero permitido. El fichero tiene que tener un tamaño menor a 2000000 bytes.',

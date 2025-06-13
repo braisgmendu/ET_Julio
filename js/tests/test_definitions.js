@@ -314,7 +314,6 @@ let analysis_preparation_tests = Array(
     Array('analysis_preparation', 'bib_analysis_preparation', 50, 102, 'SEARCH', 'Gonzalez Menduiña', true), // OK
 
 );
-
 let analysis_preparation_tests_files = Array(
     /*ADD */
     //nuevo_file_analysis_preparation
@@ -323,7 +322,7 @@ let analysis_preparation_tests_files = Array(
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 13, 104, 'ADD', 'tamaño nombre < 7', Array('aa.pdf',Array('application/pdf'),10000), 'nuevo_file_analysis_preparation_name_min_size_KO'),
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 13, 105, 'ADD', 'tamaño nombre < 7', Array('aaa.pdf',Array('application/pdf'),10000), true),
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 14, 106, 'ADD', 'tamaño nombre > 100', Array('a'.repeat(101),Array('application/pdf'),10000), 'nuevo_file_analysis_preparation_name_max_size_KO'),
-    Array('analysis_preparation', 'nuevo_file_analysis_preparation', 14, 107, 'ADD', 'tamaño nombre > 100', Array('a'.repeat(100),Array('application/pdf'),10000), true),
+    Array('analysis_preparation', 'nuevo_file_analysis_preparation', 14, 107, 'ADD', 'tamaño nombre > 100', Array('a'.repeat(96)+".pdf",Array('application/pdf'),10000), true),
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 15, 108, 'ADD', 'alfabeticos o con espacios o ñ o acentos', Array('GonzálezMenduiña.pdf',Array('application/pdf'),10000), 'nuevo_file_analysis_preparation_name_format_KO'),
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 15, 109, 'ADD', 'alfabeticos o con espacios o ñ o acentos', Array('BoasTardes.pdf',Array('application/pdf'),10000), true),
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 17, 110, 'ADD', 'tamaño menor al máximo', Array('BoasTardes.pdf',Array('application/pdf'),20000000), 'nuevo_file_analysis_preparation_max_size_file_KO'),
@@ -340,7 +339,7 @@ let analysis_preparation_tests_files = Array(
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 32, 117, 'EDIT', 'tamaño nombre < 7', Array('aa.pdf',Array('application/pdf'),10000), 'nuevo_file_analysis_preparation_name_min_size_KO'),
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 32, 118, 'EDIT', 'tamaño nombre < 7', Array('aaa.pdf',Array('application/pdf'),10000), true),
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 33, 119, 'EDIT', 'tamaño nombre > 100', Array('a'.repeat(101),Array('application/pdf'),10000), 'nuevo_file_analysis_preparation_name_max_size_KO'),
-    Array('analysis_preparation', 'nuevo_file_analysis_preparation', 33, 120, 'EDIT', 'tamaño nombre > 100', Array('a'.repeat(100),Array('application/pdf'),10000), true),
+    Array('analysis_preparation', 'nuevo_file_analysis_preparation', 33, 120, 'EDIT', 'tamaño nombre > 100', Array('a'.repeat(96)+".pdf",Array('application/pdf'),10000), true),
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 34, 121, 'EDIT', 'alfabeticos o con espacios o ñ o acentos', Array('GonzálezMenduiña.pdf',Array('application/pdf'),10000), 'nuevo_file_analysis_preparation_name_format_KO'),
     Array('analysis_preparation', 'nuevo_file_analysis_preparation', 34, 122, 'EDIT', 'alfabeticos o con espacios o ñ o acentos', Array('BoasTardes.pdf',Array('application/pdf'),10000), true),
     //Array('analysis_preparation', 'nuevo_file_analysis_preparation', 35, 125, 'EDIT', 'el fichero es correcto', Array(), 'nuevo_file_analysis_preparation_empty_KO'),
@@ -357,8 +356,8 @@ let analysis_preparation_tests_files = Array(
     /*SEARCH */
     //file_analysis_preparation
     Array('analysis_preparation', 'file_analysis_preparation', 51, 131, 'SEARCH', 'tamaño nombre > 100', 'a'.repeat(101), 'file_analysis_preparation_name_max_size_KO'),
-    Array('analysis_preparation', 'file_analysis_preparation', 51, 132, 'SEARCH', 'tamaño nombre > 100', 'a'.repeat(100), true),
-    Array('analysis_preparation', 'file_analysis_preparation', 52, 133, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', 'GonzálezMenduiña.pdf', 'file_analysis_preparation_name_format_KO'),
+    Array('analysis_preparation', 'file_analysis_preparation', 51, 132, 'SEARCH', 'tamaño nombre > 100', 'a'.repeat(96)+".pdf", true),
+    Array('analysis_preparation', 'file_analysis_preparation', 52, 133, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', 'González@Menduiña.pdf', 'file_analysis_preparation_name_format_KO'),
     Array('analysis_preparation', 'file_analysis_preparation', 52, 134, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', 'BoasTardes.pdf', true),
 );
 

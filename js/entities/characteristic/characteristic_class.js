@@ -1,7 +1,16 @@
+/**
+ * @class characteristic
+ * @extends Entidad_Abstracta
+ * @description Clase para la gestión de características.
+ * Maneja las operaciones CRUD y validaciones específicas para esta entidad.
+ */
 class characteristic extends Entidad_Abstracta {
+  /**
+   * @constructor
+   * @description Constructor de la clase characteristic
+   */
   constructor() {
     super("characteristic", estructura_characteristic);
-
   }
 
   /* cargar_formulario_estatico() {

@@ -1,4 +1,15 @@
+/**
+ * @class Dom_validations
+ * @extends Dom
+ * @description Clase que maneja las validaciones del DOM, extendiendo la funcionalidad de la clase Dom.
+ * Gestiona la validación de campos del formulario según las reglas definidas para cada acción.
+ */
 class Dom_validations extends Dom{
+    /**
+     * @constructor
+     * @param {Validaciones_Atomicas} validaciones - Instancia de la clase de validaciones atómicas
+     * @param {string} entidad - Nombre de la entidad a validar
+     */
     constructor(validaciones, entidad) {
         super();
         this.validaciones = validaciones;
@@ -14,6 +25,11 @@ class Dom_validations extends Dom{
     }
     
 
+    /**
+     * @method load_validations
+     * @description Carga las validaciones definidas para una acción específica
+     * @param {string} action - Acción para la que cargar las validaciones (ADD, EDIT, SEARCH, DELETE)
+     */
     load_validations(action) {
         const elementos = document.forms['IU_form'].elements;
         for (let elemento of elementos) {
@@ -27,113 +43,163 @@ class Dom_validations extends Dom{
         }
     }
 
+    /**
+     * @method comprobarCampo
+     * @description Valida un campo según las reglas definidas para la acción especificada
+     * @param {string} campo - ID del campo a validar
+     * @param {string} action - Acción que se está realizando (ADD, EDIT, SEARCH, DELETE)
+     * @returns {boolean} true si el campo es válido, false en caso contrario
+     */
     comprobarCampo(campo, action) {
-    const atributos = this.getAttributes();
+        const atributos = this.getAttributes();
+        
+        if (!atributos[campo]) {
+            console.warn(`No se pueden comprobar validaciones porque no existen definiciones para la acción: ${action}`);
+            return true;
+        }
 
-    if (!atributos[campo]) {
-        console.warn(`No se pueden comprobar validaciones porque no existen definiciones para la acción: ${action}`);
-        return true;
-    }
+        // Obtener elemento DOM
+        const elemento = document.getElementById(campo);
+        if (!elemento) return true;
 
-    // Obtener elemento DOM
-    const elemento = document.getElementById(campo);
-    if (!elemento) return true;
-
-    // Determinar valor del campo
-    let valor;
-    if (elemento instanceof HTMLInputElement && elemento.type === 'file') {
-        valor = elemento.files.length > 0 ? elemento.files[0].name : '';
-    } else {
-        valor = elemento.value ? elemento.value.trim() : '';
-    }
-
-    // 1. Saltar validación si es SEARCH y campo vacío
-    if (action === 'SEARCH' && !valor) {
-        return true;
-    }
-
-    const validacionesCampo = atributos[campo]?.validation_rules;
-    if (!validacionesCampo) {
-        console.warn(`No hay validaciones definidas para el campo: ${campo} y acción: ${action}`);
-        return true;
-    }
-
-    // 2. Validación especial genérica
-    const resultadoEspecial = this.check_special_tests(campo);
-    if (resultadoEspecial !== true) {
-        this.mostrar_error_campo(campo, resultadoEspecial || `Error especial en el campo: ${campo}`);
-        return resultadoEspecial;
-    }
-
-    // 3. Manejo genérico de campos de archivo en EDIT
-    const esCampoArchivo = elemento instanceof HTMLInputElement && elemento.type === 'file';
-    if (esCampoArchivo && action === 'EDIT' && elemento.files.length === 0) {
-        return true;
-    }
-
-    const reglasAccion = validacionesCampo[action] || {};
-    
-    for (const [tipoValidacion, config] of Object.entries(reglasAccion)) {
-        let resultado = false;
-        let valorValidacion, mensaje;
-
-        // Manejar diferentes formatos de configuración
-        if (Array.isArray(config)) {
-            [valorValidacion, mensaje] = config;
+        // Determinar valor del campo
+        let valor;
+        if (elemento instanceof HTMLInputElement && elemento.type === 'file') {
+            valor = elemento.files.length > 0 ? elemento.files[0] : null;
         } else {
-            mensaje = config;
+            valor = elemento.value ? elemento.value.trim() : '';
         }
 
-        try {
-            switch (tipoValidacion) {
-                case 'min_size':
-                    resultado = this.validaciones.min_size(campo, valorValidacion);
-                    break;
-                case 'max_size':
-                    resultado = this.validaciones.max_size(campo, valorValidacion);
-                    break;
-                case 'reg_exp':
-                    resultado = this.validaciones.reg_exp(campo, valorValidacion);
-                    break;
-                case 'valid_date':
-                    resultado = this.validacionesespeciales(campo, valorValidacion);
-                    break;
-                case 'no_file':
-                    resultado = this.validaciones.no_file(campo, valorValidacion);
-                    break;
-                case 'max_size_file':
-                    if (elemento.files[0]) {
-                        resultado = this.validaciones.max_size_file(elemento.files[0], valorValidacion);
+        const validacionesCampo = atributos[campo]?.validation_rules;
+        if (!validacionesCampo) {
+            console.warn(`No hay validaciones definidas para el campo: ${campo} y acción: ${action}`);
+            return true;
+        }
+
+        // 2. Validación especial genérica
+        const resultadoEspecial = this.check_special_tests(campo);
+        if (resultadoEspecial !== true) {
+            this.mostrar_error_campo(campo, resultadoEspecial || `Error especial en el campo: ${campo}`);
+            return resultadoEspecial;
+        }
+
+        // 3. Manejo genérico de campos de archivo en EDIT
+        const esCampoArchivo = elemento instanceof HTMLInputElement && elemento.type === 'file';
+        if (esCampoArchivo && action === 'EDIT' && !valor) {
+            return true;
+        }
+
+        const reglasAccion = validacionesCampo[action] || {};
+        
+        // Si es SEARCH y no hay valor, permitir la búsqueda
+        if (action === 'SEARCH' && !valor) {
+            return true;
+        }
+
+        // Si es SEARCH y hay valor, validar según las reglas
+        if (action === 'SEARCH' && valor) {
+            for (const [tipoValidacion, config] of Object.entries(reglasAccion)) {
+                let resultado = false;
+                let valorValidacion, mensaje;
+
+                if (Array.isArray(config)) {
+                    [valorValidacion, mensaje] = config;
+                } else {
+                    mensaje = config;
+                }
+
+                try {
+                    switch (tipoValidacion) {
+                        case 'max_size':
+                            resultado = this.validaciones.max_size(campo, valorValidacion);
+                            break;
+                        case 'reg_exp':
+                            resultado = this.validaciones.reg_exp(campo, valorValidacion);
+                            break;
                     }
-                    break;
-                case 'file_type':
-                    if (elemento.files[0]) {
-                        resultado = this.validaciones.file_type(elemento.files[0], valorValidacion);
-                    }
-                    break;
-                case 'format_name_file':
-                    if (elemento.files[0]) {
-                        resultado = this.validaciones.format_name_file(elemento.files[0], valorValidacion);
-                    }
-                    break;
-                default:
-                    console.error(`Tipo de validación no soportado: ${tipoValidacion}`);
+                } catch (error) {
+                    console.error(`Error en validación ${tipoValidacion} para ${campo}:`, error);
                     continue;
+                }
+
+                if (resultado === false) {
+                    this.mostrar_error_campo(campo, mensaje || `Error en validación ${tipoValidacion}`);
+                    return mensaje || `Error en campo ${campo}`;
+                }
             }
-        } catch (error) {
-            console.error(`Error en validación ${tipoValidacion} para ${campo}:`, error);
-            continue;
+            
         }
 
-        // 4. Manejo unificado de errores
-        if (resultado === false) {
-            this.mostrar_error_campo(campo, mensaje || `Error en validación ${tipoValidacion}`);
-            return mensaje || `Error en campo ${campo}`;
+        // Para otras acciones (ADD, EDIT)
+        for (const [tipoValidacion, config] of Object.entries(reglasAccion)) {
+            let resultado = false;
+            let valorValidacion, mensaje;
+
+            if (Array.isArray(config)) {
+                [valorValidacion, mensaje] = config;
+            } else {
+                mensaje = config;
+            }
+
+            try {
+                switch (tipoValidacion) {
+                    case 'min_size':
+                        resultado = this.validaciones.min_size(campo, valorValidacion);
+                        break;
+                    case 'max_size':
+                        resultado = this.validaciones.max_size(campo, valorValidacion);
+                        break;
+                    case 'reg_exp':
+                        resultado = this.validaciones.reg_exp(campo, valorValidacion);
+                        break;
+                    case 'valid_date':
+                        resultado = this.validacionesespeciales(campo, valorValidacion);
+                        break;
+                    case 'no_file':
+                        resultado = this.validaciones.no_file(valor);
+                        break;
+                    case 'max_size_file':
+                        if (valor) {
+                            resultado = this.validaciones.max_size_file(valor, valorValidacion);
+                        }
+                        break;
+                    case 'file_type':
+                        if (valor) {
+                            resultado = this.validaciones.file_type(valor, valorValidacion);
+                        }
+                        break;
+                    case 'format_name_file':
+                        if (valor) {
+                            resultado = this.validaciones.format_name_file(valor, valorValidacion);
+                        }
+                        break;
+                    case 'min_size_name_file':
+                        if (valor) {
+                            resultado = this.validaciones.min_size_name_file(valor, valorValidacion);
+                        }
+                        break;
+                    case 'max_size_name_file':
+                        if (valor) {
+                            resultado = this.validaciones.max_size_name_file(valor, valorValidacion);
+                        }
+                        break;
+                    default:
+                        console.error(`Tipo de validación no soportado: ${tipoValidacion}`);
+                        continue;
+                }
+            } catch (error) {
+                console.error(`Error en validación ${tipoValidacion} para ${campo}:`, error);
+                continue;
+            }
+
+            if (resultado === false) {
+                this.mostrar_error_campo(campo, mensaje || `Error en validación ${tipoValidacion}`);
+                return mensaje || `Error en campo ${campo}`;
+            }
         }
+
+        return true;
     }
-
-    return true;
-}
 
     submit_test(action) {
         const atributos = this.getAttributes();
@@ -163,18 +229,18 @@ class Dom_validations extends Dom{
         return !hayErrores; // Retornar `false` si hubo errores, `true` si todo está correcto
     }
 
-check_special_tests(atributo) {
-    const methodName = `check_especial_tests_${atributo}`;
+    check_special_tests(atributo) {
+        const methodName = `check_especial_tests_${atributo}`;
 
-    if (typeof this[methodName] === 'function') {
-        return this[methodName]();
-    }else {
-        //console.warn(`No hay un método especial definido para el campo: ${atributo}`);
-        return true; // Si no hay método, asumimos que es válido
+        if (typeof this[methodName] === 'function') {
+            return this[methodName]();
+        }else {
+            //console.warn(`No hay un método especial definido para el campo: ${atributo}`);
+            return true; // Si no hay método, asumimos que es válido
+        }
     }
-     
-}
-/*
+
+    /*
     check_special_tests(campo) {
         if (campo == 'start_date_project') {
             let fecha = document.getElementById(campo).value;
