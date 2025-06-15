@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: core/Dom_class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: core/Dom_class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @class Dom
  * @description Clase principal que maneja la manipulación del DOM y la interfaz de usuario.
  * Esta clase es responsable de crear y gestionar formularios, tablas, modales y otros elementos
@@ -146,7 +174,7 @@ class Dom {
     }
 
     // Manejar opciones para select
-    if (def.html.tag === "select" && def.html.options) {
+    if (def.html.tag === "select" &amp;&amp; def.html.options) {
       def.html.options.forEach(optionValue => {
         const option = document.createElement("option");
         option.value = optionValue;
@@ -252,15 +280,15 @@ class Dom {
       document.getElementById("muestradatostabla").className =
         "RECORDSET_VACIO";
     } else {
-      let textolineatitulos = "<tr>";
+      let textolineatitulos = "&lt;tr>";
 
       for (let atributo of this.atributos) {
         textolineatitulos +=
-          '<th class="' + atributo + '">' + atributo + "</th>";
+          '&lt;th class="' + atributo + '">' + atributo + "&lt;/th>";
       }
 
-      textolineatitulos += '<th colspan="3"></th>';
-      textolineatitulos += "</tr>";
+      textolineatitulos += '&lt;th colspan="3">&lt;/th>';
+      textolineatitulos += "&lt;/tr>";
 
       let cabecera = document.getElementById("titulostablacabecera");
       cabecera.innerHTML = textolineatitulos;
@@ -268,8 +296,8 @@ class Dom {
       // Filas
       let textolineadatos = "";
 
-      for (let i = 0; i < this.datos.length; i++) {
-        textolineadatos += '<tr class="tabla-fila">';
+      for (let i = 0; i &lt; this.datos.length; i++) {
+        textolineadatos += '&lt;tr class="tabla-fila">';
 
         for (let clave in this.datos[i]) {
           if (this.datosespecialestabla.includes(clave)) {
@@ -278,31 +306,31 @@ class Dom {
               this.datos[i][clave]
             );
             textolineadatos +=
-              '<td class="tabla-td-' + clave + '">' + valorcolumna + "</td>";
+              '&lt;td class="tabla-td-' + clave + '">' + valorcolumna + "&lt;/td>";
           } else {
             // Limpieza de código no deseado incrustado HTML y script
             let san = (obj) => {
               let value = obj?.toString() || "";
-              return value.replace(/[&<>"'`]/g, function (match) {
+              return value.replace(/[&amp;&lt;>"'`]/g, function (match) {
                 switch (match) {
-                  case "&":
-                    return "&amp;";
-                  case "<":
-                    return "&lt;";
+                  case "&amp;":
+                    return "&amp;amp;";
+                  case "&lt;":
+                    return "&amp;lt;";
                   case ">":
-                    return "&gt;";
+                    return "&amp;gt;";
                   case '"':
-                    return "&quot;";
+                    return "&amp;quot;";
                   case "'":
-                    return "&#039;";
+                    return "&amp;#039;";
                   case "`":
-                    return "&#x60;";
+                    return "&amp;#x60;";
                 }
               });
             };
             let valorE = san(this.datos[i][clave]);
             textolineadatos +=
-              '<td class="tabla-td-' + clave + '">' + valorE + "</td>";
+              '&lt;td class="tabla-td-' + clave + '">' + valorE + "&lt;/td>";
           }
         }
 
@@ -324,7 +352,7 @@ class Dom {
         );
 
         textolineadatos += lineaedit + lineadelete + lineashowcurrent;
-        textolineadatos += "</tr>";
+        textolineadatos += "&lt;/tr>";
       }
 
       let cuerpo = document.getElementById("muestradatostabla");
@@ -344,7 +372,7 @@ class Dom {
     let nuevascolumnas = Array();
     if (this.def_estructura.columnas_visibles_tabla.includes(atributo)) {
       // borrar ese atributo
-      for (let i = 0; i < this.def_estructura.columnas_visibles_tabla.length; i++) {
+      for (let i = 0; i &lt; this.def_estructura.columnas_visibles_tabla.length; i++) {
         if (this.def_estructura.columnas_visibles_tabla[i] == atributo) {
         } else {
           nuevascolumnas.push(this.def_estructura.columnas_visibles_tabla[i]);
@@ -369,7 +397,7 @@ class Dom {
         let arraytds = document.querySelectorAll(
           "td[class='tabla-td-" + columna + "']"
         );
-        for (let i = 0; i < arraytds.length; i++) {
+        for (let i = 0; i &lt; arraytds.length; i++) {
           arraytds[i].style.display = "none";
         }
       }
@@ -517,7 +545,7 @@ modificarColumnasTest(columna) {
     
     if (this.columnas_test_visibles.includes(columna)) {
         // Remover la columna
-        for (let i = 0; i < this.columnas_test_visibles.length; i++) {
+        for (let i = 0; i &lt; this.columnas_test_visibles.length; i++) {
             if (this.columnas_test_visibles[i] !== columna) {
                 nuevascolumnas.push(this.columnas_test_visibles[i]);
             }
@@ -552,7 +580,7 @@ aplicarVisibilidadColumnas(tabla) {
     filas.forEach(fila => {
         const celdas = fila.querySelectorAll('th, td');
         celdas.forEach((celda, index) => {
-            if (index < this.columnas_test_disponibles.length) {
+            if (index &lt; this.columnas_test_disponibles.length) {
                 const nombreColumna = this.columnas_test_disponibles[index];
                 if (this.columnas_test_visibles.includes(nombreColumna)) {
                     celda.style.display = '';
@@ -572,9 +600,9 @@ construirDomTest() {
         selectorContainer = document.createElement("div");
         selectorContainer.id = "selector_columnas_test";
         selectorContainer.innerHTML = `
-            <label for="seleccioncolumnastest">Seleccionar columnas a mostrar:</label>
-            <select id="seleccioncolumnastest" multiple size="6"></select>
-            <button type="button" onclick="validar.dom.resetColumnasTest()">Resetear</button>
+            &lt;label for="seleccioncolumnastest">Seleccionar columnas a mostrar:&lt;/label>
+            &lt;select id="seleccioncolumnastest" multiple size="6">&lt;/select>
+            &lt;button type="button" onclick="validar.dom.resetColumnasTest()">Resetear&lt;/button>
         `;
         
         // Insertar antes de las tablas de resultados
@@ -599,22 +627,45 @@ resetColumnasTest() {
 
 // Método mejorado para crear encabezados de tabla con identificadores
 crearEncabezadoTest(columnas) {
-    let salidatest = '<tr>';
+    let salidatest = '&lt;tr>';
     columnas.forEach((columna, index) => {
-        salidatest += `<th data-columna="${columna}">${columna}</th>`;
+        salidatest += `&lt;th data-columna="${columna}">${columna}&lt;/th>`;
     });
-    salidatest += '</tr>';
+    salidatest += '&lt;/tr>';
     return salidatest;
 }
 
 // Método para crear fila de datos con identificadores
 crearFilaTest(datos) {
-    let fila = '<tr>';
+    let fila = '&lt;tr>';
     this.columnas_test_disponibles.forEach(columna => {
         const valor = datos[columna] || '';
-        fila += `<td data-columna="${columna}">${valor}</td>`;
+        fila += `&lt;td data-columna="${columna}">${valor}&lt;/td>`;
     });
-    fila += '</tr>';
+    fila += '&lt;/tr>';
     return fila;
 }
 }
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="Dom_validations.html">Dom_validations</a></li><li><a href="Entidad_Abstracta.html">Entidad_Abstracta</a></li><li><a href="ExternalAccess.html">ExternalAccess</a></li><li><a href="Validaciones_Atomicas.html">Validaciones_Atomicas</a></li><li><a href="analysis_preparation.html">analysis_preparation</a></li><li><a href="characteristic.html">characteristic</a></li><li><a href="project.html">project</a></li><li><a href="test_IU.html">test_IU</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ADD">ADD</a></li><li><a href="global.html#DELETE">DELETE</a></li><li><a href="global.html#EDIT">EDIT</a></li><li><a href="global.html#SEARCH">SEARCH</a></li><li><a href="global.html#abrirModalError">abrirModalError</a></li><li><a href="global.html#back_request">back_request</a></li><li><a href="global.html#cambiacolumnastabla">cambiacolumnastabla</a></li><li><a href="global.html#cambiarLang">cambiarLang</a></li><li><a href="global.html#cargar_formulario">cargar_formulario</a></li><li><a href="global.html#cerrarModalError">cerrarModalError</a></li><li><a href="global.html#cerrar_test">cerrar_test</a></li><li><a href="global.html#change_value_IU">change_value_IU</a></li><li><a href="global.html#check_special_test_END_DATE_PROJECT">check_special_test_END_DATE_PROJECT</a></li><li><a href="global.html#check_special_tests">check_special_tests</a></li><li><a href="global.html#comprobarCampo">comprobarCampo</a></li><li><a href="global.html#crearTablaDatos">crearTablaDatos</a></li><li><a href="global.html#createField">createField</a></li><li><a href="global.html#createForm">createForm</a></li><li><a href="global.html#createFormGenerico">createFormGenerico</a></li><li><a href="global.html#devolver_def">devolver_def</a></li><li><a href="global.html#file_type">file_type</a></li><li><a href="global.html#format_name_file">format_name_file</a></li><li><a href="global.html#getAttributes">getAttributes</a></li><li><a href="global.html#getCookie">getCookie</a></li><li><a href="global.html#hacertabla">hacertabla</a></li><li><a href="global.html#handleAddField">handleAddField</a></li><li><a href="global.html#handleEditField">handleEditField</a></li><li><a href="global.html#load_validations">load_validations</a></li><li><a href="global.html#max_size">max_size</a></li><li><a href="global.html#max_size_file">max_size_file</a></li><li><a href="global.html#max_size_name_file">max_size_name_file</a></li><li><a href="global.html#min_size">min_size</a></li><li><a href="global.html#min_size_name_file">min_size_name_file</a></li><li><a href="global.html#modificarColumnasTest">modificarColumnasTest</a></li><li><a href="global.html#modificarcolumnasamostrar">modificarcolumnasamostrar</a></li><li><a href="global.html#mostrar_error_campo">mostrar_error_campo</a></li><li><a href="global.html#no_file">no_file</a></li><li><a href="global.html#reg_exp">reg_exp</a></li><li><a href="global.html#resetColumnasTest">resetColumnasTest</a></li><li><a href="global.html#resolve_def_test">resolve_def_test</a></li><li><a href="global.html#resolve_pruebas">resolve_pruebas</a></li><li><a href="global.html#setCookie">setCookie</a></li><li><a href="global.html#setLang">setLang</a></li><li><a href="global.html#submit_test">submit_test</a></li><li><a href="global.html#test_run">test_run</a></li><li><a href="global.html#textos_EN">textos_EN</a></li><li><a href="global.html#textos_ES">textos_ES</a></li><li><a href="global.html#traduccion">traduccion</a></li><li><a href="global.html#validacionesespeciales">validacionesespeciales</a></li><li><a href="global.html#verificarPruebas">verificarPruebas</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Jun 15 2025 11:31:54 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

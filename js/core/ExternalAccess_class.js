@@ -1,9 +1,33 @@
+/**
+ * @class ExternalAccess
+ * @description Clase que maneja las comunicaciones con el backend del sistema.
+ * Proporciona métodos para realizar peticiones HTTP al servidor, específicamente
+ * para operaciones CRUD y otras interacciones con el backend.
+ */
 class ExternalAccess {
-
+    /**
+     * @constructor
+     * @description Inicializa la clase ExternalAccess
+     */
     constructor(){
 
     }
 
+    /**
+     * @method back_request
+     * @description Realiza una petición POST al backend del sistema.
+     * Proceso:
+     * 1. Prepara los datos del formulario o crea un FormData vacío
+     * 2. Añade el controlador y la acción
+     * 3. Añade datos extra si se proporcionan
+     * 4. Realiza la petición AJAX
+     * 
+     * @param {string} formulario - ID del formulario o cadena vacía
+     * @param {string} controlador - Nombre del controlador en el backend
+     * @param {string} action - Acción a realizar
+     * @param {object} datosextra - Datos adicionales opcionales
+     * @returns {Promise} Promesa que se resuelve con la respuesta del servidor
+     */
     back_request(formulario, controlador, action, datosextra=null){
     
         var datos;

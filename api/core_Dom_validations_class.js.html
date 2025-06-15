@@ -1,4 +1,32 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: core/Dom_validations_class.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: core/Dom_validations_class.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @class Dom_validations
  * @extends Dom
  * @description Clase que maneja las validaciones del DOM, extendiendo la funcionalidad de la clase Dom.
@@ -58,7 +86,7 @@ class Dom_validations extends Dom{
         for (let elemento of elementos) {
             const tipoElemento = document.getElementById(elemento.id).type;
             const etiqueta = document.getElementById(elemento.id).tagName;
-            const evento = (etiqueta === 'INPUT' && tipoElemento !== 'file') ? 'onblur' : 'onchange';
+            const evento = (etiqueta === 'INPUT' &amp;&amp; tipoElemento !== 'file') ? 'onblur' : 'onchange';
             const funcionValidacion = () => {
                 this.comprobarCampo(elemento.id, action);
             };
@@ -105,7 +133,7 @@ class Dom_validations extends Dom{
 
         // Determinar valor del campo
         let valor;
-        if (elemento instanceof HTMLInputElement && elemento.type === 'file') {
+        if (elemento instanceof HTMLInputElement &amp;&amp; elemento.type === 'file') {
             valor = elemento.files.length > 0 ? elemento.files[0] : null;
         } else {
             valor = elemento.value ? elemento.value.trim() : '';
@@ -125,20 +153,20 @@ class Dom_validations extends Dom{
         }
 
         // 3. Manejo genérico de campos de archivo en EDIT
-        const esCampoArchivo = elemento instanceof HTMLInputElement && elemento.type === 'file';
-        if (esCampoArchivo && action === 'EDIT' && !valor) {
+        const esCampoArchivo = elemento instanceof HTMLInputElement &amp;&amp; elemento.type === 'file';
+        if (esCampoArchivo &amp;&amp; action === 'EDIT' &amp;&amp; !valor) {
             return true;
         }
 
         const reglasAccion = validacionesCampo[action] || {};
         
         // Si es SEARCH y no hay valor, permitir la búsqueda
-        if (action === 'SEARCH' && !valor) {
+        if (action === 'SEARCH' &amp;&amp; !valor) {
             return true;
         }
 
         // Si es SEARCH y hay valor, validar según las reglas
-        if (action === 'SEARCH' && valor) {
+        if (action === 'SEARCH' &amp;&amp; valor) {
             for (const [tipoValidacion, config] of Object.entries(reglasAccion)) {
                 let resultado = false;
                 let valorValidacion, mensaje;
@@ -265,7 +293,7 @@ class Dom_validations extends Dom{
         // Filtrar atributos que tienen reglas de validación para la acción específica
         const atributosFiltrados = Object.keys(atributos).filter(campo => {
             const reglas = atributos[campo]?.validation_rules;
-            return reglas && reglas[action]; // Validar solo si hay reglas para la acción
+            return reglas &amp;&amp; reglas[action]; // Validar solo si hay reglas para la acción
         });
     
         const errores = atributosFiltrados.map(campo => {
@@ -328,7 +356,7 @@ class Dom_validations extends Dom{
                 let year = fechaf[2];
                 let date = new Date(year,month,'0'); //
                 
-                if((month - 0)<= 0 || (month -0)> 12){
+                if((month - 0)&lt;= 0 || (month -0)> 12){
                     return false;
                 }
                 
@@ -341,4 +369,26 @@ class Dom_validations extends Dom{
             return false;
         }   
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Dom.html">Dom</a></li><li><a href="Dom_validations.html">Dom_validations</a></li><li><a href="Entidad_Abstracta.html">Entidad_Abstracta</a></li><li><a href="ExternalAccess.html">ExternalAccess</a></li><li><a href="Validaciones_Atomicas.html">Validaciones_Atomicas</a></li><li><a href="analysis_preparation.html">analysis_preparation</a></li><li><a href="characteristic.html">characteristic</a></li><li><a href="project.html">project</a></li><li><a href="test_IU.html">test_IU</a></li></ul><h3>Global</h3><ul><li><a href="global.html#ADD">ADD</a></li><li><a href="global.html#DELETE">DELETE</a></li><li><a href="global.html#EDIT">EDIT</a></li><li><a href="global.html#SEARCH">SEARCH</a></li><li><a href="global.html#abrirModalError">abrirModalError</a></li><li><a href="global.html#back_request">back_request</a></li><li><a href="global.html#cambiacolumnastabla">cambiacolumnastabla</a></li><li><a href="global.html#cambiarLang">cambiarLang</a></li><li><a href="global.html#cargar_formulario">cargar_formulario</a></li><li><a href="global.html#cerrarModalError">cerrarModalError</a></li><li><a href="global.html#cerrar_test">cerrar_test</a></li><li><a href="global.html#change_value_IU">change_value_IU</a></li><li><a href="global.html#check_special_test_END_DATE_PROJECT">check_special_test_END_DATE_PROJECT</a></li><li><a href="global.html#check_special_tests">check_special_tests</a></li><li><a href="global.html#comprobarCampo">comprobarCampo</a></li><li><a href="global.html#crearTablaDatos">crearTablaDatos</a></li><li><a href="global.html#createField">createField</a></li><li><a href="global.html#createForm">createForm</a></li><li><a href="global.html#createFormGenerico">createFormGenerico</a></li><li><a href="global.html#devolver_def">devolver_def</a></li><li><a href="global.html#file_type">file_type</a></li><li><a href="global.html#format_name_file">format_name_file</a></li><li><a href="global.html#getAttributes">getAttributes</a></li><li><a href="global.html#getCookie">getCookie</a></li><li><a href="global.html#hacertabla">hacertabla</a></li><li><a href="global.html#handleAddField">handleAddField</a></li><li><a href="global.html#handleEditField">handleEditField</a></li><li><a href="global.html#load_validations">load_validations</a></li><li><a href="global.html#max_size">max_size</a></li><li><a href="global.html#max_size_file">max_size_file</a></li><li><a href="global.html#max_size_name_file">max_size_name_file</a></li><li><a href="global.html#min_size">min_size</a></li><li><a href="global.html#min_size_name_file">min_size_name_file</a></li><li><a href="global.html#modificarColumnasTest">modificarColumnasTest</a></li><li><a href="global.html#modificarcolumnasamostrar">modificarcolumnasamostrar</a></li><li><a href="global.html#mostrar_error_campo">mostrar_error_campo</a></li><li><a href="global.html#no_file">no_file</a></li><li><a href="global.html#reg_exp">reg_exp</a></li><li><a href="global.html#resetColumnasTest">resetColumnasTest</a></li><li><a href="global.html#resolve_def_test">resolve_def_test</a></li><li><a href="global.html#resolve_pruebas">resolve_pruebas</a></li><li><a href="global.html#setCookie">setCookie</a></li><li><a href="global.html#setLang">setLang</a></li><li><a href="global.html#submit_test">submit_test</a></li><li><a href="global.html#test_run">test_run</a></li><li><a href="global.html#textos_EN">textos_EN</a></li><li><a href="global.html#textos_ES">textos_ES</a></li><li><a href="global.html#traduccion">traduccion</a></li><li><a href="global.html#validacionesespeciales">validacionesespeciales</a></li><li><a href="global.html#verificarPruebas">verificarPruebas</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.4</a> on Sun Jun 15 2025 11:31:54 GMT+0200 (Central European Summer Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

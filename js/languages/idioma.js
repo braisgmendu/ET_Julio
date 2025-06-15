@@ -1,5 +1,20 @@
+/**
+ * @fileoverview Módulo de gestión de idiomas del sistema.
+ * Proporciona funcionalidades para cambiar y mantener el idioma de la interfaz,
+ * incluyendo la gestión de cookies para persistencia del idioma seleccionado.
+ */
 
-// funcion de idioma
+/**
+ * @function setLang
+ * @description Establece el idioma de la interfaz y aplica las traducciones correspondientes.
+ * Proceso:
+ * 1. Determina el idioma a usar (parámetro, cookie o por defecto)
+ * 2. Guarda la preferencia en una cookie
+ * 3. Carga las traducciones correspondientes
+ * 4. Aplica las traducciones a todos los elementos de la interfaz
+ * 
+ * @param {string} [lang=''] - Código del idioma a establecer (ES, EN). Si está vacío, usa la cookie o el valor por defecto
+ */
 function setLang(lang=''){
 
     if (lang=='') {
@@ -75,7 +90,13 @@ function setLang(lang=''){
 	}
 }
 
-/**Función para cambiar el idioma*/
+/**
+ * @function cambiarLang
+ * @description Cambia el idioma de la interfaz y recarga la página.
+ * Guarda la preferencia en una cookie con duración de 5 días.
+ * 
+ * @param {string} lang - Código del idioma al que cambiar (ES, EN)
+ */
 function cambiarLang(lang) {
 
     setCookie('lang',lang,5);
@@ -83,7 +104,15 @@ function cambiarLang(lang) {
 
 }
 
-/*Función para establecer el valor de la cookie*/
+/**
+ * @function setCookie
+ * @description Establece una cookie con los parámetros especificados.
+ * Configura la cookie con opciones de seguridad (Secure, SameSite).
+ * 
+ * @param {string} name - Nombre de la cookie
+ * @param {string} value - Valor de la cookie
+ * @param {number} days - Número de días de duración de la cookie
+ */
 function setCookie(name, value, days) {
 
     var expires = "";
@@ -98,7 +127,13 @@ function setCookie(name, value, days) {
     document.cookie += "; Secure; SameSite=none; path=/";
 }
 
-/*Función para obtener el valor de la cookie*/
+/**
+ * @function getCookie
+ * @description Obtiene el valor de una cookie específica.
+ * 
+ * @param {string} name - Nombre de la cookie a obtener
+ * @returns {string|null} Valor de la cookie o null si no existe
+ */
 function getCookie(name) {
 
     var nameEQ = name + "=";
@@ -113,3 +148,15 @@ function getCookie(name) {
     return null;
 
 }
+
+/**
+ * @constant {Object} textos_ES
+ * @description Objeto que contiene todas las traducciones en español.
+ * Las claves son identificadores de elementos y los valores son las traducciones.
+ */
+
+/**
+ * @constant {Object} textos_EN
+ * @description Objeto que contiene todas las traducciones en inglés.
+ * Las claves son identificadores de elementos y los valores son las traducciones.
+ */
