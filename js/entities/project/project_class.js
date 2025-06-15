@@ -94,9 +94,8 @@ class project extends Entidad_Abstracta{
     * @description Verifica la fecha de finalización del proyecto
     * @returns {boolean} true si la fecha es válida, false en caso contrario
     */
-   check_special_test_END_DATE_PROJECT(){
-    
-   }
+
+
     change_value_IU(atributo, valoratributo){
         if (atributo === 'file_project'){
             if (valoratributo === ''){
@@ -115,5 +114,65 @@ class project extends Entidad_Abstracta{
 
 		}
 
+    }
+
+    check_special_START_DATE_PROJECT() {
+        const start = document.getElementById('start_date_project').value;
+        const end = document.getElementById('end_date_project').value;
+
+        // 1. Comprobar formato
+        if (!/^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.test(start)) return "start_date_project_format_KO";
+
+        // 2. Comprobar fecha válida (mes y día)
+        if (!this._fechaValida(start)) return "start_date_project_invalid_KO";
+
+        // 3. Comprobar que la fecha de inicio es menor que la de fin (si existe la de fin y es válida)
+        if (end && /^\d{2}\/\d{2}\/\d{4}$/.test(end) && this._fechaValida(end)) {
+            if (!this._esMenor(start, end)) return "start_date_project_order_KO";
+        }
+
+        return true;
+    }
+
+    check_special_END_DATE_PROJECT() {
+        const end = document.getElementById('end_date_project').value;
+        const start = document.getElementById('start_date_project').value;
+
+        // 1. Comprobar formato
+        if (!/^(\d{1,2})\/(\d{1,2})\/(\d{2}|\d{4})$/.test(end)) return "end_date_project_format_KO";
+
+        // 2. Comprobar fecha válida (mes y día)
+        if (!this._fechaValida(end)) return "end_date_project_invalid_KO";
+
+        // 3. Comprobar que la fecha de inicio es menor que la de fin (si existe la de inicio y es válida)
+        if (start && /^\d{2}\/\d{2}\/\d{4}$/.test(start) && this._fechaValida(start)) {
+            if (!this._esMenor(start, end)) return "end_date_project_order_KO";
+        }
+
+        return true;
+    }
+
+    // Métodos auxiliares privados:
+    _fechaValida(fecha) {
+        // Extraer día, mes y año
+        const [dia, mes, anio] = fecha.split('/').map(Number);
+
+        //Comprobar mes válido
+        if (mes < 1 || mes > 12) return false;
+
+        // 4. Comprobar día válido según el mes y si es bisiesto
+        const diasMes = [31, (anio % 4 === 0 && (anio % 100 !== 0 || anio % 400 === 0)) ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if (dia < 1 || dia > diasMes[mes - 1]) return false;
+
+        return true;
+    }
+
+    _esMenor(fecha1, fecha2) {
+        // Convierte a objeto Date para comparar
+        const [d1, m1, y1] = fecha1.split('/').map(Number);
+        const [d2, m2, y2] = fecha2.split('/').map(Number);
+        const f1 = new Date(y1, m1 - 1, d1);
+        const f2 = new Date(y2, m2 - 1, d2);
+        return f1 < f2;
     }
 }

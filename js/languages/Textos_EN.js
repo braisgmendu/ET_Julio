@@ -162,11 +162,13 @@ let textos_EN = {
   
       // start_date_project
       'start_date_project_format_KO': 'Incorrect date format. It should be dd/mm/yyyy.',
-      'start_date_project_valid_KO': 'Invalid date. It must be a date that exists on the calendar.',
+      'start_date_project_invalid_KO': 'Invalid date. It must be a date that exists on the calendar.',
+      'start_date_project_order_KO': 'The start date cannot be later than the end date.',
   
       // end_date_project
       'end_date_project_format_KO': 'Incorrect date format. It should be dd/mm/yyyy.',
-      'end_date_project_valid_KO': 'Invalid date. It must be a date that exists on the calendar.',
+      'end_date_project_invalid_KO': 'Invalid date. It must be a date that exists on the calendar.',
+      'end_date_project_order_KO': 'The end date cannot be earlier than the start date.',
   
       // responsable_project
       'responsable_project_min_size_KO': 'Field size is insufficient. It must be between 6 and 60 characters including spaces.',

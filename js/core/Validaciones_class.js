@@ -32,10 +32,10 @@ class Validaciones_Atomicas{
      */
     min_size(id, parametro){
         const valor = document.getElementById(id)?.value; // Verificar que el campo existe
-        if (!valor) {
+        /*if (!valor) {
             console.warn(`El campo con id "${id}" no existe o no tiene valor.`);
             return false;
-        }
+        }*/
         if (valor.length < parametro){
             return false;
         }

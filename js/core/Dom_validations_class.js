@@ -21,10 +21,11 @@ class Dom_validations extends Dom{
      * @param {Validaciones_Atomicas} validaciones - Instancia de la clase de validaciones atómicas
      * @param {string} entidad - Nombre de la entidad a validar
      */
-    constructor(validaciones, entidad) {
+    constructor(validaciones, entidad, entidadObj) {
         super();
         this.validaciones = validaciones;
         this.entidad = entidad;
+        this.entidadObj = entidadObj;
         window.comprobarCampo = this.comprobarCampo.bind(this) // Asegura que comprobarCampo esté disponible globalmente
     }
 
@@ -118,7 +119,7 @@ class Dom_validations extends Dom{
         }
 
         // 2. Validación especial genérica
-        const resultadoEspecial = this.check_special_tests(campo);
+        const resultadoEspecial = this.check_special_tests(campo,valor);
         if (resultadoEspecial !== true) {
             this.mostrar_error_campo(campo, resultadoEspecial || `Error especial en el campo: ${campo}`);
             return resultadoEspecial;
@@ -192,9 +193,6 @@ class Dom_validations extends Dom{
                         break;
                     case 'reg_exp':
                         resultado = this.validaciones.reg_exp(campo, valorValidacion);
-                        break;
-                    case 'valid_date':
-                        resultado = this.validacionesespeciales(campo, valorValidacion);
                         break;
                     case 'no_file':
                         resultado = this.validaciones.no_file(valor);
@@ -291,54 +289,14 @@ class Dom_validations extends Dom{
      * @param {string} atributo - Nombre del atributo a validar
      * @returns {boolean|string} true si no hay validaciones especiales o si pasan, mensaje de error en caso contrario
      */
-    check_special_tests(atributo) {
-        const methodName = `check_especial_tests_${atributo}`;
-
-        if (typeof this[methodName] === 'function') {
-            return this[methodName]();
-        }else {
-            //console.warn(`No hay un método especial definido para el campo: ${atributo}`);
-            return true; // Si no hay método, asumimos que es válido
+    check_special_tests(atributo,value) {
+        const atributo_upper = atributo.toUpperCase();
+        const methodName = `check_special_${atributo_upper}`;
+        if (this.entidadObj && typeof this.entidadObj[methodName] === 'function') {
+            return this.entidadObj[methodName](value);
         }
+        return true;
     }
 
-    /**
-     * @method validacionesespeciales
-     * @description Realiza validaciones especiales para campos específicos.
-     * Actualmente implementa validaciones especiales para:
-     * - start_date_project: Validación de fecha de inicio
-     * - end_date_project: Validación de fecha de fin
-     * 
-     * Las validaciones incluyen:
-     * - Verificación de formato de fecha
-     * - Validación de rangos de días y meses
-     * - Comparación de fechas (para end_date_project)
-     * 
-     * @param {string} atributo - Nombre del atributo a validar
-     * @param {string} tipoValidacion - Tipo de validación especial a realizar
-     * @returns {boolean} true si la validación es exitosa, false en caso contrario
-     */
-    validacionesespeciales(atributo, tipoValidacion) {
-        if (['start_date_project', 'end_date_project'].includes(atributo)) {
-            if (tipoValidacion === 'fechavalida') {
-                let fecha = document.getElementById(atributo).value;
-                let fechaf = fecha.split("/");
-                let day = fechaf[0];
-                let month = fechaf[1];
-                let year = fechaf[2];
-                let date = new Date(year,month,'0'); //
-                
-                if((month - 0)<= 0 || (month -0)> 12){
-                    return false;
-                }
-                
-                if((day-0)>(date.getDate()-0)){
-                    return false;
-                }
-                
-                return true;
-            }
-            return false;
-        }   
-    }
+   
 }

@@ -167,12 +167,13 @@ let textos_ES = {
 
     //start_date_project
     'start_date_project_format_KO':'El formato de fecha es el incorrecto. Tiene que ser dd/mm/aaaa.',
-    'start_date_project_valid_KO':'La fecha no es valida. Tiene que ser una fecha que exita en el calendario.',
-
+    'start_date_project_invalid_KO':'La fecha no es valida. Tiene que ser una fecha que exita en el calendario.',
+    'start_date_project_order_KO':'La fecha de inicio no puede ser posterior a la fecha de fin.',
 
     //end_date_project
     'end_date_project_format_KO':'El formato de fecha es el incorrecto. Tiene que ser dd/mm/aaaa.',
-    'end_date_project_valid_KO':'La fecha no es valida. Tiene que ser una fecha que exista en el calendario.',
+    'end_date_project_invalid_KO':'La fecha no es valida. Tiene que ser una fecha que exista en el calendario.',
+    'end_date_project_order_KO':'La fecha de fin no puede ser anterior a la fecha de inicio.',
 
 
     //responsable_project

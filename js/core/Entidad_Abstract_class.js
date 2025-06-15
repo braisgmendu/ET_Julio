@@ -28,16 +28,16 @@ class Entidad_Abstracta extends Dom {
    */
   constructor(entidad, def_estructura) {
     super();
-	if (eval(this.datosespecialestabla)){}
-		else{
-			this.datosespecialestabla = Array();
-	}
-	this.entidad = entidad;
-	this.def_estructura = def_estructura; 
-	this.domValidations = new Dom_validations(new Validaciones_Atomicas(), entidad);
-	this.access_functions = new ExternalAccess();
-	this.tests = new test_IU(this.entidad,this);
-	document.getElementById("workspace").style.display = "block";
+    if (eval(this.datosespecialestabla)) { }
+    else {
+      this.datosespecialestabla = Array();
+    }
+    this.entidad = entidad;
+    this.def_estructura = def_estructura;
+    this.domValidations = new Dom_validations(new Validaciones_Atomicas(), entidad, this);
+    this.access_functions = new ExternalAccess();
+    this.tests = new test_IU(this.entidad, this);
+    document.getElementById("workspace").style.display = "block";
     this.cerrar_test();
     this.SEARCH();
   }
@@ -47,7 +47,7 @@ class Entidad_Abstracta extends Dom {
    * @description Cierra la visualización de los tests y limpia los resultados.
    * Oculta el div de tests y limpia los contenidos de las tablas de resultados.
    */
-  cerrar_test() { 
+  cerrar_test() {
     // ... existing code ...
   }
 
@@ -56,8 +56,26 @@ class Entidad_Abstracta extends Dom {
    * @description Realiza una búsqueda en la entidad y actualiza la visualización
    * de los resultados en la tabla de datos.
    */
-  SEARCH() {
-    // ... existing code ...
+  async SEARCH() {
+    await this.access_functions
+      .back_request("IU_form", this.entidad, "SEARCH")
+      .then((respuesta) => {
+        //limpiar el formulario
+
+        this.cargar_formulario("SEARCH");
+        //quito los class de la muestra de filas
+        document.getElementById("muestradatostabla").removeAttribute("class");
+        //poner el div del formulario no visible
+        document.getElementById("div_IU_form").style.display = "none";
+        this.datos = respuesta["resource"];
+        this.atributos = Object.keys(respuesta["criteriosbusqueda"]);
+        this.crearTablaDatos();
+
+        setLang();
+
+      });
+
+
   }
 
   /**

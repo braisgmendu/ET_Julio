@@ -88,7 +88,7 @@ class test_IU {
 
   // En el método test_entidad(), reemplaza la construcción de salidatest:
   test_entidad(){
-    this.validaciones = new Dom_validations(new Validaciones_Atomicas(), this.entidad);
+    this.validaciones = new Dom_validations(new Validaciones_Atomicas(), this.entidad, this.instance);
     this.dom.construirDomTest(); // Usar el nuevo método
     
     // Construir encabezado usando el nuevo método
@@ -192,7 +192,8 @@ class test_IU {
   test_entidad_files() {
     this.validaciones = new Dom_validations(
       new Validaciones_Atomicas(),
-      this.entidad
+      this.entidad,
+      this.instance
     );
     let salidatest = `<tr><th>NumDefTest</th><th>NumPrueba</th><th>Campo</th><th>Prueba</th><th>Accion</th><th>valor</th><th>Respuesta Test</th><th>Respuesta esperada</th><th>Resultado</th></tr>`;
 

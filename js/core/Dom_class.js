@@ -22,7 +22,7 @@ class Dom {
         'valor', 'Respuesta Test', 'Respuesta esperada', 'Resultado'
     ];
     this.columnas_test_visibles = [
-        'campo', 'Prueba', 'Accion', 'valor', 'Respuesta Test', 'Resultado'
+      'NumPrueba', 'valor', 'Respuesta Test','Respuesta esperada', 'Resultado'
     ]; // Columnas visibles por defecto
   }
    /**

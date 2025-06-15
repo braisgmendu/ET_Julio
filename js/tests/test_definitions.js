@@ -390,7 +390,7 @@ let project_def_tests =  Array(
     Array('project', 'start_date_project',5,'no formato dd/mm/aaaa','ADD','start_date_project_format_KO', 
         'El formato de fecha es el incorrecto. Tiene que ser dd/mm/aaaa.'
     ),
-    Array('project', 'start_date_project',6,'fehca no valida','ADD','start_date_project_valid_KO', 
+    Array('project', 'start_date_project',6,'fehca no valida','ADD','start_date_project_invalid_KO', 
         'La fecha no es valida. Tiene que ser una fecha que exita en el calendario.'
     ),
     Array('project', 'start_date_project',7,'formato dd/mm/aaaa y fecha valida','ADD',true,'Exito'),
@@ -399,7 +399,7 @@ let project_def_tests =  Array(
     Array('project', 'end_date_project',8,'formato dd/mm/aaaa','ADD','end_date_project_format_KO', 
         'El formato de fecha es el incorrecto. Tiene que ser dd/mm/aaaa.'
     ),
-    Array('project', 'end_date_project',9,'fecha no valida','ADD','end_date_project_valid_KO', 
+    Array('project', 'end_date_project',9,'fecha no valida','ADD','end_date_project_invalid_KO', 
         'La fecha no es valida. Tiene que ser una fecha que exista en el calendario.'
     ),
     Array('project', 'end_date_project',10,'formato dd/mm/aaaa y fecha valida','ADD',true, 'Exito.'),
@@ -514,7 +514,7 @@ let project_def_tests =  Array(
     Array('project', 'start_date_project',45,'no formato dd/mm/aaaa','EDIT','start_date_project_format_KO', 
         'El formato de fecha es el incorrecto. Tiene que ser dd/mm/aaaa.'
     ),
-    Array('project', 'start_date_project',46,'fehca no valida','EDIT','start_date_project_valid_KO', 
+    Array('project', 'start_date_project',46,'fehca no valida','EDIT','start_date_project_invalid_KO', 
         'La fecha no es valida. Tiene que ser una fecha que exita en el calendario.'
     ),
     Array('project', 'start_date_project',47,'formato dd/mm/aaaa y fecha valida','EDIT',true,'Exito'),
@@ -523,7 +523,7 @@ let project_def_tests =  Array(
     Array('project', 'end_date_project',48,'formato dd/mm/aaaa','EDIT','end_date_project_format_KO', 
         'El formato de fecha es el incorrecto. Tiene que ser dd/mm/aaaa.'
     ),
-    Array('project', 'end_date_project',49,'fecha no valida','EDIT','end_date_project_valid_KO', 
+    Array('project', 'end_date_project',49,'fecha no valida','EDIT','end_date_project_invalid_KO', 
         'La fecha no es valida. Tiene que ser una fecha que exista en el calendario.'
     ),
     Array('project', 'end_date_project',50,'formato dd/mm/aaaa y fecha valida','EDIT',true, 'Exito.'),
@@ -642,7 +642,7 @@ let project_def_tests =  Array(
     Array('project', 'start_date_project',87,'no formato dd/mm/aaaa','SEARCH','start_date_project_format_KO', 
         'El formato de fecha es el incorrecto. Tiene que ser dd/mm/aaaa.'
     ),
-    Array('project', 'start_date_project',88,'fehca no valida','SEARCH','start_date_project_valid_KO', 
+    Array('project', 'start_date_project',88,'fehca no valida','SEARCH','start_date_project_invalid_KO', 
         'La fecha no es valida. Tiene que ser una fecha que exita en el calendario.'
     ),
     Array('project', 'start_date_project',89,'formato dd/mm/aaaa y fecha valida','SEARCH',true, 'Exito'),
@@ -651,7 +651,7 @@ let project_def_tests =  Array(
     Array('project', 'end_date_project',90,'formato dd/mm/aaaa','SEARCH','end_date_project_format_KO', 
         'El formato de fecha es el incorrecto. Tiene que ser dd/mm/aaaa.'
     ),
-    Array('project', 'end_date_project',91,'fecha no valida','SEARCH','end_date_project_valid_KO', 
+    Array('project', 'end_date_project',91,'fecha no valida','SEARCH','end_date_project_invalid_KO', 
         'La fecha no es valida. Tiene que ser una fecha que exista en el calendario.'
     ),
     Array('project', 'end_date_project',92,'formato dd/mm/aaaa y fecha valida','SEARCH',true, 'Exito.'),
@@ -741,10 +741,10 @@ let project_tests = Array(
     Array('project', 'start_date_project', 5, 14, 'ADD', '12-08-2000', 'start_date_project_format_KO'),
     Array('project', 'start_date_project', 5, 15, 'ADD', '12.08.2000', 'start_date_project_format_KO'),
     Array('project', 'start_date_project', 5, 16, 'ADD', '12/08/2000', true),
-    Array('project', 'start_date_project', 6, 17, 'ADD', '32/02/2024', 'start_date_project_valid_KO'),
-    Array('project', 'start_date_project', 6, 18, 'ADD', '35/13/2024', 'start_date_project_valid_KO'),
+    Array('project', 'start_date_project', 6, 17, 'ADD', '32/02/2024', 'start_date_project_invalid_KO'),
+    Array('project', 'start_date_project', 6, 18, 'ADD', '35/13/2024', 'start_date_project_invalid_KO'),
     Array('project', 'start_date_project', 6, 19, 'ADD', '02/08/2000', true),
-    Array('project', 'start_date_project', 7, 20, 'ADD', '40/13/2024', 'start_date_project_valid_KO'),
+    Array('project', 'start_date_project', 7, 20, 'ADD', '40/13/2024', 'start_date_project_invalid_KO'),
     Array('project', 'start_date_project', 7, 21, 'ADD', '12/08/2000', true),
 
     //end_date_project
@@ -752,10 +752,10 @@ let project_tests = Array(
     Array('project', 'end_date_project', 8, 23, 'ADD', '12-08-2000', 'end_date_project_format_KO'),
     Array('project', 'end_date_project', 8, 24, 'ADD', '12.08.2000', 'end_date_project_format_KO'),
     Array('project', 'end_date_project', 8, 25, 'ADD', '12/08/2000', true),
-    Array('project', 'end_date_project', 9, 26, 'ADD', '32/02/2024', 'end_date_project_valid_KO'),
-    Array('project', 'end_date_project', 9, 27, 'ADD', '12/13/2024', 'end_date_project_valid_KO'),
+    Array('project', 'end_date_project', 9, 26, 'ADD', '32/02/2024', 'end_date_project_invalid_KO'),
+    Array('project', 'end_date_project', 9, 27, 'ADD', '12/13/2024', 'end_date_project_invalid_KO'),
     Array('project', 'end_date_project', 9, 28, 'ADD', '2/8/2000', true),
-    Array('project', 'end_date_project', 10, 29, 'ADD', '12/13/2024', 'end_date_project_valid_KO'),
+    Array('project', 'end_date_project', 10, 29, 'ADD', '12/13/2024', 'end_date_project_invalid_KO'),
     Array('project', 'end_date_project', 10, 30, 'ADD', '12/08/2000', true),
     
     //responsable_project
@@ -846,10 +846,10 @@ let project_tests = Array(
     Array('project', 'start_date_project', 45, 103, 'EDIT', '12-08-2000', 'start_date_project_format_KO'),
     Array('project', 'start_date_project', 45, 104, 'EDIT', '12.08.2000', 'start_date_project_format_KO'),
     Array('project', 'start_date_project', 45, 105, 'EDIT', '12/08/2000', true),
-    Array('project', 'start_date_project', 46, 106, 'EDIT', '30/02/2024', 'start_date_project_valid_KO'),
-    Array('project', 'start_date_project', 46, 107, 'EDIT', '12/13/2024', 'start_date_project_valid_KO'),
+    Array('project', 'start_date_project', 46, 106, 'EDIT', '30/02/2024', 'start_date_project_invalid_KO'),
+    Array('project', 'start_date_project', 46, 107, 'EDIT', '12/13/2024', 'start_date_project_invalid_KO'),
     Array('project', 'start_date_project', 46, 108, 'EDIT', '2/8/2000', true),
-    Array('project', 'start_date_project', 47, 109, 'EDIT', '30/02/2024', 'start_date_project_valid_KO'),
+    Array('project', 'start_date_project', 47, 109, 'EDIT', '30/02/2024', 'start_date_project_invalid_KO'),
     Array('project', 'start_date_project', 47, 110, 'EDIT', '12/08/2000', true),
 
     //end_date_project
@@ -857,10 +857,10 @@ let project_tests = Array(
     Array('project', 'end_date_project', 48, 112, 'EDIT', '12-08-2000', 'end_date_project_format_KO'),
     Array('project', 'end_date_project', 48, 113, 'EDIT', '12.08.2000', 'end_date_project_format_KO'),
     Array('project', 'end_date_project', 48, 114, 'EDIT', '12/08/2000', true),
-    Array('project', 'end_date_project', 49, 115, 'EDIT', '30/02/2024', 'end_date_project_valid_KO'),
-    Array('project', 'end_date_project', 49, 116, 'EDIT', '12/13/2024', 'end_date_project_valid_KO'),
+    Array('project', 'end_date_project', 49, 115, 'EDIT', '30/02/2024', 'end_date_project_invalid_KO'),
+    Array('project', 'end_date_project', 49, 116, 'EDIT', '12/13/2024', 'end_date_project_invalid_KO'),
     Array('project', 'end_date_project', 49, 117, 'EDIT', '2/8/2000', true),
-    Array('project', 'end_date_project', 50, 118, 'EDIT', '30/02/2024', 'end_date_project_valid_KO'),
+    Array('project', 'end_date_project', 50, 118, 'EDIT', '30/02/2024', 'end_date_project_invalid_KO'),
     Array('project', 'end_date_project', 50, 119, 'EDIT', '12/08/2000', true),
 
     //responsable_project
@@ -963,10 +963,10 @@ let project_tests = Array(
     Array('project', 'start_date_project', 87, 201, 'SEARCH', '12-08-2000', 'start_date_project_format_KO'),
     Array('project', 'start_date_project', 87, 202, 'SEARCH', '12.08.2000', 'start_date_project_format_KO'),
     Array('project', 'start_date_project', 87, 203, 'SEARCH', '12/08/2000', true),
-    Array('project', 'start_date_project', 88, 204, 'SEARCH', '32/02/2024', 'start_date_project_valid_KO'),
-    Array('project', 'start_date_project', 88, 205, 'SEARCH', '50/13/2024', 'start_date_project_valid_KO'),
+    Array('project', 'start_date_project', 88, 204, 'SEARCH', '32/02/2024', 'start_date_project_invalid_KO'),
+    Array('project', 'start_date_project', 88, 205, 'SEARCH', '50/13/2024', 'start_date_project_invalid_KO'),
     Array('project', 'start_date_project', 88, 206, 'SEARCH', '02/08/2000', true),
-    Array('project', 'start_date_project', 89, 207, 'SEARCH', '32/02/2024', 'start_date_project_valid_KO'),
+    Array('project', 'start_date_project', 89, 207, 'SEARCH', '32/02/2024', 'start_date_project_invalid_KO'),
     Array('project', 'start_date_project', 89, 208, 'SEARCH', '12/08/2000', true),
 
     //end_date_project
@@ -974,10 +974,10 @@ let project_tests = Array(
     Array('project', 'end_date_project', 90, 210, 'SEARCH', '12-08-2000', 'end_date_project_format_KO'),
     Array('project', 'end_date_project', 90, 211, 'SEARCH', '12.08.2000', 'end_date_project_format_KO'),
     Array('project', 'end_date_project', 90, 212, 'SEARCH', '12/8/2000', true),
-    Array('project', 'end_date_project', 91, 213, 'SEARCH', '30/02/2024', 'end_date_project_valid_KO'),
-    Array('project', 'end_date_project', 91, 214, 'SEARCH', '12/13/2024', 'end_date_project_valid_KO'),
+    Array('project', 'end_date_project', 91, 213, 'SEARCH', '30/02/2024', 'end_date_project_invalid_KO'),
+    Array('project', 'end_date_project', 91, 214, 'SEARCH', '12/13/2024', 'end_date_project_invalid_KO'),
     Array('project', 'end_date_project', 91, 215, 'SEARCH', '2/08/2000', true),
-    Array('project', 'end_date_project', 92, 216, 'SEARCH', '30/02/2024', 'end_date_project_valid_KO'),
+    Array('project', 'end_date_project', 92, 216, 'SEARCH', '30/02/2024', 'end_date_project_invalid_KO'),
     Array('project', 'end_date_project', 92, 217, 'SEARCH', '12/08/2000', true),
 
     //responsable_project
@@ -1045,7 +1045,7 @@ let project_tests_files = Array(
     Array('project', 'nuevo_file_project', 23, 264, 'ADD', 'tamaño nombre < 7', Array('aa.pdf',Array('application/pdf'),10000), 'nuevo_file_project_name_min_size_KO'),
     Array('project', 'nuevo_file_project', 23, 265, 'ADD', 'tamaño nombre < 7', Array('aaa.pdf',Array('application/pdf'),10000), true),
     Array('project', 'nuevo_file_project', 24, 266, 'ADD', 'tamaño nombre > 100', Array('a'.repeat(101),Array('application/pdf'),10000), 'nuevo_file_project_name_max_size_KO'),
-    Array('project', 'nuevo_file_project', 24, 267, 'ADD', 'tamaño nombre > 100', Array('a'.repeat(100),Array('application/pdf'),10000), true),
+    Array('project', 'nuevo_file_project', 24, 267, 'ADD', 'tamaño nombre > 100', Array('a'.repeat(96) + '.pdf',Array('application/pdf'),10000), true),
     Array('project', 'nuevo_file_project', 25, 268, 'ADD', 'alfabeticos o con espacios o ñ o acentos', Array('GonzálezMenduiña.pdf',Array('application/pdf'),10000), 'nuevo_file_project_name_format_KO'),
     Array('project', 'nuevo_file_project', 25, 269, 'ADD', 'alfabeticos o con espacios o ñ o acentos', Array('BoasTardes.pdf',Array('application/pdf'),10000), true),
     //Array('project', 'nuevo_file_project', 16, 108, 'ADD', 'el fichero es correcto', Array(), 'nuevo_file_project_empty_KO'),
@@ -1062,9 +1062,9 @@ let project_tests_files = Array(
     /*EDIT */
     //nuevo_file_project
     Array('project', 'nuevo_file_project', 63, 277, 'EDIT', 'tamaño nombre < 7', Array('Boasta',Array('application/pdf'),10000), 'nuevo_file_project_name_min_size_KO'),
-    Array('project', 'nuevo_file_project', 63, 278, 'EDIT', 'tamaño nombre < 7', Array('Boastar',Array('application/pdf'),10000), true),
+    Array('project', 'nuevo_file_project', 63, 278, 'EDIT', 'tamaño nombre < 7', Array('Bos.pdf',Array('application/pdf'),10000), true),
     Array('project', 'nuevo_file_project', 64, 279, 'EDIT', 'tamaño nombre > 100', Array('a'.repeat(101),Array('application/pdf'),10000), 'nuevo_file_project_name_max_size_KO'),
-    Array('project', 'nuevo_file_project', 64, 280, 'EDIT', 'tamaño nombre > 100', Array('a'.repeat(100),Array('application/pdf'),10000), true),
+    Array('project', 'nuevo_file_project', 64, 280, 'EDIT', 'tamaño nombre > 100', Array('a'.repeat(96) + '.pdf',Array('application/pdf'),10000), true),
     Array('project', 'nuevo_file_project', 65, 281, 'EDIT', 'alfabeticos o con espacios o ñ o acentos', Array('GonzálezMenduiña.pdf',Array('application/pdf'),10000), 'nuevo_file_project_name_format_KO'),
     Array('project', 'nuevo_file_project', 65, 282, 'EDIT', 'alfabeticos o con espacios o ñ o acentos', Array('BoasTardes.pdf',Array('application/pdf'),10000), true),
     //Array('project', 'nuevo_file_project', 35, 124, 'EDIT', 'el fichero es correcto', Array(), 'nuevo_file_project_empty_KO'),

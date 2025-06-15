@@ -37,7 +37,7 @@
                     reg_exp : ['^[A-Za-z\\s]*$', 'name_characteristic_format_KO'],
                 },
                 SEARCH:{
-				    max_size: [9,'name_characteristic_max_size_KO'],
+				    max_size: [100,'name_characteristic_max_size_KO'],
                     reg_exp : ['^[A-Za-z\\s]*$', 'name_characteristic_format_KO'],
                 }
             }
@@ -61,7 +61,7 @@
                 },
                 SEARCH:{
 				    max_size: [5000,'description_characteristic_max_size_KO'],
-                    reg_exp : ['^[A-Za-z\\s]*$', 'description_characteristic_format_KO  '],
+                    reg_exp : ['^[A-Za-z\\s]*$', 'description_characteristic_format_KO'],
                 }
             }
         },
@@ -129,20 +129,20 @@
             is_not_null: true,
             validation_rules: {
                 ADD:{
-                    min_size : [7, 'nuevo_file_characteristic_name_min_size_KO'],
-				    max_size: [100,'nuevo_file_characteristic_name_max_size_KO'],
+                    min_size_name_file : [7, 'nuevo_file_characteristic_name_min_size_KO'],
+				    max_size_name_file: [100,'nuevo_file_characteristic_name_max_size_KO'],
                     no_file: "nuevo_file_characteristic_no_file_KO", // funcion atomica no existe fichero. no obligatorio segun accion
                     file_type :[["application/pdf", "application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"],"nuevo_file_characteristic_file_type_KO"], // funcion atomica tipo mime fichero. No obligatorio si no se comprueba tipo de fichero
-                    max_size_file: [ 2000000, "nuevo_file_characteristic_max_size_KO"], // funcion atomica tamaño maximo fichero. No obligatorio si no se comprueba tamaño maximo fichero
+                    max_size_file: [ 2000000, "nuevo_file_characteristic_max_size_file_KO"], // funcion atomica tamaño maximo fichero. No obligatorio si no se comprueba tamaño maximo fichero
                     format_name_file: ["^[A-Za-z.]+$","nuevo_file_characteristic_name_format_KO"], // funcion atomica formato nombre fichero. No obligatorio sino se comprueba el formato del nombre y extension
 
                 },
                 EDIT:{
-                    min_size : [7, 'nuevo_file_characteristic_name_min_size_KO'],
-				    max_size: [100,'nuevo_file_characteristic_name_max_size_KO'],
+                    min_size_name_file   : [7, 'nuevo_file_characteristic_name_min_size_KO'],
+				    max_size_name_file: [100,'nuevo_file_characteristic_name_max_size_KO'],
                     no_file: "nuevo_file_characteristic_no_file_KO", // funcion atomica no existe fichero. no obligatorio segun accion
                     file_type :[["application/pdf", "application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"],"nuevo_file_characteristic_file_type_KO"], // funcion atomica tipo mime fichero. No obligatorio si no se comprueba tipo de fichero
-                    max_size_file: [ 2000000, "nuevo_file_characteristic_max_size_KO"], // funcion atomica tamaño maximo fichero. No obligatorio si no se comprueba tamaño maximo fichero
+                    max_size_file: [ 2000000, "nuevo_file_characteristic_max_size_file_KO"], // funcion atomica tamaño maximo fichero. No obligatorio si no se comprueba tamaño maximo fichero
                     format_name_file: ["^[A-Za-z.]*$","nuevo_file_characteristic_name_format_KO"], // funcion atomica formato nombre fichero. No obligatorio sino se comprueba el formato del nombre y extension
                 }
             }
