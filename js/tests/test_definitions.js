@@ -355,8 +355,8 @@ let analysis_preparation_tests_files = Array(
 
     /*SEARCH */
     //file_analysis_preparation
-    Array('analysis_preparation', 'file_analysis_preparation', 51, 131, 'SEARCH', 'tamaño nombre > 100', 'a'.repeat(101), 'file_analysis_preparation_name_max_size_KO'),
-    Array('analysis_preparation', 'file_analysis_preparation', 51, 132, 'SEARCH', 'tamaño nombre > 100', 'a'.repeat(96)+".pdf", true),
+    Array('analysis_preparation', 'file_analysis_preparation', 51, 131, 'SEARCH', 'max_size', 'a'.repeat(101), 'file_analysis_preparation_name_max_size_KO'),
+    Array('analysis_preparation', 'file_analysis_preparation', 51, 132, 'SEARCH', 'max_size', 'a'.repeat(96)+".pdf", true),
     Array('analysis_preparation', 'file_analysis_preparation', 52, 133, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', 'González@Menduiña.pdf', 'file_analysis_preparation_name_format_KO'),
     Array('analysis_preparation', 'file_analysis_preparation', 52, 134, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', 'BoasTardes.pdf', true),
 );

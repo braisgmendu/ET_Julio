@@ -212,17 +212,23 @@ class test_IU {
       botonsumit.id = "submit_button";
       document.getElementById("IU_form").append(botonsumit);
 
-      // Construyo objeto file y relleno valor para prueba
-      if (valortest.length !== 0) {
-        const file = new File([new ArrayBuffer(valortest[2])], valortest[0], {
-          type: valortest[1],
-          webkitRelativePath: "C:\\fakepath\\" + valortest[0],
-        });
+      // Manejo diferente según la acción
+      if (acciontest === 'SEARCH') {
+        // Para SEARCH, solo asignamos el nombre del archivo como valor de texto
+        document.getElementById(campotest).value = valortest[0];
+      } else {
+        // Para ADD y EDIT, manejamos el archivo completo
+        if (valortest.length !== 0) {
+          const file = new File([new ArrayBuffer(valortest[2])], valortest[0], {
+            type: valortest[1],
+            webkitRelativePath: "C:\\fakepath\\" + valortest[0],
+          });
 
-        const dataTransfer = new DataTransfer();
-        dataTransfer.items.add(file);
-        const fileList = dataTransfer.files;
-        document.getElementById(campotest).files = fileList;
+          const dataTransfer = new DataTransfer();
+          dataTransfer.items.add(file);
+          const fileList = dataTransfer.files;
+          document.getElementById(campotest).files = fileList;
+        }
       }
 
       // Coloco validaciones para la acción
