@@ -1080,12 +1080,12 @@ let project_tests_files = Array(
 
     /*SEARCH */
     //file_project
-    Array('project', 'file_project', 102, 291, 'SEARCH', 'tamaño nombre > 100', Array('a'.repeat(101),Array('application/pdf'),10000), 'file_project_name_max_size_KO'),
-    Array('project', 'file_project', 102, 292, 'SEARCH', 'tamaño nombre > 100', Array('a'.repeat(100),Array('application/pdf'),10000), true),
-    Array('project', 'file_project', 103, 293, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', Array('GonzálezMenduiña.pdf',Array('application/pdf'),10000), 'file_project_name_format_KO'),
-    Array('project', 'file_project', 103, 294, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', Array('BoasTardes.pdf',Array('application/pdf'),10000), true),
+    Array('project', 'file_project', 102, 291, 'SEARCH', 'tamaño nombre > 100', 'a'.repeat(101), 'file_project_name_max_size_KO'),
+    Array('project', 'file_project', 102, 292, 'SEARCH', 'tamaño nombre > 100', 'a'.repeat(96) + '.pdf', true),
+    Array('project', 'file_project', 103, 293, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', 'GonzálezMenduiña.pdf', 'file_project_name_format_KO'),
+    Array('project', 'file_project', 103, 294, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', 'BoasTardes.pdf', true),
     // Array('project', 'file_project', 53, 138, 'SEARCH', 'el fichero es correcto', Array(), 'file_project_empty_KO'),
-    Array('project', 'file_project', 104, 295, 'SEARCH', 'el fichero es correcto', Array('BoasTardes.pdf',Array('application/pdf'),10000), true),
+    Array('project', 'file_project', 104, 295, 'SEARCH', 'el fichero es correcto', 'BoasTardes.pdf', true),
 
 );
 
@@ -1446,8 +1446,8 @@ let characteristic_tests_files = Array(
 
     /*SEARCH */
     //file_characteristic
-    Array('characteristic', 'file_characteristic', 50, 136, 'SEARCH', 'tamaño nombre > 100', Array('a'.repeat(101),Array('application/pdf'),10000), 'file_characteristic_name_max_size_KO'),
-    Array('characteristic', 'file_characteristic', 50, 137, 'SEARCH', 'tamaño nombre > 100', Array('a'.repeat(100),Array('application/pdf'),10000), true),
-    Array('characteristic', 'file_characteristic', 51, 138, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', Array('BoasTardes.pdf',Array('application/pdf'),10000), true),
+    Array('characteristic', 'file_characteristic', 50, 136, 'SEARCH', 'tamaño nombre > 100', 'a'.repeat(97) + '.pdf', 'file_characteristic_name_max_size_KO'),
+    Array('characteristic', 'file_characteristic', 50, 137, 'SEARCH', 'tamaño nombre > 100', 'a'.repeat(96) + '.pdf', true),
+    Array('characteristic', 'file_characteristic', 51, 138, 'SEARCH', 'alfabeticos o con espacios o ñ o acentos', 'BoasTardes.pdf', true),
     
 );

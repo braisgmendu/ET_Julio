@@ -215,7 +215,7 @@ class test_IU {
       // Manejo diferente según la acción
       if (acciontest === 'SEARCH') {
         // Para SEARCH, solo asignamos el nombre del archivo como valor de texto
-        document.getElementById(campotest).value = valortest[0];
+        document.getElementById(campotest).value = valortest;
       } else {
         // Para ADD y EDIT, manejamos el archivo completo
         if (valortest.length !== 0) {
