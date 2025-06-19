@@ -57,18 +57,28 @@ class analysis_preparation extends Entidad_Abstracta{
             
     }*/
     
+    /**
+     * @method change_value_IU
+     * @description Sobrescribe el método de la clase padre para transformar valores específicos de analysis_preparation.
+     * Convierte el nombre del archivo en un enlace clickeable cuando el atributo es 'file_analysis_preparation'.
+     * 
+     * @param {string} atributo - Nombre del atributo
+     * @param {any} valoratributo - Valor a transformar
+     * @returns {any} Valor transformado o el valor original si no requiere transformación
+     */
     change_value_IU(atributo, valoratributo){
-
-		if (atributo == 'file_analysis_preparation'){
-
-			if (valoratributo == ''){
-				return "no hay fichero";
-			}
-			let baseUrl = "http://193.147.87.202/ET2/filesuploaded/files_file_analysis_preparation/";
+        if (atributo == 'file_analysis_preparation'){
+            if (valoratributo == ''){
+                return "no hay fichero";
+            }
+            let baseUrl = "http://193.147.87.202/ET2/filesuploaded/files_file_analysis_preparation/";
             let texto = `<a href="${baseUrl}${encodeURIComponent(valoratributo)}" target="_blank">`;
-            texto += `<img src="./iconos/FILE.png" alt="Fichero"/>${valoratributo}</a>`;
+            texto += `<img src="./assets/icons/FILE.png" alt="Fichero"/>${valoratributo}</a>`;
             return texto;
         } 
+        
+        // Para cualquier otro atributo, retorna el valor original
+        return valoratributo;
     }
 
 }

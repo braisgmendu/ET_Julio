@@ -14,7 +14,7 @@ let textos_ES = {
     'horas_dedicadas': 'Horas Dedicadas',
     'horas_totales': 'Horas Totales: ',
     'nombreGrupo': 'Nombre Grupo: ',
-    'info_personal': 'Información grupo',
+    'info_personal': 'Información personal',
     'footer': ' 2025 Gestión de Entidades - Proyecto ET Julio',
 
     'res_estructura_tests': 'Tabla verificacion estructura de test',

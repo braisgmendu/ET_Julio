@@ -11,7 +11,7 @@ let textos_EN = {
       'horas_dedicadas': 'Hours spent',
       'horas_totales': 'Total hours: ',
       'nombreGrupo': 'Group Name: ',
-      'info_personal': 'Group information',
+      'info_personal': 'My personal information',
       'footer': ' 2025 Entity Management - July Project',
       'text_analysis_prep': 'Analysis Preparation',
       'text_project': 'Project',

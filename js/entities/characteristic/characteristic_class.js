@@ -87,6 +87,15 @@ class characteristic extends Entidad_Abstracta {
   }*/
     
   
+    /**
+     * @method change_value_IU
+     * @description Sobrescribe el método de la clase padre para transformar valores específicos de characteristic.
+     * Convierte el nombre del archivo en un enlace clickeable cuando el atributo es 'file_characteristic'.
+     * 
+     * @param {string} atributo - Nombre del atributo
+     * @param {any} valoratributo - Valor a transformar
+     * @returns {any} Valor transformado o el valor original si no requiere transformación
+     */
     change_value_IU(atributo, valoratributo){
       if (atributo === 'file_characteristic'){
         if (valoratributo === ''){
@@ -94,9 +103,12 @@ class characteristic extends Entidad_Abstracta {
         }
         let baseUrl = "http://193.147.87.202/ET2/filesuploaded/files_file_characteristic/";
         let texto = `<a href="${baseUrl}${encodeURIComponent(valoratributo)}" target="_blank">`;
-        texto += `<img src="./iconos/FILE.png" alt="Fichero"/>${valoratributo}</a>`;
+        texto += `<img src="./assets/icons/FILE.png" alt="Fichero"/>${valoratributo}</a>`;
         return texto;
       }
-      }
+      
+      // Para cualquier otro atributo, retorna el valor original
+      return valoratributo;
+    }
   
 }

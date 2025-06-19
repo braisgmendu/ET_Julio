@@ -96,6 +96,15 @@ class project extends Entidad_Abstracta{
     */
 
 
+    /**
+     * @method change_value_IU
+     * @description Sobrescribe el método de la clase padre para transformar valores específicos de project.
+     * Convierte el nombre del archivo en un enlace clickeable y formatea las fechas cuando corresponda.
+     * 
+     * @param {string} atributo - Nombre del atributo
+     * @param {any} valoratributo - Valor a transformar
+     * @returns {any} Valor transformado o el valor original si no requiere transformación
+     */
     change_value_IU(atributo, valoratributo){
         if (atributo === 'file_project'){
             if (valoratributo === ''){
@@ -103,17 +112,17 @@ class project extends Entidad_Abstracta{
             }
             let baseUrl = "http://193.147.87.202/ET2/filesuploaded/files_file_project/";
             let texto = `<a href="${baseUrl}${encodeURIComponent(valoratributo)}" target="_blank">`;
-            texto += `<img src="./iconos/FILE.png" alt="Fichero"/>${valoratributo}</a>`;
+            texto += `<img src="./assets/icons/FILE.png" alt="Fichero"/>${valoratributo}</a>`;
             return texto;
         }
         if (['start_date_project', 'end_date_project'].includes(atributo)){
-
-			let fech = valoratributo.split('-');
+            let fech = valoratributo.split('-');
             let fechaformateada = fech[2] + '/' + fech[1] + '/' + fech[0];
             return fechaformateada;
-
-		}
-
+        }
+        
+        // Para cualquier otro atributo, retorna el valor original
+        return valoratributo;
     }
 
     check_special_START_DATE_PROJECT() {

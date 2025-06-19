@@ -28,12 +28,15 @@ class Entidad_Abstracta extends Dom {
    */
   constructor(entidad, def_estructura) {
     super();
-    if (eval(this.datosespecialestabla)) { }
-    else {
-      this.datosespecialestabla = Array();
-    }
+    
     this.entidad = entidad;
     this.def_estructura = def_estructura;
+    if(eval(this.def_estructura.columnas_modificadas_tabla)){
+      this.datosespecialestabla = this.def_estructura.columnas_modificadas_tabla;
+    }
+    else{
+      this.datosespecialestabla = Array();
+    }
     this.domValidations = new Dom_validations(new Validaciones_Atomicas(), entidad, this);
     this.access_functions = new ExternalAccess();
     this.tests = new test_IU(this.entidad, this);
@@ -126,12 +129,15 @@ class Entidad_Abstracta extends Dom {
    * @method change_value_IU
    * @description Método para transformar valores antes de mostrarlos en la interfaz.
    * Puede ser sobrescrito por las clases hijas para implementar transformaciones específicas.
+   * Por defecto retorna el valor original sin modificar.
    * 
    * @param {string} atributo - Nombre del atributo
    * @param {any} valor - Valor a transformar
-   * @returns {any} Valor transformado
+   * @returns {any} Valor transformado (por defecto retorna el valor original)
    */
   change_value_IU(atributo, valor) {
+    // Implementación por defecto: retorna el valor original
+    // Las clases hijas pueden sobrescribir este método para transformaciones específicas
     return valor;
   }
 

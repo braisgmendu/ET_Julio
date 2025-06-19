@@ -280,14 +280,67 @@
                         <p>Clase base abstracta que define la estructura y comportamiento común para todas las entidades del sistema.</p>
                     </div>
                     <div class="method">
-                        <h4>constructor()</h4>
+                        <h4>constructor(entidad, def_estructura)</h4>
                         <div class="description">Inicializa una nueva instancia de la entidad abstracta.</div>
+                        <div class="param">
+                            <strong>Parámetros:</strong>
+                            <ul>
+                                <li>entidad (string): Nombre de la entidad</li>
+                                <li>def_estructura (object): Definición de la estructura de la entidad</li>
+                            </ul>
+                        </div>
                     </div>
                     <div class="method">
-                        <h4>getEstructura()</h4>
-                        <div class="description">Obtiene la estructura de la entidad.</div>
+                        <h4>change_value_IU(atributo, valor)</h4>
+                        <div class="description">Método para transformar valores antes de mostrarlos en la interfaz. Puede ser sobrescrito por las clases hijas para implementar transformaciones específicas.</div>
+                        <div class="param">
+                            <strong>Parámetros:</strong>
+                            <ul>
+                                <li>atributo (string): Nombre del atributo</li>
+                                <li>valor (any): Valor a transformar</li>
+                            </ul>
+                        </div>
                         <div class="return">
-                            <strong>Retorna:</strong> object - Estructura de la entidad
+                            <strong>Retorna:</strong> any - Valor transformado (por defecto retorna el valor original)
+                        </div>
+                    </div>
+                    <div class="method">
+                        <h4>createFormGenerico(action, parametros)</h4>
+                        <div class="description">Crea un formulario genérico para una acción específica.</div>
+                        <div class="param">
+                            <strong>Parámetros:</strong>
+                            <ul>
+                                <li>action (string): Acción a realizar (ADD, EDIT, DELETE, SEARCH)</li>
+                                <li>parametros (object): Parámetros opcionales para cargar en el formulario</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="method">
+                        <h4>ADD()</h4>
+                        <div class="description">Realiza la operación de añadir un nuevo registro.</div>
+                        <div class="return">
+                            <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
+                        </div>
+                    </div>
+                    <div class="method">
+                        <h4>EDIT()</h4>
+                        <div class="description">Realiza la operación de editar un registro existente.</div>
+                        <div class="return">
+                            <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
+                        </div>
+                    </div>
+                    <div class="method">
+                        <h4>DELETE()</h4>
+                        <div class="description">Realiza la operación de eliminar un registro.</div>
+                        <div class="return">
+                            <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
+                        </div>
+                    </div>
+                    <div class="method">
+                        <h4>SEARCH()</h4>
+                        <div class="description">Realiza una búsqueda en la entidad y actualiza la visualización de los resultados.</div>
+                        <div class="return">
+                            <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la búsqueda se completa
                         </div>
                     </div>
                 </div>
@@ -328,11 +381,25 @@
             <article>
                 <div class="container-overview">
                     <div class="description">
-                        <p>Clase que maneja la preparación y análisis de datos.</p>
+                        <p>Clase que maneja la preparación y análisis de datos. Extiende de Entidad_Abstracta.</p>
                     </div>
                     <div class="method">
                         <h4>constructor()</h4>
                         <div class="description">Inicializa una nueva instancia de analysis_preparation.</div>
+                    </div>
+                    <div class="method">
+                        <h4>change_value_IU(atributo, valoratributo)</h4>
+                        <div class="description">Sobrescribe el método de la clase padre para transformar valores específicos de analysis_preparation. Convierte el nombre del archivo en un enlace clickeable cuando el atributo es 'file_analysis_preparation'.</div>
+                        <div class="param">
+                            <strong>Parámetros:</strong>
+                            <ul>
+                                <li>atributo (string): Nombre del atributo</li>
+                                <li>valoratributo (any): Valor a transformar</li>
+                            </ul>
+                        </div>
+                        <div class="return">
+                            <strong>Retorna:</strong> any - Valor transformado o el valor original si no requiere transformación
+                        </div>
                     </div>
                 </div>
             </article>
@@ -345,15 +412,29 @@
             <article>
                 <div class="container-overview">
                     <div class="description">
-                        <p>Clase que maneja las características de las entidades.</p>
+                        <p>Clase que maneja las características de las entidades. Extiende de Entidad_Abstracta.</p>
                     </div>
                     <div class="method">
                         <h4>constructor()</h4>
                         <div class="description">Inicializa una nueva instancia de characteristic.</div>
                     </div>
-    </div>
-</article>
-</section>
+                    <div class="method">
+                        <h4>change_value_IU(atributo, valoratributo)</h4>
+                        <div class="description">Sobrescribe el método de la clase padre para transformar valores específicos de characteristic. Convierte el nombre del archivo en un enlace clickeable cuando el atributo es 'file_characteristic'.</div>
+                        <div class="param">
+                            <strong>Parámetros:</strong>
+                            <ul>
+                                <li>atributo (string): Nombre del atributo</li>
+                                <li>valoratributo (any): Valor a transformar</li>
+                            </ul>
+                        </div>
+                        <div class="return">
+                            <strong>Retorna:</strong> any - Valor transformado o el valor original si no requiere transformación
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
 
         <section id="project">
             <header>
@@ -362,11 +443,39 @@
             <article>
                 <div class="container-overview">
                     <div class="description">
-                        <p>Clase que maneja los proyectos del sistema.</p>
+                        <p>Clase que maneja los proyectos del sistema. Extiende de Entidad_Abstracta.</p>
                     </div>
                     <div class="method">
                         <h4>constructor()</h4>
                         <div class="description">Inicializa una nueva instancia de project.</div>
+                    </div>
+                    <div class="method">
+                        <h4>change_value_IU(atributo, valoratributo)</h4>
+                        <div class="description">Sobrescribe el método de la clase padre para transformar valores específicos de project. Convierte el nombre del archivo en un enlace clickeable y formatea las fechas cuando corresponda.</div>
+                        <div class="param">
+                            <strong>Parámetros:</strong>
+                            <ul>
+                                <li>atributo (string): Nombre del atributo</li>
+                                <li>valoratributo (any): Valor a transformar</li>
+                            </ul>
+                        </div>
+                        <div class="return">
+                            <strong>Retorna:</strong> any - Valor transformado o el valor original si no requiere transformación
+                        </div>
+                    </div>
+                    <div class="method">
+                        <h4>check_special_START_DATE_PROJECT()</h4>
+                        <div class="description">Verifica la fecha de inicio del proyecto.</div>
+                        <div class="return">
+                            <strong>Retorna:</strong> boolean|string - true si la fecha es válida, código de error en caso contrario
+                        </div>
+                    </div>
+                    <div class="method">
+                        <h4>check_special_END_DATE_PROJECT()</h4>
+                        <div class="description">Verifica la fecha de finalización del proyecto.</div>
+                        <div class="return">
+                            <strong>Retorna:</strong> boolean|string - true si la fecha es válida, código de error en caso contrario
+                        </div>
                     </div>
                 </div>
             </article>
