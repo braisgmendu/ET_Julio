@@ -71,12 +71,14 @@
     <nav class="bordeado">
       <span class="info_personal" onclick="toggleSeccion()">Mi información</span>
     </nav>
+    
+    <section id="miInfo" style="display: none;"></section>
+
     <nav class="bordeado">
       <span class="text_titulo_menu" onclick="menu_work();">Opciones de ménu</span>
     </nav>
-
     <div id="div-menu">
-      <ol>
+      <ul>
         <li class="opcionmenu">
           <span class="text_project" onclick="validar = new project();"></span>
         </li>
@@ -86,11 +88,9 @@
         <li class="opcionmenu">
           <span class="text_characteristic" onclick="validar = new characteristic();"></span>
         </li>
-      </ol>
+      </ul>
     </div>
-
     <section id="workspace">
-      <section id="miInfo" ></section>
       <div id="title_page" class="bordeado">
         <spam id="text_title_page" class="">titulo de pagina de entidad</spam>
       </div>
@@ -213,7 +213,7 @@
     function menu_work() {
       if (document.getElementById("div-menu").style.display == "none") {
         document.getElementById("div-menu").style.display = "block";
-        miInfo.style.display = "none"; 
+        document.getElementById("miInfo").style.display = "none"; 
       } else {
         document.getElementById("div-menu").style.display = "none";
       }
@@ -226,13 +226,13 @@
         const miInfo = document.getElementById("miInfo"); 
         if (miInfo.style.display == "none") { 
             cargarInfo();
-            document.getElementById("workspace").style.display = "block";
             miInfo.style.display = "block"; 
+            // Ocultar el workspace si está visible
+            if(document.getElementById("workspace").style.display == "block"){
+              document.getElementById("workspace").style.display = "none";
+            }
         } else {
-          if(document.getElementById("workspace").style.display == "block"){
-            document.getElementById("workspace").style.display = "none";
-          }
-          miInfo.style.display = "none"; 
+            miInfo.style.display = "none"; 
         } 
     }
     function cargarInfo() {
