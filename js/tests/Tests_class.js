@@ -25,6 +25,7 @@ class test_IU {
    * @method modificarColumnasTest
    * @description Modifica las columnas visibles en la tabla de resultados de tests
    * @param {string} columna - Nombre de la columna a modificar
+   * @returns {void} - No retorna nada
    */
   modificarColumnasTest(columna) {
     this.dom.modificarColumnasTest(columna);
@@ -33,6 +34,7 @@ class test_IU {
   /**
    * @method resetColumnasTest
    * @description Restablece las columnas visibles a su configuración por defecto
+   * @returns {void} - No retorna nada
    */
   resetColumnasTest() {
     this.dom.resetColumnasTest();
@@ -41,6 +43,7 @@ class test_IU {
   /**
    * @method test_run
    * @description Ejecuta todos los tests definidos para la entidad
+   * @returns {void} - No retorna nada
    */
   test_run() {
     document.getElementById("div_IU_test").style.display = "block";
@@ -72,6 +75,7 @@ class test_IU {
   /**
    * @method resolve_def_test
    * @description Resuelve y verifica las definiciones de los tests
+   * @returns {void} - No retorna nada
    */
   resolve_def_test() {
     this.verificarDefTest();
@@ -80,6 +84,7 @@ class test_IU {
   /**
    * @method resolve_pruebas
    * @description Resuelve y verifica las pruebas de los tests
+   * @returns {void} - No retorna nada
    */
   resolve_pruebas() {
     this.verificarPruebas();
@@ -87,6 +92,11 @@ class test_IU {
   }
 
   // En el método test_entidad(), reemplaza la construcción de salidatest:
+  /**
+   * @method test_entidad
+   * @description Ejecuta todos los tests definidos para la entidad
+   * @returns {void} - No retorna nada
+   */
   test_entidad(){
     this.validaciones = new Dom_validations(new Validaciones_Atomicas(), this.entidad, this.instance);
     this.dom.construirDomTest(); // Usar el nuevo método
@@ -189,6 +199,11 @@ class test_IU {
     return traduccion[codigo];
   }
 
+  /**
+   * @method test_entidad_files
+   * @description Ejecuta todos los tests definidos para la entidad
+   * @returns {void} - No retorna nada
+   */
   test_entidad_files() {
     this.validaciones = new Dom_validations(
       new Validaciones_Atomicas(),
@@ -269,6 +284,11 @@ class test_IU {
     }
   }
 
+  /**
+   * @method verificarDefTest
+   * @description Verifica la estructura y tipos de datos de las definiciones de los tests
+   * @returns {void} - No retorna nada
+   */
   verificarDefTest() {
     let probe_def = eval(this.entidad + "_def_tests");
     let filacorrecta = true;
@@ -317,6 +337,7 @@ class test_IU {
   /**
    * @method verificarPruebas
    * @description Verifica la estructura y tipos de datos de las pruebas
+   * @returns {void} - No retorna nada
    */
   verificarPruebas() {
     let probe_def = eval(this.entidad + "_tests");
@@ -364,6 +385,11 @@ class test_IU {
     document.getElementById("contenidoPruebas").style.display = "block";
   }
 
+  /**
+   * @method verificarPruebas_file
+   * @description Verifica la estructura y tipos de datos de las pruebas de archivos
+   * @returns {void} - No retorna nada
+   */
   verificarPruebas_file() {
     let probe_def = eval(this.entidad + "_tests_files");
     let filacorrecta = true;

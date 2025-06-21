@@ -5,9 +5,10 @@
     <meta charset="utf-8">
     <title>Documentación de la API</title>
     <link rel="stylesheet" href="css/IU.css">
+    
 </head>
 
-<body>
+<body class="api-page">
     <header id="api-header">
         <a href="index.html" class="api-back-button"><span class="api-back-arrow">&#8592;</span></a>
         <button id="api-menu-toggle" class="hamburger" onclick="toggleApiMenu()">&#9776;</button>
@@ -509,11 +510,17 @@
                 <article>
                     <div class="api-container-overview">
                         <div class="api-description">
-                            <p>Clase que maneja la preparación y análisis de datos. Extiende de Entidad_Abstracta.</p>
+                            <p>Clase entidad que extiende de Entidad_Abstracta. Maneja las validaciones y presentacion especifica de la entidad.
+                            </p>
                         </div>
                         <div class="api-method">
                             <h4 class="api-method-title">constructor()</h4>
                             <div class="api-description">Inicializa una nueva instancia de analysis_preparation.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">cargar_formulario_estatico()</h4>
+                            <div class="api-description">Carga el formulario estático para la entidad analysis_preparation.
+                            </div>
                         </div>
                         <div class="api-method">
                             <h4 class="api-method-title">change_value_IU(atributo, valoratributo)</h4>
@@ -543,11 +550,17 @@
                 <article>
                     <div class="api-container-overview">
                         <div class="api-description">
-                            <p>Clase que maneja las características de las entidades. Extiende de Entidad_Abstracta.</p>
+                            <p>Clase entidad que extiende de Entidad_Abstracta. Maneja las validaciones y presentacion especifica de la entidad.
+                            </p>
                         </div>
                         <div class="api-method">
                             <h4 class="api-method-title">constructor()</h4>
                             <div class="api-description">Inicializa una nueva instancia de characteristic.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">cargar_formulario_estatico()</h4>
+                            <div class="api-description">Carga el formulario estático para la entidad characteristic.
+                            </div>
                         </div>
                         <div class="api-method">
                             <h4 class="api-method-title">change_value_IU(atributo, valoratributo)</h4>
@@ -577,11 +590,17 @@
                 <article>
                     <div class="api-container-overview">
                         <div class="api-description">
-                            <p>Clase que maneja los proyectos del sistema. Extiende de Entidad_Abstracta.</p>
+                            <p>Clase entidad que extiende de Entidad_Abstracta. Maneja las validaciones y presentacion especifica de la entidad.
+                            </p>
                         </div>
                         <div class="api-method">
                             <h4 class="api-method-title">constructor()</h4>
                             <div class="api-description">Inicializa una nueva instancia de project.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">cargar_formulario_estatico()</h4>
+                            <div class="api-description">Carga el formulario estático para la entidad project.
+                            </div>
                         </div>
                         <div class="api-method">
                             <h4 class="api-method-title">change_value_IU(atributo, valoratributo)</h4>
@@ -616,6 +635,33 @@
                                 caso contrario
                             </div>
                         </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">format_date(date)</h4>
+                            <div class="api-description">Formatea una fecha del formato YYYY-MM-DD al formato DD/MM/YYYY.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>date (string): La fecha en formato YYYY-MM-DD.</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> string - La fecha formateada como DD/MM/YYYY.
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">load_data(data)</h4>
+                            <div class="api-description">Carga los datos de la entidad desde un objeto JSON.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>data (object): Los datos a cargar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        
                     </div>
                 </article>
             </section>
@@ -865,6 +911,94 @@
                                 <strong>Retorna:</strong> boolean - true si el campo cumple con la expresión regular
                             </div>
                         </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">max_size_file(objfile, maxsize)</h4>
+                            <div class="api-description">Valida que el tamaño del archivo sea menor o igual al parámetro especificado.
+                                Maneja casos donde no hay archivo seleccionado.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>objfile (File): Archivo a validar</li>
+                                    <li>maxsize (number): Tamaño máximo permitido en bytes</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el tamaño es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">file_type(objfile, array_tipos)</h4>
+                            <div class="api-description">Valida que el tipo de archivo sea uno de los tipos especificados.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>objfile (File): Archivo a validar</li>
+                                    <li>array_tipos (array): Tipos de archivos permitidos</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el tipo de archivo es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">format_name_file(objfile, exprreg)</h4>
+                            <div class="api-description">Valida que el nombre del archivo cumpla con la expresión regular especificada.
+                                Realiza la validación de forma case-insensitive.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>objfile (File): Archivo a validar</li>
+                                    <li>exprreg (string): Expresión regular a validar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el nombre del archivo es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">min_size_name_file(objfile, param)</h4>
+                            <div class="api-description">Valida que el tamaño del nombre del archivo sea mayor o igual al parámetro especificado.
+                                Maneja casos donde no hay archivo seleccionado.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>objfile (File): Archivo a validar</li>
+                                    <li>param (number): Tamaño mínimo permitido</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el tamaño del nombre del archivo es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">max_size_name_file(objfile, param)</h4>
+                            <div class="api-description">Valida que el tamaño del nombre del archivo sea menor o igual al parámetro especificado.
+                                Maneja casos donde no hay archivo seleccionado.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>objfile (File): Archivo a validar</li>
+                                    <li>param (number): Tamaño máximo permitido</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el tamaño del nombre del archivo es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">no_file(objfile)</h4>
+                            <div class="api-description">Valida que no se haya seleccionado ningún archivo.
+                                Útil para campos donde no se debe permitir la selección de archivos.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>objfile (File): Archivo a validar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si no hay archivo
+                            </div>
+                        </div>  
                     </div>
                 </article>
             </section>
@@ -888,20 +1022,136 @@
                 <article>
                     <div class="api-container-overview">
                         <div class="api-description">
-                            <p>Clase que maneja la ejecución y validación de tests de la interfaz de usuario.</p>
+                            <p>Clase principal para la gestión y ejecución de tests de la interfaz de usuario.
+                                Maneja la ejecución de tests, la visualización de resultados y la gestión de columnas en las tablas de resultados.
+                            </p>
                         </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">constructor(entidad, instance)</h4>
+                            <div class="api-description">Inicializa la clase test_IU.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>entidad (string): Nombre de la entidad a testear</li>
+                                    <li>instance (object): Instancia de la entidad a testear</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">modificarColumnasTest(columna)</h4>
+                            <div class="api-description">Modifica las columnas visibles en la tabla de resultados de tests.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>columna (string): Nombre de la columna a modificar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">resetColumnasTest()</h4>
+                            <div class="api-description">Restablece las columnas visibles a su configuración por defecto.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+
                         <div class="api-method">
                             <h4 class="api-method-title">test_run()</h4>
                             <div class="api-description">Ejecuta la suite de tests.</div>
                             <div class="api-return">
-                                <strong>Retorna:</strong> Promise - Resultado de la ejecución de los tests
+                                <strong>Retorna:</strong> void - No retorna nada
                             </div>
                         </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">resolve_def_test()</h4>
+                            <div class="api-description">Resuelve y verifica las definiciones de los tests.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">resolve_pruebas()</h4>
+                            <div class="api-description">Resuelve y verifica las pruebas de los tests.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">test_entidad()</h4>
+                            <div class="api-description">Ejecuta todos los tests definidos para la entidad.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">getCookie(name)</h4>
+                            <div class="api-description">Obtiene el valor de una cookie.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>name (string): Nombre de la cookie</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> string|null - Valor de la cookie o null si no existe
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">traduccion(codigo)</h4>
+                            <div class="api-description">Obtiene la traducción de un código según el idioma actual.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>codigo (string): Código de traducción</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> string - Texto traducido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">test_entidad_files()</h4>
+                            <div class="api-description">Ejecuta todos los tests definidos para la entidad.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">devolver_def(num_def)</h4>
+                            <div class="api-description">Devuelve la definición de un test por su número.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>num_def (number): Número de la definición del test</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">verificarDefTest()</h4>
+                            <div class="api-description">Verifica la estructura y tipos de datos de las definiciones de los tests.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+
                         <div class="api-method">
                             <h4 class="api-method-title">verificarPruebas()</h4>
                             <div class="api-description">Verifica los resultados de las pruebas ejecutadas.</div>
                             <div class="api-return">
-                                <strong>Retorna:</strong> boolean - true si todas las pruebas pasan
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">verificarPruebas_file()</h4>
+                            <div class="api-description">Verifica la estructura y tipos de datos de las pruebas de archivos.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
                             </div>
                         </div>
                     </div>
@@ -960,6 +1210,52 @@
                     </div>
                 </article>
             </section>
+            <section id="fichero-traducciones" class="api-section">
+                    <header class="api-section-header">
+                        <h2 class="api-section-title">Fichero de traducciones</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Fichero que maneja las traducciones de los textos del sistema.
+                                Proporciona métodos para obtener las traducciones de los textos del sistema.
+                            </p>
+                        </div>  
+                    </div>
+                </article>
+            </section>
+            <section id="idioma" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">Idioma</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Módulo de gestión de idiomas del sistema.
+                                Proporciona funcionalidades para cambiar y mantener el idioma de la interfaz,
+                                incluyendo la gestión de cookies para persistencia del idioma seleccionado.
+                            </p>
+                        </div>  
+                        <div class="api-method">
+                            <h4 class="api-method-title">setLang(lang)</h4>
+                            <div class="api-description">Establece el idioma de la interfaz y aplica las traducciones correspondientes.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">setCookie(name, value, days)</h4>
+                            <div class="api-description">Establece una cookie con el nombre, valor y días de duración.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">getCookie(name)</h4>
+                            <div class="api-description">Obtiene el valor de una cookie.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">cambiarLang(lang)</h4>
+                            <div class="api-description">Cambia el idioma de la interfaz y recarga la página.</div>
+                        </div>
+                    </div>  
+                </article>
+            </section>
+           
         </main>
 
         <nav id="api-nav">
@@ -988,6 +1284,10 @@
             <h3 class="api-nav-title">Acceso al Backend</h3>
             <ul>
                 <li><a href="#external-access">ExternalAccess</a></li>
+            </ul>
+            <h3 class="api-nav-title">Idioma</h3>
+            <ul>
+                <li><a href="#idioma">Idioma</a></li>
             </ul>
         </nav>
     </div>

@@ -595,7 +595,8 @@
 
 .api-main {
   flex-grow: 1;
-  padding-right: 0; /* Eliminamos el padding antiguo */
+  padding-right: 0;
+  min-width: 0;
 }
 
 .api-page-title {
@@ -680,15 +681,17 @@
 #api-nav {
   position: sticky;
   top: 75px;
-  margin-right: 20px;
-  max-height: calc(100vh - 95px);
+  width: 280px !important; /* Forzar el ancho */
   flex-shrink: 0;
+  max-height: calc(100vh - 95px);
   background: var(--color-bg);
   padding: 20px;
   overflow-y: auto;
   border-left: 1px solid var(--color-border);
   z-index: 999;
   border-radius: 8px;
+  margin-left: 0;
+  display: block !important; /* Forzar que se muestre */
 }
 
 #api-nav .api-nav-title {
@@ -739,11 +742,19 @@ footer.bordeado {
   display: flex;
   align-items: flex-start;
   gap: 20px;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
-  @media (max-width: 960px) {
+/* Sobrescribir el CSS global del main para la página de API */
+.api-body-container main {
+  padding: 0;
+  max-width: none;
+  margin: 0;
+}
+
+@media (max-width: 768px) { /* Cambiado de 960px a 768px */
     .hamburger {
       display: block;
     }

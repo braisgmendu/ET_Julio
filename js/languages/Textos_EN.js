@@ -212,7 +212,7 @@ let textos_EN = {
       'nuevo_file_analysis_preparation_name_min_size_KO': 'The file name is too short. It must be between 7 and 100 characters without spaces.',
       'nuevo_file_analysis_preparation_name_format_KO': 'The characters used in the file name are incorrect. They must be alphabetic with accents and/or dots, without spaces or ñ.',
       'nuevo_file_analysis_preparation_name_max_size_KO': 'The file name exceeds the maximum size. It must be between 7 and 100 characters without spaces.',
-  
+      'nuevo_file_analysis_preparation_no_file_KO': 'No new file was added.',
       // new file project
       'nuevo_file_project_empty_KO': 'No new file was added.',
       'nuevo_file_project_file_max_size_KO': 'The file exceeds the maximum allowed size. It must be smaller than 2000000 bytes.',

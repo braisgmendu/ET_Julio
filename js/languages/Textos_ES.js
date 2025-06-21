@@ -136,10 +136,6 @@ let textos_ES = {
     'name_analysis_preparation_max_size_KO': 'Excede el tamaño maximo del campo. Tiene que tener un tamaño entre 8 y 100 caracteres con espacios.',
     'name_analysis_preparation_format_KO': 'Los caracteres introducidos son incorrectos. Tienen que ser alfabeticos con espacios, sin acentos ni ñ.',
 
-    //fecha nacimiento persona
-    'fechaNacimiento_persona_format_KO': 'Fecha no correcta. Debe tener el formato dd/mm/aaaa',
-    'fechaNacimiento_persona_valida_KO': 'Fecha no válida. La fecha debe existir',
-
     // description_analysis_preparation
     'description_analysis_preparation_min_size_KO': 'Tamaño del campo insuficiente. Tiene que ser un tamaño entre 80 y 5000 caracteres con espacios.',
     'description_analysis_preparation_max_size_KO':'Excede el tamaño del campo. Tiene que ser un tamaño entre 80 y 5000 caracteres con espacios.',
@@ -218,7 +214,7 @@ let textos_ES = {
     'nuevo_file_analysis_preparation_file_type_KO':'El tipo del fichero es incorrecto. Tiene que ser de formato pdf, doc y docx.',
     'nuevo_file_analysis_preparation_name_min_size_KO':'Tamaño del nombre del fichero insuficiente. Tiene que ser un tamaño de entre 7 y 100 caracteres sin espacios.',
     'nuevo_file_analysis_preparation_name_format_KO':'Los caracteres introducidos como nombre de fichero son incorrectos. Tienen que ser alfabeticos con acentos y/o puntos, sin espacios ni ñ.',
-    
+    'nuevo_file_analysis_preparation_no_file_KO' : 'No se añadio un fichero nuevo.',
     'nuevo_file_analysis_preparation_name_max_size_KO':'Excede el tamaño maximo del nombre del fichero. Tiene que ser un tamaño de entre 7 y 100 caracteres sin espacios.',
     // nuevo file project
     'nuevo_file_project_empty_KO':'No se añadio un fichero nuevo.',

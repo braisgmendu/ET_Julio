@@ -108,17 +108,17 @@ const estructura_analysis_preparation = {
             is_not_null: true,
             validation_rules: {
                 ADD:{
+                    no_file: "nuevo_file_analysis_preparation_empty_KO",
                     min_size_name_file: [7, 'nuevo_file_analysis_preparation_name_min_size_KO'],
                     max_size_name_file: [100,'nuevo_file_analysis_preparation_name_max_size_KO'],
-                    no_file: "nuevo_file_analysis_preparation_no_file_KO",
                     file_type :[["application/pdf", "application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"],"nuevo_file_analysis_preparation_file_type_KO"],
                     max_size_file: [ 2000000, "nuevo_file_analysis_preparation_max_size_file_KO"],
                     format_name_file: ["^[A-Za-z]*\\.(pdf|doc|docx)$","nuevo_file_analysis_preparation_name_format_KO"],
                 },
                 EDIT:{
+                    no_file: "nuevo_file_analysis_preparation_empty_KO",
                     min_size_name_file: [7, 'nuevo_file_analysis_preparation_name_min_size_KO'],
                     max_size_name_file: [100,'nuevo_file_analysis_preparation_name_max_size_KO'],
-                    no_file: "nuevo_file_analysis_preparation_no_file_KO",
                     file_type :[["application/pdf", "application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document"],"nuevo_file_analysis_preparation_file_type_KO"],
                     max_size_file: [ 2000000, "nuevo_file_analysis_preparation_max_size_file_KO"],
                     format_name_file: ["^[A-Za-z]*\\.(pdf|doc|docx)$","nuevo_file_analysis_preparation_name_format_KO"],

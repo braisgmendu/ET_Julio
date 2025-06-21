@@ -1,8 +1,7 @@
 /**
  * @class project
  * @extends Entidad_Abstracta
- * @description Clase para la gestión de proyectos.
- * Maneja las operaciones CRUD y validaciones específicas para esta entidad.
+* @description Clase entidad que extiende de Entidad_Abstracta. Maneja las validaciones y presentacion especifica de la entidad.
  */
 class project extends Entidad_Abstracta{
 
@@ -128,6 +127,11 @@ class project extends Entidad_Abstracta{
         return valoratributo;
     }
 
+    /**
+     * @method check_special_START_DATE_PROJECT
+     * @description Verifica la fecha de inicio del proyecto
+     * @returns {boolean} true si la fecha es válida, false en caso contrario
+     */
     check_special_START_DATE_PROJECT() {
         const start = document.getElementById('start_date_project').value;
         const end = document.getElementById('end_date_project').value;
@@ -146,6 +150,11 @@ class project extends Entidad_Abstracta{
         return true;
     }
 
+    /**
+     * @method check_special_END_DATE_PROJECT
+     * @description Verifica la fecha de finalización del proyecto
+     * @returns {boolean} true si la fecha es válida, false en caso contrario
+     */
     check_special_END_DATE_PROJECT() {
         const end = document.getElementById('end_date_project').value;
         const start = document.getElementById('start_date_project').value;
@@ -165,6 +174,12 @@ class project extends Entidad_Abstracta{
     }
 
     // Métodos auxiliares privados:
+    /**
+     * @method _fechaValida
+     * @description Verifica si una fecha es válida
+     * @param {string} fecha - La fecha a verificar
+     * @returns {boolean} true si la fecha es válida, false en caso contrario
+     */
     _fechaValida(fecha) {
         // Extraer día, mes y año
         const [dia, mes, anio] = fecha.split('/').map(Number);
@@ -179,6 +194,13 @@ class project extends Entidad_Abstracta{
         return true;
     }
 
+    /**
+     * @method _esMenor
+     * @description Verifica si una fecha es menor que otra
+     * @param {string} fecha1 - La primera fecha
+     * @param {string} fecha2 - La segunda fecha
+     * @returns {boolean} true si la fecha1 es menor que fecha2, false en caso contrario
+     */
     _esMenor(fecha1, fecha2) {
         // Convierte a objeto Date para comparar
         const [d1, m1, y1] = fecha1.split('/').map(Number);
