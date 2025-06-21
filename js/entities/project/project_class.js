@@ -105,15 +105,18 @@ class project extends Entidad_Abstracta{
      * @param {any} valoratributo - Valor a transformar
      * @returns {any} Valor transformado o el valor original si no requiere transformación
      */
-    change_value_IU(atributo, valoratributo){
-        if (atributo === 'file_project'){
-            if (valoratributo === ''){
-                return "no hay fichero";
-            }
-            let baseUrl = "http://193.147.87.202/ET2/filesuploaded/files_file_project/";
-            let texto = `<a href="${baseUrl}${encodeURIComponent(valoratributo)}" target="_blank">`;
-            texto += `<img src="./assets/icons/FILE.png" alt="Fichero"/>${valoratributo}</a>`;
-            return texto;
+    change_value_IU(atributo, valoratributo) {
+        if (atributo === "file_project") {
+          if (!valoratributo) {
+            return "no hay fichero";
+          }
+          let baseUrl =
+            "http://193.147.87.202/ET2/filesuploaded/files_file_project/";
+          let texto = `<a href="${baseUrl}${encodeURIComponent(
+            valoratributo
+          )}" target="_blank" style="text-decoration: none; color: inherit;">`;
+          texto += `<img src="assets/icons/FILE.png" alt="Fichero" style="vertical-align: middle; margin-right: 5px;"/>${valoratributo}</a>`;
+          return texto;
         }
         if (['start_date_project', 'end_date_project'].includes(atributo)){
             let fech = valoratributo.split('-');
@@ -183,5 +186,38 @@ class project extends Entidad_Abstracta{
         const f1 = new Date(y1, m1 - 1, d1);
         const f2 = new Date(y2, m2 - 1, d2);
         return f1 < f2;
+    }
+
+    /**
+     * @method format_date
+     * @description Formatea una fecha del formato YYYY-MM-DD al formato DD/MM/YYYY.
+     * @param {string} date - La fecha en formato YYYY-MM-DD.
+     * @returns {string} La fecha formateada como DD/MM/YYYY.
+     */
+    format_date(date) {
+        if (!date || !/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+            return date; // Devuelve el valor original si no es una fecha válida
+        }
+        const [year, month, day] = date.split('-');
+        return `${day}/${month}/${year}`;
+    }
+
+    /**
+     * @method load_data
+     * @description Sobreescribe el método load_data para formatear las fechas antes de cargarlas en el formulario.
+     * @param {object} data - El objeto con los datos a cargar.
+     */
+    load_data(data) {
+        if (data.start_date_project) {
+            const dateOnly = data.start_date_project.split(' ')[0]; // Nos quedamos solo con la fecha
+            data.start_date_project = this.format_date(dateOnly);
+        }
+        if (data.end_date_project) {
+            const dateOnly = data.end_date_project.split(' ')[0]; // Nos quedamos solo con la fecha
+            data.end_date_project = this.format_date(dateOnly);
+        }
+
+        // Llamamos al método original del padre para que cargue todos los datos
+        super.load_data(data);
     }
 }
