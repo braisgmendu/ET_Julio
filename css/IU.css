@@ -26,7 +26,7 @@
   header, footer {
     background-color: var(--color-header);
     color: var(--color-white);
-    padding: 20px;
+    padding: 15px 20px;
     text-align: center;
   }
   
@@ -74,6 +74,32 @@
   nav.bordeado:hover {
     background-color: var(--color-primary-hover);
   }
+
+#menu-navigation {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#menu-navigation img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+#menu-navigation img:hover {
+  transform: scale(1.1);
+}
+
+.hamburger {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: var(--color-white);
+  cursor: pointer;
+}
  
   #title_page {
     background-color: var(--color-primary);
@@ -378,6 +404,141 @@
     margin-bottom: 0;
   }
   
+  /* Modal general */
+#modalResultados {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(31, 41, 55, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenido del modal */
+#modalResultados .modal-content {
+  background-color: var(--color-white);
+  padding: 20px;
+  border-radius: 10px;
+  width: 95%;
+  max-width: 1000px;
+  max-height: 90vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Header del modal */
+#modalResultados .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+#modalResultados .modal-header h2 {
+  font-size: 1.2rem;
+}
+
+#modalResultados .close {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Área principal con scroll interno */
+#div_IU_test {
+  flex-grow: 1;
+  overflow: auto; /* scroll en ambas direcciones */
+  padding-right: 10px;
+}
+
+/* Secciones internas */
+#contenidoTests,
+#contenidoPruebas,
+#resultadopruebas {
+  margin-bottom: 30px;
+}
+
+/* Títulos secciones */
+.res_estructura_tests,
+.res_estructura_pruebas,
+#res_pruebas {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 5px;
+}
+
+/* Tablas de resultados */
+#tablaresultadostest,
+#tabla_prueba,
+#resultado_prueba {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  overflow-x: auto;
+}
+
+#tablaresultadostest td,
+#tabla_prueba td,
+#resultado_prueba td,
+#tablaresultadostest th,
+#tabla_prueba th,
+#resultado_prueba th {
+  border: 1px solid var(--color-border);
+  padding: 10px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+/* Alternar colores de filas */
+#tablaresultadostest tr:nth-child(even),
+#tabla_prueba tr:nth-child(even),
+#resultado_prueba tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+#tablaresultadostest tr:nth-child(odd),
+#tabla_prueba tr:nth-child(odd),
+#resultado_prueba tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+#seleccioncolumnas {
+  width: 100%;
+  height: auto;
+  max-height: 150px;
+  padding: 10px;
+  font-size: 0.95rem;
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  background-color: #fff;
+  color: var(--color-text);
+  overflow-y: auto;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+#seleccioncolumnas option {
+  padding: 6px 10px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+#seleccioncolumnas option:hover,
+#seleccioncolumnas option:focus {
+  background-color: var(--color-primary-hover);
+  color: var(--color-white);
+}
+
   footer {
     position: fixed;
     bottom: 0;
@@ -386,5 +547,247 @@
     background-color: var(--color-header);
     color: var(--color-white);
     padding: 10px 0;
+  }
+/* Estilos para API.html */
+#api-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--color-white);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+#api-menu-toggle {
+  color: var(--color-primary);
+
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.api-back-button {
+  padding: 0;
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  transition: background-color 0.2s;
+}
+
+.api-back-button:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.api-back-arrow {
+  font-size: 20px;
+  margin: 0;
+}
+
+.api-main {
+  flex-grow: 1;
+  padding-right: 0; /* Eliminamos el padding antiguo */
+}
+
+.api-page-title {
+  background-color: var(--color-bg);
+  border-bottom: 2px solid var(--color-border);
+  padding-bottom: 10px;
+  margin-top: 20px;
+  font-size: 2rem;
+  color: var(--color-primary); /* Un color verde para los retornos */
+}
+
+.api-section .api-section-header {
+  margin-bottom: 20px;
+  background-color: var(--color-primary);
+  padding: 15px 20px;
+  border-radius: 6px 6px 0 0;
+}
+
+.api-section {
+  margin: 25px 0;
+  padding: 0; /* Ajustado para que el header encaje */
+  background: var(--color-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.api-section article {
+  padding: 25px;
+  padding-top: 10px;
+}
+
+.api-section-title {
+  color: var(--color-white);
+  margin-top: 0;
+  font-size: 1.5rem;
+  border-left: 4px solid var(--color-primary);
+  
+}
+
+.api-container-overview {
+  margin-bottom: 20px;
+}
+
+.api-description {
+  margin: 15px 0;
+  padding: 15px;
+  background: #f3f4f6;
+  border-left: 4px solid var(--color-primary);
+  color: var(--color-muted);
+}
+
+.api-method {
+  margin: 20px 0;
+  padding: 20px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+}
+
+.api-method-title {
+  color: var(--color-primary);
+  font-weight: 600;
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.api-param, .api-return {
+  margin: 10px 0;
+  padding-left: 20px;
+  font-size: 0.95rem;
+}
+
+.api-param ul, .api-return ul {
+  list-style-type: disc;
+  padding-left: 20px;
+}
+
+.api-return {
+  color: #10b981; /* Un color verde para los retornos */
+}
+
+#api-nav {
+  position: sticky;
+  top: 75px;
+  width: 280px;
+  max-height: calc(100vh - 95px);
+  flex-shrink: 0;
+  background: var(--color-bg);
+  padding: 20px;
+  overflow-y: auto;
+  border-left: 1px solid var(--color-border);
+  z-index: 999;
+  border-radius: 8px;
+}
+
+#api-nav .api-nav-title {
+  margin-top: 20px;
+  color: var(--color-text);
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+#api-nav ul {
+  list-style: none;
+  padding-left: 15px;
+}
+
+#api-nav a {
+  color: var(--color-muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+#api-nav a:hover {
+  color: var(--color-primary);
+}
+
+.api-footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* Solo el footer de la app principal será fijo */
+footer.bordeado {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: var(--color-header);
+  color: var(--color-white);
+  padding: 10px 0;
+  z-index: 1002;
+}
+
+.api-body-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+  @media (max-width: 960px) {
+    .hamburger {
+      display: block;
+    }
+  
+    #menu-navigation {
+      display: none; /* Escondido por defecto */
+      flex-direction: column;
+      background-color: var(--color-header);
+      position: absolute;
+      top: 60px; /* Ajusta según altura del header */
+      left: 0;
+      right: 0;
+      padding: 10px 20px;
+      z-index: 1000;
+      gap: 10px;
+    }
+  
+    #menu-navigation img {
+      width: 36px;
+    }
+  
+    #menu-navigation.active {
+      display: flex;
+    }
+    #main {
+      padding-right: 0;
+    }
+    #api-nav {
+      display: none;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: auto;
+      background: #ffffff;
+      border-left: none;
+      border-top: 1px solid #ddd;
+      padding: 15px 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+  
+    #api-nav.active {
+      display: block;
+    }
   }
   

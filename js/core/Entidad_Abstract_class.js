@@ -99,11 +99,16 @@ class Entidad_Abstracta extends Dom {
 
     if (parametros) {
       this.load_data(parametros);
-      document.getElementById("link_file_" + this.entidad).innerHTML =
-        this.change_value_IU(
-          "file_" + this.entidad,
-          parametros["file_" + this.entidad]
+
+      const fileAttribute = "file_" + this.entidad;
+      const linkElement = document.getElementById("link_" + fileAttribute);
+      
+      if (linkElement && parametros[fileAttribute]) {
+        linkElement.innerHTML = this.change_value_IU(
+            fileAttribute,
+            parametros[fileAttribute]
         );
+      }
     }
 
     document.getElementById("class_contenido_titulo_form").className =

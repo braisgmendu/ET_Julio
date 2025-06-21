@@ -1,505 +1,410 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="utf-8">
     <title>Documentación de la API</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-            color: #333;
-        }
-        #main {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding-right: 320px;
-        }
-        .page-title {
-            color: #2c3e50;
-            border-bottom: 2px solid #eee;
-            padding-bottom: 10px;
-            margin-top: 48px;
-        }
-        section {
-            margin: 20px 0;
-            padding: 20px;
-            background: #fff;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        header {
-            margin-bottom: 20px;
-        }
-        h2 {
-            color: #2c3e50;
-            margin-top: 0;
-        }
-        .container-overview {
-            margin-bottom: 20px;
-        }
-        .description {
-            margin: 15px 0;
-            padding: 10px;
-            background: #f8f9fa;
-            border-left: 4px solid #2c3e50;
-        }
-        .details {
-            margin: 15px 0;
-        }
-        .tag-source {
-            font-size: 0.9em;
-            color: #666;
-        }
-        nav {
-            position: fixed;
-            top: 0;
-            right: 0;
-            width: 300px;
-            height: 100%;
-            background: #f8f9fa;
-            padding: 20px;
-            overflow-y: auto;
-            border-left: 1px solid #ddd;
-        }
-        nav h2, nav h3 {
-            margin-top: 20px;
-        }
-        nav ul {
-            list-style: none;
-            padding-left: 20px;
-        }
-        nav a {
-            color: #2c3e50;
-            text-decoration: none;
-        }
-        nav a:hover {
-            color: #3498db;
-        }
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            border-top: 1px solid #eee;
-            color: #666;
-        }
-        .method {
-            margin: 15px 0;
-            padding: 15px;
-            background: #fff;
-            border: 1px solid #eee;
-            border-radius: 4px;
-        }
-        .method h4 {
-            color: #2c3e50;
-            margin-top: 0;
-        }
-        .param {
-            margin: 10px 0;
-            padding-left: 20px;
-        }
-        .return {
-            margin: 10px 0;
-            padding-left: 20px;
-            color: #27ae60;
-        }
-        .back-button {
-            position: absolute;
-            top: 16px;
-            left: 16px;
-            padding: 4px 8px;
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            box-shadow: none;
-            transition: background-color 0.2s;
-            width: 32px;
-            height: 32px;
-            justify-content: center;
-        }
-        .back-button:hover {
-            background-color: #34495e;
-        }
-        .back-arrow {
-            font-size: 20px;
-            margin: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="css/IU.css">
 </head>
+
 <body>
-    <a href="index.html" class="back-button"><span class="back-arrow">&#8592;</span></a>
-<div id="main">
-        <h1 class="page-title">Documentación de la API</h1>
+    <header id="api-header">
+        <a href="index.html" class="api-back-button"><span class="api-back-arrow">&#8592;</span></a>
+        <button id="api-menu-toggle" class="hamburger" onclick="toggleApiMenu()">&#9776;</button>
+    </header>
 
-        <section id="dom">
-            <header>
-                <h2>Dom</h2>
-            </header>
-            <article>
-                <div class="container-overview">
-                    <div class="description">
-                        <p>Clase principal que maneja la manipulación del DOM y la interfaz de usuario.
-                        Esta clase es responsable de crear y gestionar formularios, tablas, modales y otros elementos
-                        de la interfaz.</p>
-                    </div>
-                    <div class="method">
-                        <h4>createForm(action, estructura)</h4>
-                        <div class="description">Crea un formulario dinámico basado en la estructura proporcionada.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>action (string): Acción a realizar (ADD, EDIT, SEARCH, DELETE)</li>
-                                <li>estructura (object): Estructura de la entidad</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="method">
-                        <h4>hacertabla()</h4>
-                        <div class="description">Genera una tabla HTML con los datos proporcionados.</div>
-                    </div>
-                </div>
-            </article>
-        </section>
+    <div class="api-body-container">
+        <main id="main" class="api-main">
+            <h1 class="api-page-title">Documentación de la API</h1>
 
-        <section id="dom-validations">
-            <header>
-                <h2>Dom_validations</h2>
-            </header>
-            <article>
-                <div class="container-overview">
-                    <div class="description">
-                        <p>Clase que maneja las validaciones de formularios y campos.</p>
-                    </div>
-                    <div class="method">
-                        <h4>validarFormulario()</h4>
-                        <div class="description">Valida todos los campos del formulario actual.</div>
-                        <div class="return">
-                            <strong>Retorna:</strong> boolean - true si todos los campos son válidos
+            <section id="dom" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">Dom</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase principal que maneja la manipulación del DOM y la interfaz de usuario.
+                                Esta clase es responsable de crear y gestionar formularios, tablas, modales y otros
+                                elementos
+                                de la interfaz.</p>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">createForm(action, estructura)</h4>
+                            <div class="api-description">Crea un formulario dinámico basado en la estructura proporcionada.
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>action (string): Acción a realizar (ADD, EDIT, SEARCH, DELETE)</li>
+                                    <li>estructura (object): Estructura de la entidad</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">hacertabla()</h4>
+                            <div class="api-description">Genera una tabla HTML con los datos proporcionados.</div>
                         </div>
                     </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
 
-        <section id="validaciones-atomicas">
-<header>
-                <h2>Validaciones_Atomicas</h2>
-            </header>
-            <article>
-                <div class="container-overview">
-                    <div class="description">
-                        <p>Clase que proporciona validaciones atómicas para los campos de formulario.</p>
-                    </div>
-                    <div class="method">
-                        <h4>min_size(id, parametro)</h4>
-                        <div class="description">Valida que el tamaño del campo sea mayor o igual al parámetro especificado.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>id (string): ID del campo a validar</li>
-                                <li>parametro (number): Tamaño mínimo permitido</li>
-                            </ul>
+            <section id="dom-validations" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">Dom_validations</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que maneja las validaciones de formularios y campos.</p>
                         </div>
-                        <div class="return">
-                            <strong>Retorna:</strong> boolean - true si el tamaño es válido
+                        <div class="api-method">
+                            <h4 class="api-method-title">validarFormulario()</h4>
+                            <div class="api-description">Valida todos los campos del formulario actual.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si todos los campos son válidos
+                            </div>
                         </div>
                     </div>
-                    <div class="method">
-                        <h4>max_size(campo, param)</h4>
-                        <div class="description">Valida que el tamaño del campo sea menor o igual al parámetro especificado.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>campo (string): ID del campo a validar</li>
-                                <li>param (number): Tamaño máximo permitido</li>
-                            </ul>
-                        </div>
-                        <div class="return">
-                            <strong>Retorna:</strong> boolean - true si el tamaño es válido
-                        </div>
-                    </div>
-                    <div class="method">
-                        <h4>reg_exp(campo, param)</h4>
-                        <div class="description">Valida que el campo cumpla con la expresión regular especificada.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>campo (string): ID del campo a validar</li>
-                                <li>param (string): Expresión regular a validar</li>
-                            </ul>
-                        </div>
-                        <div class="return">
-                            <strong>Retorna:</strong> boolean - true si el campo cumple con la expresión regular
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
 
-        <section id="test-iu">
-            <header>
-                <h2>test_IU</h2>
-            </header>
-            <article>
-                <div class="container-overview">
-                    <div class="description">
-                        <p>Clase que maneja la ejecución y validación de tests de la interfaz de usuario.</p>
-                    </div>
-                    <div class="method">
-                        <h4>test_run()</h4>
-                        <div class="description">Ejecuta la suite de tests.</div>
-                        <div class="return">
-                            <strong>Retorna:</strong> Promise - Resultado de la ejecución de los tests
+            <section id="validaciones-atomicas" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">Validaciones_Atomicas</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que proporciona validaciones atómicas para los campos de formulario.</p>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">min_size(id, parametro)</h4>
+                            <div class="api-description">Valida que el tamaño del campo sea mayor o igual al parámetro
+                                especificado.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>id (string): ID del campo a validar</li>
+                                    <li>parametro (number): Tamaño mínimo permitido</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el tamaño es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">max_size(campo, param)</h4>
+                            <div class="api-description">Valida que el tamaño del campo sea menor o igual al parámetro
+                                especificado.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>campo (string): ID del campo a validar</li>
+                                    <li>param (number): Tamaño máximo permitido</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el tamaño es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">reg_exp(campo, param)</h4>
+                            <div class="api-description">Valida que el campo cumpla con la expresión regular especificada.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>campo (string): ID del campo a validar</li>
+                                    <li>param (string): Expresión regular a validar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el campo cumple con la expresión regular
+                            </div>
                         </div>
                     </div>
-                    <div class="method">
-                        <h4>verificarPruebas()</h4>
-                        <div class="description">Verifica los resultados de las pruebas ejecutadas.</div>
-                        <div class="return">
-                            <strong>Retorna:</strong> boolean - true si todas las pruebas pasan
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
 
-        <section id="entidad-abstracta">
-            <header>
-                <h2>Entidad_Abstracta</h2>
-            </header>
-            <article>
-                <div class="container-overview">
-                    <div class="description">
-                        <p>Clase base abstracta que define la estructura y comportamiento común para todas las entidades del sistema.</p>
-                    </div>
-                    <div class="method">
-                        <h4>constructor(entidad, def_estructura)</h4>
-                        <div class="description">Inicializa una nueva instancia de la entidad abstracta.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>entidad (string): Nombre de la entidad</li>
-                                <li>def_estructura (object): Definición de la estructura de la entidad</li>
-                            </ul>
+            <section id="test-iu" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">test_IU</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que maneja la ejecución y validación de tests de la interfaz de usuario.</p>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">test_run()</h4>
+                            <div class="api-description">Ejecuta la suite de tests.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> Promise - Resultado de la ejecución de los tests
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">verificarPruebas()</h4>
+                            <div class="api-description">Verifica los resultados de las pruebas ejecutadas.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si todas las pruebas pasan
+                            </div>
                         </div>
                     </div>
-                    <div class="method">
-                        <h4>change_value_IU(atributo, valor)</h4>
-                        <div class="description">Método para transformar valores antes de mostrarlos en la interfaz. Puede ser sobrescrito por las clases hijas para implementar transformaciones específicas.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>atributo (string): Nombre del atributo</li>
-                                <li>valor (any): Valor a transformar</li>
-                            </ul>
-                        </div>
-                        <div class="return">
-                            <strong>Retorna:</strong> any - Valor transformado (por defecto retorna el valor original)
-                        </div>
-                    </div>
-                    <div class="method">
-                        <h4>createFormGenerico(action, parametros)</h4>
-                        <div class="description">Crea un formulario genérico para una acción específica.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>action (string): Acción a realizar (ADD, EDIT, DELETE, SEARCH)</li>
-                                <li>parametros (object): Parámetros opcionales para cargar en el formulario</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="method">
-                        <h4>ADD()</h4>
-                        <div class="description">Realiza la operación de añadir un nuevo registro.</div>
-                        <div class="return">
-                            <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
-                        </div>
-                    </div>
-                    <div class="method">
-                        <h4>EDIT()</h4>
-                        <div class="description">Realiza la operación de editar un registro existente.</div>
-                        <div class="return">
-                            <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
-                        </div>
-                    </div>
-                    <div class="method">
-                        <h4>DELETE()</h4>
-                        <div class="description">Realiza la operación de eliminar un registro.</div>
-                        <div class="return">
-                            <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
-                        </div>
-                    </div>
-                    <div class="method">
-                        <h4>SEARCH()</h4>
-                        <div class="description">Realiza una búsqueda en la entidad y actualiza la visualización de los resultados.</div>
-                        <div class="return">
-                            <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la búsqueda se completa
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
 
-        <section id="external-access">
-            <header>
-                <h2>ExternalAccess</h2>
-</header>
-<article>
-    <div class="container-overview">
-                    <div class="description">
-                        <p>Clase que maneja las comunicaciones con el backend y el acceso a recursos externos.</p>
-                    </div>
-                    <div class="method">
-                        <h4>back_request(action, data)</h4>
-                        <div class="description">Realiza una petición al backend.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>action (string): Acción a realizar</li>
-                                <li>data (object): Datos a enviar</li>
-                            </ul>
+            <section id="entidad-abstracta" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">Entidad_Abstracta</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase base abstracta que define la estructura y comportamiento común para todas las entidades
+                                del sistema.</p>
                         </div>
-                        <div class="return">
-                            <strong>Retorna:</strong> Promise - Resultado de la petición
+                        <div class="api-method">
+                            <h4 class="api-method-title">constructor(entidad, def_estructura)</h4>
+                            <div class="api-description">Inicializa una nueva instancia de la entidad abstracta.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>entidad (string): Nombre de la entidad</li>
+                                    <li>def_estructura (object): Definición de la estructura de la entidad</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">change_value_IU(atributo, valor)</h4>
+                            <div class="api-description">Método para transformar valores antes de mostrarlos en la interfaz.
+                                Puede ser sobrescrito por las clases hijas para implementar transformaciones específicas.
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>atributo (string): Nombre del atributo</li>
+                                    <li>valor (any): Valor a transformar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> any - Valor transformado (por defecto retorna el valor original)
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">createFormGenerico(action, parametros)</h4>
+                            <div class="api-description">Crea un formulario genérico para una acción específica.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>action (string): Acción a realizar (ADD, EDIT, DELETE, SEARCH)</li>
+                                    <li>parametros (object): Parámetros opcionales para cargar en el formulario</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">ADD()</h4>
+                            <div class="api-description">Realiza la operación de añadir un nuevo registro.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">EDIT()</h4>
+                            <div class="api-description">Realiza la operación de editar un registro existente.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">DELETE()</h4>
+                            <div class="api-description">Realiza la operación de eliminar un registro.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">SEARCH()</h4>
+                            <div class="api-description">Realiza una búsqueda en la entidad y actualiza la visualización de los
+                                resultados.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la búsqueda se completa
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
 
-        <section id="analysis-preparation">
-            <header>
-                <h2>analysis_preparation</h2>
-            </header>
-            <article>
-                <div class="container-overview">
-                    <div class="description">
-                        <p>Clase que maneja la preparación y análisis de datos. Extiende de Entidad_Abstracta.</p>
-                    </div>
-                    <div class="method">
-                        <h4>constructor()</h4>
-                        <div class="description">Inicializa una nueva instancia de analysis_preparation.</div>
-                    </div>
-                    <div class="method">
-                        <h4>change_value_IU(atributo, valoratributo)</h4>
-                        <div class="description">Sobrescribe el método de la clase padre para transformar valores específicos de analysis_preparation. Convierte el nombre del archivo en un enlace clickeable cuando el atributo es 'file_analysis_preparation'.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>atributo (string): Nombre del atributo</li>
-                                <li>valoratributo (any): Valor a transformar</li>
-                            </ul>
+            <section id="external-access" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">ExternalAccess</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que maneja las comunicaciones con el backend y el acceso a recursos externos.</p>
                         </div>
-                        <div class="return">
-                            <strong>Retorna:</strong> any - Valor transformado o el valor original si no requiere transformación
+                        <div class="api-method">
+                            <h4 class="api-method-title">back_request(action, data)</h4>
+                            <div class="api-description">Realiza una petición al backend.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>action (string): Acción a realizar</li>
+                                    <li>data (object): Datos a enviar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> Promise - Resultado de la petición
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
 
-        <section id="characteristic">
-            <header>
-                <h2>characteristic</h2>
-            </header>
-            <article>
-                <div class="container-overview">
-                    <div class="description">
-                        <p>Clase que maneja las características de las entidades. Extiende de Entidad_Abstracta.</p>
-                    </div>
-                    <div class="method">
-                        <h4>constructor()</h4>
-                        <div class="description">Inicializa una nueva instancia de characteristic.</div>
-                    </div>
-                    <div class="method">
-                        <h4>change_value_IU(atributo, valoratributo)</h4>
-                        <div class="description">Sobrescribe el método de la clase padre para transformar valores específicos de characteristic. Convierte el nombre del archivo en un enlace clickeable cuando el atributo es 'file_characteristic'.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>atributo (string): Nombre del atributo</li>
-                                <li>valoratributo (any): Valor a transformar</li>
-                            </ul>
+            <section id="analysis-preparation" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">analysis_preparation</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que maneja la preparación y análisis de datos. Extiende de Entidad_Abstracta.</p>
                         </div>
-                        <div class="return">
-                            <strong>Retorna:</strong> any - Valor transformado o el valor original si no requiere transformación
+                        <div class="api-method">
+                            <h4 class="api-method-title">constructor()</h4>
+                            <div class="api-description">Inicializa una nueva instancia de analysis_preparation.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">change_value_IU(atributo, valoratributo)</h4>
+                            <div class="api-description">Sobrescribe el método de la clase padre para transformar valores
+                                específicos de analysis_preparation. Convierte el nombre del archivo en un enlace clickeable
+                                cuando el atributo es 'file_analysis_preparation'.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>atributo (string): Nombre del atributo</li>
+                                    <li>valoratributo (any): Valor a transformar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> any - Valor transformado o el valor original si no requiere
+                                transformación
+                            </div>
                         </div>
                     </div>
-                </div>
-            </article>
-        </section>
+                </article>
+            </section>
 
-        <section id="project">
-            <header>
-                <h2>project</h2>
-            </header>
-            <article>
-                <div class="container-overview">
-                    <div class="description">
-                        <p>Clase que maneja los proyectos del sistema. Extiende de Entidad_Abstracta.</p>
-                    </div>
-                    <div class="method">
-                        <h4>constructor()</h4>
-                        <div class="description">Inicializa una nueva instancia de project.</div>
-                    </div>
-                    <div class="method">
-                        <h4>change_value_IU(atributo, valoratributo)</h4>
-                        <div class="description">Sobrescribe el método de la clase padre para transformar valores específicos de project. Convierte el nombre del archivo en un enlace clickeable y formatea las fechas cuando corresponda.</div>
-                        <div class="param">
-                            <strong>Parámetros:</strong>
-                            <ul>
-                                <li>atributo (string): Nombre del atributo</li>
-                                <li>valoratributo (any): Valor a transformar</li>
-                            </ul>
+            <section id="characteristic" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">characteristic</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que maneja las características de las entidades. Extiende de Entidad_Abstracta.</p>
                         </div>
-                        <div class="return">
-                            <strong>Retorna:</strong> any - Valor transformado o el valor original si no requiere transformación
+                        <div class="api-method">
+                            <h4 class="api-method-title">constructor()</h4>
+                            <div class="api-description">Inicializa una nueva instancia de characteristic.</div>
                         </div>
-                    </div>
-                    <div class="method">
-                        <h4>check_special_START_DATE_PROJECT()</h4>
-                        <div class="description">Verifica la fecha de inicio del proyecto.</div>
-                        <div class="return">
-                            <strong>Retorna:</strong> boolean|string - true si la fecha es válida, código de error en caso contrario
+                        <div class="api-method">
+                            <h4 class="api-method-title">change_value_IU(atributo, valoratributo)</h4>
+                            <div class="api-description">Sobrescribe el método de la clase padre para transformar valores
+                                específicos de characteristic. Convierte el nombre del archivo en un enlace clickeable
+                                cuando el atributo es 'file_characteristic'.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>atributo (string): Nombre del atributo</li>
+                                    <li>valoratributo (any): Valor a transformar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> any - Valor transformado o el valor original si no requiere
+                                transformación
+                            </div>
                         </div>
                     </div>
-                    <div class="method">
-                        <h4>check_special_END_DATE_PROJECT()</h4>
-                        <div class="description">Verifica la fecha de finalización del proyecto.</div>
-                        <div class="return">
-                            <strong>Retorna:</strong> boolean|string - true si la fecha es válida, código de error en caso contrario
-                        </div>
-                    </div>
-                </div>
-            </article>
-        </section>
-</div>
+                </article>
+            </section>
 
-<nav>
-        <h2><a href="#main">Inicio</a></h2>
-        <h3>Clases</h3>
-        <ul>
-            <li><a href="#dom">Dom</a></li>
-            <li><a href="#dom-validations">Dom_validations</a></li>
-            <li><a href="#entidad-abstracta">Entidad_Abstracta</a></li>
-            <li><a href="#external-access">ExternalAccess</a></li>
-            <li><a href="#validaciones-atomicas">Validaciones_Atomicas</a></li>
-            <li><a href="#analysis-preparation">analysis_preparation</a></li>
-            <li><a href="#characteristic">characteristic</a></li>
-            <li><a href="#project">project</a></li>
-            <li><a href="#test-iu">test_IU</a></li>
-        </ul>
-</nav>
+            <section id="project" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">project</h2>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que maneja los proyectos del sistema. Extiende de Entidad_Abstracta.</p>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">constructor()</h4>
+                            <div class="api-description">Inicializa una nueva instancia de project.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">change_value_IU(atributo, valoratributo)</h4>
+                            <div class="api-description">Sobrescribe el método de la clase padre para transformar valores
+                                específicos de project. Convierte el nombre del archivo en un enlace clickeable y formatea
+                                las fechas cuando corresponda.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>atributo (string): Nombre del atributo</li>
+                                    <li>valoratributo (any): Valor a transformar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> any - Valor transformado o el valor original si no requiere
+                                transformación
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">check_special_START_DATE_PROJECT()</h4>
+                            <div class="api-description">Verifica la fecha de inicio del proyecto.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean|string - true si la fecha es válida, código de error en
+                                caso contrario
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">check_special_END_DATE_PROJECT()</h4>
+                            <div class="api-description">Verifica la fecha de finalización del proyecto.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean|string - true si la fecha es válida, código de error en
+                                caso contrario
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+        </main>
 
-<footer>
+        <nav id="api-nav">
+            <h2 class="api-nav-title"><a href="#main">Inicio</a></h2>
+            <h3 class="api-nav-title">Clases</h3>
+            <ul>
+                <li><a href="#dom">Dom</a></li>
+                <li><a href="#dom-validations">Dom_validations</a></li>
+                <li><a href="#entidad-abstracta">Entidad_Abstracta</a></li>
+                <li><a href="#external-access">ExternalAccess</a></li>
+                <li><a href="#validaciones-atomicas">Validaciones_Atomicas</a></li>
+                <li><a href="#analysis-preparation">analysis_preparation</a></li>
+                <li><a href="#characteristic">characteristic</a></li>
+                <li><a href="#project">project</a></li>
+                <li><a href="#test-iu">test_IU</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <footer class="api-footer">
         Documentación generada por JSDoc 4.0.4
-</footer>
+    </footer>
+    <script>
+        function toggleApiMenu() {
+            document.getElementById("api-nav").classList.toggle("active");
+        }
+    </script>
 </body>
+
 </html>
