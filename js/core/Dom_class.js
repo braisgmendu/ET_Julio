@@ -185,7 +185,11 @@ class Dom {
 
     return div;
   }
-
+/**
+ * @method colocarboton
+ * @description Crea un botón para el formulario. El botón se crea en el contenedor de botones del formulario.
+ * @param {string} action - La acción a realizar (ADD, EDIT, SEARCH, DELETE, SHOWCURRENT)
+ */
   colocarboton(action) {
     let divboton = document.createElement("div");
     divboton.id = "div_boton";
@@ -201,6 +205,12 @@ class Dom {
     boton.appendChild(img);
     divboton.appendChild(boton);
   }
+  /**
+   * @method load_data
+   * @description Carga los datos del formulario.
+   * @param {object} contenido - Los datos a cargar en el formulario
+   * @returns {void} - No retorna nada
+   */
   load_data(contenido) {
     const elementosFormulario = document.forms["IU_form"].elements;
 
@@ -212,7 +222,11 @@ class Dom {
       }
     }
   }
-
+/**
+ * @method construirSelect
+ * @description Construye un select con las columnas disponibles para la tabla.
+ * @returns {void} - No retorna nada
+ */
   construirSelect() {
     document.getElementById("seleccioncolumnas").innerHTML = "";
 
@@ -238,6 +252,7 @@ class Dom {
    * @description Construye una tabla dinámica con los datos proporcionados.
    * Maneja la creación de encabezados, filas y celdas, incluyendo la sanitización
    * de datos para prevenir XSS. También agrega botones de acción para cada fila.
+   * @returns {void} - No retorna nada
    */
   hacertabla() {
     // Títulos
@@ -339,6 +354,7 @@ class Dom {
    * @description Modifica la visibilidad de las columnas en la tabla.
    * Permite añadir o eliminar columnas de la visualización actual.
    * @param {string} atributo - Nombre del atributo/columna a modificar
+   * @returns {void} - No retorna nada
    */
   modificarcolumnasamostrar(atributo) {
     let nuevascolumnas = Array();
@@ -359,6 +375,11 @@ class Dom {
     this.crearTablaDatos();
   }
 
+  /**
+   * @method mostrarocultarcolumnas
+   * @description Muestra o oculta las columnas en la tabla.
+   * @returns {void} - No retorna nada
+   */
   mostrarocultarcolumnas() {
     for (let columna of this.atributos) {
       if (this.def_estructura.columnas_visibles_tabla.includes(columna)) {
@@ -392,12 +413,27 @@ class Dom {
     setLang();
   }
 
+  /**
+   * @method mostrar_exito_campo
+   * @description Muestra un mensaje de éxito para un campo específico.
+   * Actualiza la apariencia visual del campo y muestra el mensaje de éxito.
+   * @param {string} id - ID del campo
+   * @returns {void} - No retorna nada
+   */
   mostrar_exito_campo(id) {
     document.getElementById("div_error_" + id).style.display = "none";
     document.getElementById("div_error_" + id).innerHTML = "";
     document.getElementById(id).className = "exitocampo";
   }
 
+  /**
+   * @method crearboton
+   * @description Crea un botón para el formulario.
+   * @param {string} entidad - La entidad a la que pertenece el botón
+   * @param {string} accion - La acción a realizar (ADD, EDIT, SEARCH, DELETE, SHOWCURRENT)
+   * @param {string} parametros - Los parámetros a pasar al botón
+   * @returns {string} - El HTML del botón creado
+   */
   crearboton(entidad, accion, parametros) {
     let columna = document.createElement("td");
     let boton = document.createElement("button");
@@ -413,14 +449,22 @@ class Dom {
     columna.appendChild(boton);
     return columna.outerHTML;
   }
-
+  /**
+   * @method cerrar_formulario
+   * @description Cierra el formulario actual.
+   * @returns {void} - No retorna nada
+   */
   cerrar_formulario() {
     document.getElementById("IU_form").innerHTML = "";
     document.getElementById("IU_form").setAttribute("onsubmit", "");
     document.getElementById("IU_form").setAttribute("action", "");
     document.getElementById("div_IU_form").style.display = "none";
   }
-
+  /**
+   * @method cerrar_test
+   * @description Cierra el test actual.
+   * @returns {void} - No retorna nada
+   */
   cerrar_test() {
     document.getElementById("div_IU_test").style.display = "none"; //Para ocultarlo
     //Para limpiarlo
@@ -431,7 +475,11 @@ class Dom {
     document.getElementById("resultadotest").innerHTML = "";
     document.getElementById("salidaresultadosprueba").innerHTML = "";
   }
-
+  /**
+   * @method cerrar_tabla
+   * @description Cierra la tabla actual.
+   * @returns {void} - No retorna nada
+   */
   cerrar_tabla() {
     document.getElementById("titulostablacabecera").innerHTML = "";
     document.getElementById("muestradatostabla").innerHTML = "";
@@ -442,11 +490,19 @@ class Dom {
     this.ocultar_boton_test();
     this.cerrar_test();
   }
-
+  /**
+   * @method ocultar_boton_test
+   * @description Oculta el botón de test.
+   * @returns {void} - No retorna nada
+   */
   ocultar_boton_test(){
         document.getElementById('botonTEST').style.display = 'none';
     }
-
+  /**
+   * @method mostrar_boton_test
+   * @description Muestra el botón de test.
+   * @returns {void} - No retorna nada
+   */
     mostrar_boton_test(){
         document.getElementById('botonTEST').style.display = 'inline';
     }
@@ -456,6 +512,7 @@ class Dom {
    * @description Abre un modal para mostrar mensajes de error.
    * Muestra un overlay y el mensaje de error en un modal centrado.
    * @param {string} errorMsg - Mensaje de error a mostrar
+   * @returns {void} - No retorna nada
    */
   abrirModalError(errorMsg) {
     document.getElementById("error_action_modal").style.display = "block";
@@ -468,24 +525,37 @@ class Dom {
    * @method cerrarModalError
    * @description Cierra el modal de error y su overlay asociado.
    * Restaura la visibilidad normal de la interfaz.
+   * @returns {void} - No retorna nada
    */
   cerrarModalError() {
     document.getElementById("error_action_modal").style.display = "none";
     document.getElementById("modal_action_overlay").style.display = "none";
     //document.getElementById('error_action_msg').removeAttribute('class');
   }
-  // Mostrar el modal
+  /**
+   * @method mostrarModal
+   * @description Muestra el modal de resultados.
+   * @returns {void} - No retorna nada
+   */
   mostrarModal() {
     const modal = document.getElementById("modalResultados");
     modal.style.display = "block"; // Mostrar el modal
   }
-
-  // Cerrar el modal
+  /**
+   * @method cerrarModal
+   * @description Cierra el modal de resultados.
+   * @returns {void} - No retorna nada
+   */
   cerrarModal() {
     const modal = document.getElementById("modalResultados");
     modal.style.display = "none"; // Ocultar el modal
   }
-  // Método para construir el select de columnas de test
+  
+/**
+ * @method construirSelectTest
+ * @description Construye el select de columnas de test.
+ * @returns {void} - No retorna nada
+ */
 construirSelectTest() {
     const selectElement = document.getElementById("seleccioncolumnastest");
     if (!selectElement) {
@@ -511,7 +581,11 @@ construirSelectTest() {
     setLang();
 }
 
-// Método para modificar las columnas visibles en test
+/**
+ * @method modificarColumnasTest
+ * @description Modifica las columnas visibles en test.
+ * @param {string} columna - La columna a modificar
+ */
 modificarColumnasTest(columna) {
     let nuevascolumnas = [];
     
@@ -532,7 +606,11 @@ modificarColumnasTest(columna) {
     this.actualizarVisibilidadColumnasTest();
 }
 
-// Método para actualizar la visibilidad de las columnas en las tablas de test
+/**
+ * @method actualizarVisibilidadColumnasTest
+ * @description Actualiza la visibilidad de las columnas en las tablas de test.
+ * @returns {void} - No retorna nada
+ */
 actualizarVisibilidadColumnasTest() {
     const tablas = ['salidaresultadosprueba', 'tablaresultadostest', 'tablaresultadosprueba'];
     
@@ -544,7 +622,11 @@ actualizarVisibilidadColumnasTest() {
     });
 }
 
-// Método auxiliar para aplicar visibilidad a una tabla específica
+/**
+ * @method aplicarVisibilidadColumnas
+ * @description Aplica la visibilidad a una tabla específica.
+ * @param {string} tabla - La tabla a la que se le aplicará la visibilidad
+ */
 aplicarVisibilidadColumnas(tabla) {
     // Obtener todas las filas de la tabla
     const filas = tabla.querySelectorAll('tr');
@@ -564,7 +646,12 @@ aplicarVisibilidadColumnas(tabla) {
     });
 }
 
-// Método para construir el DOM del test con el selector de columnas
+
+/**
+ * @method construirDomTest
+ * @description Construye el DOM del test con el selector de columnas.
+ * @returns {void} - No retorna nada
+ */
 construirDomTest() {
     // Crear el contenedor del selector si no existe
     let selectorContainer = document.getElementById("selector_columnas_test");

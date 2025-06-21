@@ -680,7 +680,7 @@
 #api-nav {
   position: sticky;
   top: 75px;
-  width: 280px;
+  margin-right: 20px;
   max-height: calc(100vh - 95px);
   flex-shrink: 0;
   background: var(--color-bg);

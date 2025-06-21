@@ -45,41 +45,8 @@ class Entidad_Abstracta extends Dom {
     this.SEARCH();
   }
 
-  /**
-   * @method cerrar_test
-   * @description Cierra la visualización de los tests y limpia los resultados.
-   * Oculta el div de tests y limpia los contenidos de las tablas de resultados.
-   */
-  cerrar_test() {
-    // ... existing code ...
-  }
-
-  /**
-   * @method SEARCH
-   * @description Realiza una búsqueda en la entidad y actualiza la visualización
-   * de los resultados en la tabla de datos.
-   */
-  async SEARCH() {
-    await this.access_functions
-      .back_request("IU_form", this.entidad, "SEARCH")
-      .then((respuesta) => {
-        //limpiar el formulario
-
-        this.cargar_formulario("SEARCH");
-        //quito los class de la muestra de filas
-        document.getElementById("muestradatostabla").removeAttribute("class");
-        //poner el div del formulario no visible
-        document.getElementById("div_IU_form").style.display = "none";
-        this.datos = respuesta["resource"];
-        this.atributos = Object.keys(respuesta["criteriosbusqueda"]);
-        this.crearTablaDatos();
-
-        setLang();
-
-      });
 
 
-  }
 
   /**
    * @method createFormGenerico
@@ -90,9 +57,11 @@ class Entidad_Abstracta extends Dom {
    * 3. Configura las validaciones
    * 4. Añade el botón de acción
    * 5. Configura los eventos del formulario
-   * 
+   * 6. Aplica la visibilidad de columnas según configuración
    * @param {string} action - Acción a realizar (ADD, EDIT, DELETE, SEARCH)
    * @param {object} parametros - Parámetros opcionales para cargar en el formulario
+   * 
+   * @returns {void} - No retorna nada
    */
   createFormGenerico(action, parametros = null) {
     this.cargar_formulario(action);
@@ -152,6 +121,7 @@ class Entidad_Abstracta extends Dom {
    * Intenta usar un método estático si existe, o crea un formulario dinámico.
    * 
    * @param {string} action - Acción para la que cargar el formulario
+   * @returns {void} - No retorna nada
    */
   cargar_formulario(action) {
     if (eval(this.cargar_formularios_estatico)) {
@@ -169,6 +139,7 @@ class Entidad_Abstracta extends Dom {
    * 2. Construye la estructura de la tabla
    * 3. Configura el selector de columnas
    * 4. Aplica la visibilidad de columnas según configuración
+   * @returns {void} - No retorna nada
    */
   crearTablaDatos() {
     document.getElementById("id_tabla_datos").style.display = "block";
@@ -184,6 +155,38 @@ class Entidad_Abstracta extends Dom {
     }
   }
 
+    /**
+   * @method SEARCH
+   * @description Realiza una búsqueda en la entidad y actualiza la visualización
+   * de los resultados en la tabla de datos.
+   * Proceso:
+   * 1. Envía la solicitud al backend
+   * 2. Maneja la respuesta
+   * 3. Actualiza la interfaz según el resultado
+   * 
+   * @returns {Promise} - Promesa que se resuelve cuando la operación se completa
+   */
+    async SEARCH() {
+      await this.access_functions
+        .back_request("IU_form", this.entidad, "SEARCH")
+        .then((respuesta) => {
+          //limpiar el formulario
+  
+          this.cargar_formulario("SEARCH");
+          //quito los class de la muestra de filas
+          document.getElementById("muestradatostabla").removeAttribute("class");
+          //poner el div del formulario no visible
+          document.getElementById("div_IU_form").style.display = "none";
+          this.datos = respuesta["resource"];
+          this.atributos = Object.keys(respuesta["criteriosbusqueda"]);
+          this.crearTablaDatos();
+  
+          setLang();
+  
+        });
+  
+  
+    }
   /**
    * @method ADD
    * @description Realiza la operación de añadir un nuevo registro.
@@ -280,14 +283,5 @@ class Entidad_Abstracta extends Dom {
       });
   }
 
-  /**
-   * @method cambiacolumnastabla
-   * @description Cambia la visibilidad de una columna específica en la tabla.
-   * 
-   * @param {string} atributo - Nombre del atributo/columna a modificar
-   */
-  cambiacolumnastabla(atributo) {
-    document.querySelector("th[class='" + atributo + "']").style.display =
-      "none";
-  }
+  
 }

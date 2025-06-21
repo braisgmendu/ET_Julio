@@ -53,6 +53,7 @@ class Dom_validations extends Dom{
      * - 'onchange' para otros elementos
      * 
      * @param {string} action - Acción para la que cargar las validaciones (ADD, EDIT, SEARCH, DELETE)
+     * @returns {void} - No retorna nada
      */
     load_validations(action) {
         const elementos = document.forms['IU_form'].elements;

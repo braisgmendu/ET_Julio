@@ -17,9 +17,21 @@
         <main id="main" class="api-main">
             <h1 class="api-page-title">Documentación de la API</h1>
 
+            <!-- SECCIÓN: CLASES PARA MODIFICAR HTML/DOM -->
+            <section id="clases-dom" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">Clases para Modificar HTML</h2>
+                </header>
+                <article>
+                    <div class="api-description">
+                        <p>Estas clases son responsables de la manipulación del DOM, creación de formularios, tablas y elementos de la interfaz de usuario.</p>
+                    </div>
+                </article>
+            </section>
+
             <section id="dom" class="api-section">
                 <header class="api-section-header">
-                    <h2 class="api-section-title">Dom</h2>
+                    <h3 class="api-section-title">Dom</h3>
                 </header>
                 <article>
                     <div class="api-container-overview">
@@ -30,9 +42,17 @@
                                 de la interfaz.</p>
                         </div>
                         <div class="api-method">
+                            <h4 class="api-method-title">constructor()</h4>
+                            <div class="api-description">Inicializa la clase Dom con las referencias básicas al formulario y configuración
+                                de columnas para tests. Establece las columnas disponibles y visibles por defecto para
+                                la visualización de resultados de tests.</div>
+                        </div>
+                        <div class="api-method">
                             <h4 class="api-method-title">createForm(action, estructura)</h4>
-                            <div class="api-description">Crea un formulario dinámico basado en la estructura proporcionada.
-                            </div>
+                            <div class="api-description">Crea un formulario dinámico basado en la estructura proporcionada y la acción solicitada.
+                                El método maneja diferentes tipos de formularios (ADD, EDIT, SEARCH, DELETE, SHOWCURRENT) y
+                                aplica lógica específica para cada tipo. Limpia el formulario existente y crea nuevos campos
+                                según la estructura de la entidad.</div>
                             <div class="api-param">
                                 <strong>Parámetros:</strong>
                                 <ul>
@@ -42,111 +62,273 @@
                             </div>
                         </div>
                         <div class="api-method">
+                            <h4 class="api-method-title">handleAddField(nombreAtributo, def)</h4>
+                            <div class="api-description">Crea un campo específico para formularios de adición. Excluye campos autoincrementales y campos de archivo.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>nombreAtributo (string): Nombre del atributo a crear</li>
+                                    <li>def (object): Definición del campo</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> HTMLElement - El elemento del campo creado o null si debe ser excluido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">handleEditField(nombreAtributo, def)</h4>
+                            <div class="api-description">Crea un campo específico para formularios de edición. Marca como readonly los campos que son clave primaria o campos de archivo.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>nombreAtributo (string): Nombre del atributo a crear</li>
+                                    <li>def (object): Definición del campo</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> HTMLElement - El elemento del campo creado
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">handleSearchField(nombreAtributo, def)</h4>
+                            <div class="api-description">Crea un campo específico para formularios de búsqueda. Marca como readonly los campos que son clave primaria o campos de archivo.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>nombreAtributo (string): Nombre del atributo a crear</li>
+                                    <li>def (object): Definición del campo</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> HTMLElement - El elemento del campo creado
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">handleDeleteField(nombreAtributo, def)</h4>
+                            <div class="api-description">Crea un campo específico para formularios de eliminación. Marca como readonly los campos que son clave primaria o campos de archivo.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>nombreAtributo (string): Nombre del atributo a crear</li>
+                                    <li>def (object): Definición del campo</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> HTMLElement - El elemento del campo creado
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">createField(nombreAtributo, def, isReadOnly)</h4>
+                            <div class="api-description">Crea un campo genérico para formularios. Maneja diferentes tipos de campos (input, select, etc.) y crea los elementos de error correspondientes.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>nombreAtributo (string): Nombre del atributo a crear</li>
+                                    <li>def (object): Definición del campo</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> HTMLElement - El elemento del campo creado
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">colocarboton(action)</h4>
+                            <div class="api-description">Crea un botón para el formulario. El botón se crea en el contenedor de botones del formulario.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>action (string): Acción a realizar (ADD, EDIT, SEARCH, DELETE, SHOWCURRENT)</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">load_data(contenido)</h4>
+                            <div class="api-description">Carga los datos del formulario. Carga los datos del formulario.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>contenido (object): Los datos a cargar en el formulario</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">construirSelect()</h4>
+                            <div class="api-description">Construye un select con las columnas disponibles para la tabla.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
                             <h4 class="api-method-title">hacertabla()</h4>
-                            <div class="api-description">Genera una tabla HTML con los datos proporcionados.</div>
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-            <section id="dom-validations" class="api-section">
-                <header class="api-section-header">
-                    <h2 class="api-section-title">Dom_validations</h2>
-                </header>
-                <article>
-                    <div class="api-container-overview">
-                        <div class="api-description">
-                            <p>Clase que maneja las validaciones de formularios y campos.</p>
-                        </div>
-                        <div class="api-method">
-                            <h4 class="api-method-title">validarFormulario()</h4>
-                            <div class="api-description">Valida todos los campos del formulario actual.</div>
+                            <div class="api-description">Construye una tabla dinámica con los datos proporcionados.
+                                Maneja la creación de encabezados, filas y celdas, incluyendo la sanitización
+                                de datos para prevenir XSS. También agrega botones de acción para cada fila.
+                            </div>
                             <div class="api-return">
-                                <strong>Retorna:</strong> boolean - true si todos los campos son válidos
+                                <strong>Retorna:</strong> void - No retorna nada
                             </div>
                         </div>
-                    </div>
-                </article>
-            </section>
-
-            <section id="validaciones-atomicas" class="api-section">
-                <header class="api-section-header">
-                    <h2 class="api-section-title">Validaciones_Atomicas</h2>
-                </header>
-                <article>
-                    <div class="api-container-overview">
-                        <div class="api-description">
-                            <p>Clase que proporciona validaciones atómicas para los campos de formulario.</p>
-                        </div>
                         <div class="api-method">
-                            <h4 class="api-method-title">min_size(id, parametro)</h4>
-                            <div class="api-description">Valida que el tamaño del campo sea mayor o igual al parámetro
-                                especificado.</div>
+                            <h4 class="api-method-title">modificarcolumnasamostrar(atributo)</h4>
+                            <div class="api-description">Modifica la visibilidad de las columnas en la tabla.
+                                Permite añadir o eliminar columnas de la visualización actual.
+                            </div>
                             <div class="api-param">
                                 <strong>Parámetros:</strong>
                                 <ul>
-                                    <li>id (string): ID del campo a validar</li>
-                                    <li>parametro (number): Tamaño mínimo permitido</li>
+                                    <li>atributo (string): Nombre del atributo a modificar</li>
                                 </ul>
                             </div>
                             <div class="api-return">
-                                <strong>Retorna:</strong> boolean - true si el tamaño es válido
+                                <strong>Retorna:</strong> void - No retorna nada
                             </div>
                         </div>
                         <div class="api-method">
-                            <h4 class="api-method-title">max_size(campo, param)</h4>
-                            <div class="api-description">Valida que el tamaño del campo sea menor o igual al parámetro
-                                especificado.</div>
+                            <h4 class="api-method-title">mostrarocultarcolumnas()</h4>
+                            <div class="api-description">Muestra o oculta las columnas en la tabla.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">mostrar_error_campo(id, codigoerror)</h4>
+                            <div class="api-description">Muestra un mensaje de error para un campo específico.
+                                Actualiza la apariencia visual del campo y muestra el mensaje de error.
+                            </div>
                             <div class="api-param">
                                 <strong>Parámetros:</strong>
                                 <ul>
-                                    <li>campo (string): ID del campo a validar</li>
-                                    <li>param (number): Tamaño máximo permitido</li>
+                                    <li>id (string): ID del campo</li>
+                                    <li>codigoerror (string): Código o mensaje de error</li>
                                 </ul>
                             </div>
                             <div class="api-return">
-                                <strong>Retorna:</strong> boolean - true si el tamaño es válido
+                                <strong>Retorna:</strong> void - No retorna nada
                             </div>
                         </div>
                         <div class="api-method">
-                            <h4 class="api-method-title">reg_exp(campo, param)</h4>
-                            <div class="api-description">Valida que el campo cumpla con la expresión regular especificada.</div>
+                            <h4 class="api-method-title">mostrar_exito_campo(id)</h4>
+                            <div class="api-description">Muestra un mensaje de éxito para un campo específico.
+                                 Actualiza la apariencia visual del campo y muestra el mensaje de éxito.
+                            </div>
                             <div class="api-param">
                                 <strong>Parámetros:</strong>
                                 <ul>
-                                    <li>campo (string): ID del campo a validar</li>
-                                    <li>param (string): Expresión regular a validar</li>
+                                    <li>id (string): ID del campo</li>
+                                </ul>
+                            </div>  
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">crearboton(entidad, accion, parametros)</h4>
+                            <div class="api-description">Crea un botón para el formulario. El botón se crea en el contenedor de botones del formulario.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>entidad (string): La entidad a la que pertenece el botón</li>
+                                    <li>accion (string): La acción a realizar (ADD, EDIT, SEARCH, DELETE, SHOWCURRENT)</li>
+                                    <li>parametros (object): Los parámetros a pasar al botón</li>
                                 </ul>
                             </div>
                             <div class="api-return">
-                                <strong>Retorna:</strong> boolean - true si el campo cumple con la expresión regular
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </section>
-
-            <section id="test-iu" class="api-section">
-                <header class="api-section-header">
-                    <h2 class="api-section-title">test_IU</h2>
-                </header>
-                <article>
-                    <div class="api-container-overview">
-                        <div class="api-description">
-                            <p>Clase que maneja la ejecución y validación de tests de la interfaz de usuario.</p>
-                        </div>
-                        <div class="api-method">
-                            <h4 class="api-method-title">test_run()</h4>
-                            <div class="api-description">Ejecuta la suite de tests.</div>
-                            <div class="api-return">
-                                <strong>Retorna:</strong> Promise - Resultado de la ejecución de los tests
+                                <strong>Retorna:</strong> void - No retorna nada
                             </div>
                         </div>
                         <div class="api-method">
-                            <h4 class="api-method-title">verificarPruebas()</h4>
-                            <div class="api-description">Verifica los resultados de las pruebas ejecutadas.</div>
+                            <h4 class="api-method-title">cerrar_formulario()</h4>
+                            <div class="api-description">Cierra el formulario actual.</div>
                             <div class="api-return">
-                                <strong>Retorna:</strong> boolean - true si todas las pruebas pasan
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">cerrar_test()</h4>
+                            <div class="api-description">Cierra el test actual.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">cerrar_tabla()</h4>
+                            <div class="api-description">Cierra la tabla actual.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">ocultar_boton_test()</h4>
+                            <div class="api-description">Oculta el botón de test.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">mostrar_boton_test()</h4>
+                            <div class="api-description">Muestra el botón de test.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">abrirModalError(errorMsg)</h4>
+                            <div class="api-description">Abre un modal para mostrar mensajes de error.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>errorMsg (string): Mensaje de error a mostrar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">cerrarModalError()</h4>
+                            <div class="api-description">Cierra el modal de error y su overlay asociado.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">mostrarModal()</h4>
+                            <div class="api-description">Muestra el modal de resultados.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">cerrarModal()</h4>
+                            <div class="api-description">Cierra el modal de resultados.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">construirSelectTest()</h4>
+                            <div class="api-description">Construye el select de columnas de test.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">modificarColumnasTest(columna)</h4>
+                            <div class="api-description">Modifica las columnas visibles en test.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>columna (string): La columna a modificar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
                             </div>
                         </div>
                     </div>
@@ -155,23 +337,57 @@
 
             <section id="entidad-abstracta" class="api-section">
                 <header class="api-section-header">
-                    <h2 class="api-section-title">Entidad_Abstracta</h2>
+                    <h3 class="api-section-title">Entidad_Abstracta</h3>
                 </header>
                 <article>
                     <div class="api-container-overview">
                         <div class="api-description">
-                            <p>Clase base abstracta que define la estructura y comportamiento común para todas las entidades
-                                del sistema.</p>
+                            <p>Clase abstracta base para todas las entidades del sistema.
+                                Esta clase proporciona la funcionalidad base para la gestión de entidades, incluyendo:
+                                <ul style="list-style-type: disc; margin-left: 20px;">
+                                    <li>Gestión de formularios (creación, carga, validación)</li>
+                                    <li>Operaciones CRUD (ADD, EDIT, DELETE, SEARCH)</li>
+                                    <li>Manejo de tablas de datos</li>
+                                    <li>Integración con validaciones y tests</li>
+                                    <li>Gestión de archivos y datos especiales</li>
+                                </ul>
+                            </p>
                         </div>
                         <div class="api-method">
                             <h4 class="api-method-title">constructor(entidad, def_estructura)</h4>
-                            <div class="api-description">Inicializa una nueva instancia de la entidad abstracta.</div>
+                            <div class="api-description">Inicializa la entidad abstracta con sus componentes básicos.
+                                Configura las validaciones, acceso externo y tests, además de inicializar
+                                la visualización del workspace.</div>
                             <div class="api-param">
                                 <strong>Parámetros:</strong>
                                 <ul>
                                     <li>entidad (string): Nombre de la entidad</li>
                                     <li>def_estructura (object): Definición de la estructura de la entidad</li>
                                 </ul>
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">createFormGenerico(action, parametros = null)</h4>
+                            <div class="api-description">Crea un formulario genérico para una acción específica.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Carga el formulario</li>
+                                    <li>Carga los datos si se proporcionan</li>
+                                    <li>Configura las validaciones</li>
+                                    <li>Añade el botón de acción</li>
+                                    <li>Configura los eventos del formulario</li>
+                                    <li>Aplica la visibilidad de columnas según configuración</li>
+                                </ol>
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>action (string): Acción a realizar (ADD, EDIT, DELETE, SEARCH)</li>
+                                    <li>parametros (object): Parámetros opcionales para cargar en el formulario</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
                             </div>
                         </div>
                         <div class="api-method">
@@ -190,34 +406,79 @@
                                 <strong>Retorna:</strong> any - Valor transformado (por defecto retorna el valor original)
                             </div>
                         </div>
+
                         <div class="api-method">
-                            <h4 class="api-method-title">createFormGenerico(action, parametros)</h4>
-                            <div class="api-description">Crea un formulario genérico para una acción específica.</div>
+                            <h4 class="api-method-title">cargar_formulario(action)</h4>
+                            <div class="api-description">Carga el formulario para una acción específica.
+                                Intenta usar un método estático si existe, o crea un formulario dinámico.
+                            </div>
                             <div class="api-param">
                                 <strong>Parámetros:</strong>
                                 <ul>
                                     <li>action (string): Acción a realizar (ADD, EDIT, DELETE, SEARCH)</li>
-                                    <li>parametros (object): Parámetros opcionales para cargar en el formulario</li>
                                 </ul>
                             </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>  
+
+                        <div class="api-method">
+                            <h4 class="api-method-title">crearTablaDatos()</h4>
+                            <div class="api-description">Crea y configura la tabla de datos.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Muestra la tabla</li>
+                                    <li>Construye la estructura de la tabla</li>
+                                    <li>Configura el selector de columnas</li>
+                                    <li>Aplica la visibilidad de columnas según configuración</li>
+                                </ol>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
                         </div>
+
                         <div class="api-method">
                             <h4 class="api-method-title">ADD()</h4>
-                            <div class="api-description">Realiza la operación de añadir un nuevo registro.</div>
+                            <div class="api-description">
+                                Realiza la operación de añadir un nuevo registro.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Envía la solicitud al backend</li>
+                                    <li>Maneja la respuesta</li>
+                                    <li>Actualiza la interfaz según el resultado</li>
+                                </ol>
+                            </div>
                             <div class="api-return">
                                 <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
                             </div>
                         </div>
                         <div class="api-method">
                             <h4 class="api-method-title">EDIT()</h4>
-                            <div class="api-description">Realiza la operación de editar un registro existente.</div>
+                            <div class="api-description">Realiza la operación de editar un registro existente.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Envía la solicitud al backend</li>
+                                    <li>Maneja la respuesta</li>
+                                    <li>Actualiza la interfaz según el resultado</li>
+                                </ol>
+                            </div>
                             <div class="api-return">
                                 <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
                             </div>
                         </div>
                         <div class="api-method">
-                            <h4 class="api-method-title">DELETE()</h4>
-                            <div class="api-description">Realiza la operación de eliminar un registro.</div>
+                            <h4 class="api-method-title">DELETE()
+                            </h4>
+                            <div class="api-description">Realiza la operación de eliminar un registro.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Envía la solicitud al backend</li>
+                                    <li>Maneja la respuesta</li>
+                                    <li>Actualiza la interfaz según el resultado</li>
+                                </ol>
+                            </div>
                             <div class="api-return">
                                 <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la operación se completa
                             </div>
@@ -225,7 +486,14 @@
                         <div class="api-method">
                             <h4 class="api-method-title">SEARCH()</h4>
                             <div class="api-description">Realiza una búsqueda en la entidad y actualiza la visualización de los
-                                resultados.</div>
+                                resultados.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Envía la solicitud al backend</li>
+                                    <li>Maneja la respuesta</li>
+                                    <li>Actualiza la interfaz según el resultado</li>
+                                </ol>
+                            </div>
                             <div class="api-return">
                                 <strong>Retorna:</strong> Promise - Promesa que se resuelve cuando la búsqueda se completa
                             </div>
@@ -234,36 +502,9 @@
                 </article>
             </section>
 
-            <section id="external-access" class="api-section">
-                <header class="api-section-header">
-                    <h2 class="api-section-title">ExternalAccess</h2>
-                </header>
-                <article>
-                    <div class="api-container-overview">
-                        <div class="api-description">
-                            <p>Clase que maneja las comunicaciones con el backend y el acceso a recursos externos.</p>
-                        </div>
-                        <div class="api-method">
-                            <h4 class="api-method-title">back_request(action, data)</h4>
-                            <div class="api-description">Realiza una petición al backend.</div>
-                            <div class="api-param">
-                                <strong>Parámetros:</strong>
-                                <ul>
-                                    <li>action (string): Acción a realizar</li>
-                                    <li>data (object): Datos a enviar</li>
-                                </ul>
-                            </div>
-                            <div class="api-return">
-                                <strong>Retorna:</strong> Promise - Resultado de la petición
-                            </div>
-                        </div>
-                    </div>
-                </article>
-            </section>
-
             <section id="analysis-preparation" class="api-section">
                 <header class="api-section-header">
-                    <h2 class="api-section-title">analysis_preparation</h2>
+                    <h3 class="api-section-title">analysis_preparation</h3>
                 </header>
                 <article>
                     <div class="api-container-overview">
@@ -297,7 +538,7 @@
 
             <section id="characteristic" class="api-section">
                 <header class="api-section-header">
-                    <h2 class="api-section-title">characteristic</h2>
+                    <h3 class="api-section-title">characteristic</h3>
                 </header>
                 <article>
                     <div class="api-container-overview">
@@ -331,7 +572,7 @@
 
             <section id="project" class="api-section">
                 <header class="api-section-header">
-                    <h2 class="api-section-title">project</h2>
+                    <h3 class="api-section-title">project</h3>
                 </header>
                 <article>
                     <div class="api-container-overview">
@@ -378,21 +619,375 @@
                     </div>
                 </article>
             </section>
+
+            <!-- SECCIÓN: CLASES PARA VALIDACIONES -->
+            <section id="clases-validaciones" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">Clases para Validaciones</h2>
+                </header>
+                <article>
+                    <div class="api-description">
+                        <p>Estas clases manejan la validación de formularios, campos y datos de entrada del sistema.</p>
+                    </div>
+                </article>
+            </section>
+
+            <section id="dom-validations" class="api-section">
+                <header class="api-section-header">
+                    <h3 class="api-section-title">Dom_validations</h3>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                                <p>Clase que maneja las validaciones del DOM, extendiendo la funcionalidad de la clase Dom.
+                                    Esta clase implementa un sistema completo de validación de formularios que incluye:
+                                </p>
+                                <ul style="list-style-type: disc; margin-left: 20px;">
+                                    <li>Validaciones atómicas (tamaño mínimo/máximo, expresiones regulares)</li>
+                                    <li>Validaciones de archivos (tipo, tamaño, formato de nombre)</li>
+                                    <li>Validaciones especiales por campo</li>
+                                    <li>Validaciones específicas por acción (ADD, EDIT, SEARCH, DELETE)</li>
+                                </ul>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">constructor(validaciones, entidad, entidadObj)</h4>
+                            <div class="api-description"> Inicializa la clase de validaciones con las dependencias necesarias.
+                                Configura el contexto de validación para una entidad específica y asegura que
+                                el método comprobarCampo esté disponible globalmente.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>validaciones (object): Instancia de la clase de validaciones atómicas</li>
+                                    <li>entidad (string): Nombre de la entidad a validar</li>
+                                    <li>entidadObj (object): Objeto de la entidad a validar</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">getAttributes()</h4>
+                            <div class="api-description">Obtiene la estructura de atributos definida para la entidad actual.
+                                Evalúa dinámicamente la estructura de la entidad para obtener sus atributos
+                                y reglas de validación.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> Object - Objeto con la definición de atributos de la entidad
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">load_validations(action)</h4>
+                            <div class="api-description">Carga y configura las validaciones para todos los campos del formulario.
+                                Asigna eventos de validación apropiados según el tipo de campo:
+                                - 'onblur' para inputs normales
+                                - 'onchange' para otros elementos
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>action (string): Acción a realizar (ADD, EDIT, SEARCH, DELETE)</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> void - No retorna nada
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">comprobarCampo(campo, action)</h4>
+                            <div class="api-description">
+                                <p>Valida un campo específico del formulario según la acción indicada.
+                                    Realiza validaciones atómicas, especiales y específicas por acción.</p>
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Verificación de existencia de definiciones para el campo</li>
+                                    <li>Validación especial genérica</li>
+                                    <li>Manejo específico para campos de archivo</li>
+                                    <li>Validaciones según la acción (SEARCH, ADD, EDIT)</li>
+                                </ol>
+                                <p>Tipos de validaciones soportadas:</p>
+                                <ul style="list-style-type: disc; margin-left: 20px;">
+                                    <li>min_size: Tamaño mínimo</li>
+                                    <li>max_size: Tamaño máximo</li>
+                                    <li>reg_exp: Expresión regular</li>
+                                    <li>valid_date: Validación de fecha</li>
+                                </ul>
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>campo (string): ID del campo a validar</li>
+                                    <li>action (string): Acción a realizar (ADD, EDIT, SEARCH, DELETE)</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean|string - true si el campo es válido, mensaje de error en caso contrario
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">submit_test(action)</h4>
+                            <div class="api-description">Realiza una validación completa de todos los campos del formulario.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Obtiene todos los atributos con reglas de validación</li>
+                                    <li>Filtra los atributos que tienen reglas para la acción específica</li>
+                                    <li>Valida cada campo</li>
+                                    <li>Recopila y reporta errores</li>
+                                </ol>
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>action (string): Acción a realizar (ADD, EDIT, SEARCH, DELETE)</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si todos los campos son válidos, false si hay errores
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">check_special_tests(atributo, value)</h4>
+                            <div class="api-description">Verifica si un valor específico cumple con las reglas especiales de validación.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Obtiene la definición de validación especial para el atributo</li>
+                                    <li>Valida el valor según las reglas especiales</li>
+                                </ol>
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>atributo (string): Nombre del atributo a validar</li>
+                                    <li>value (any): Valor a validar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean|string - true si el valor es válido, mensaje de error en caso contrario
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <section id="validaciones-atomicas" class="api-section">
+                <header class="api-section-header">
+                    <h3 class="api-section-title">Validaciones_Atomicas</h3>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que proporciona validaciones atómicas para los campos de formulario.
+                                Proporciona un conjunto completo de métodos para validar:
+                                <ul style="list-style-type: disc; margin-left: 20px;">
+                                    <li>Tamaños de campos (mínimo y máximo)</li>
+                                    <li>Expresiones regulares</li>
+                                    <li>Archivos (tamaño, tipo, formato de nombre)</li>
+                                    <li>Validaciones específicas para archivos</li>
+                                </ul>
+                            </p>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">constructor()</h4>
+                            <div class="api-description">Inicializa la clase Validaciones_Atomicas.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">min_size(id, parametro)</h4>
+                            <div class="api-description">Valida que el tamaño del campo sea mayor o igual al parámetro
+                                especificado.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Verifica que el campo existe</li>
+                                    <li>Obtiene el valor del campo</li>
+                                    <li>Compara el tamaño del valor con el parámetro</li>
+                                </ol>
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>id (string): ID del campo a validar</li>
+                                    <li>parametro (number): Tamaño mínimo permitido</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el tamaño es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">min_size(id, parametro)</h4>
+                            <div class="api-description">Valida que el tamaño del campo sea mayor o igual al parámetro
+                                especificado.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Verifica que el campo existe</li>
+                                    <li>Obtiene el valor del campo</li>
+                                    <li>Compara el tamaño del valor con el parámetro</li>
+                                </ol>
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>id (string): ID del campo a validar</li>
+                                    <li>parametro (number): Tamaño mínimo permitido</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el tamaño es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">max_size(campo, param)</h4>
+                            <div class="api-description">Valida que el tamaño del campo sea menor o igual al parámetro
+                                especificado.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Verifica que el campo existe</li>
+                                    <li>Obtiene el valor del campo</li>
+                                    <li>Compara el tamaño del valor con el parámetro</li>
+                                </ol>
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>campo (string): ID del campo a validar</li>
+                                    <li>param (number): Tamaño máximo permitido</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el tamaño es válido
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">reg_exp(campo, param)</h4>
+                            <div class="api-description">Valida que el campo cumpla con la expresión regular especificada.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>campo (string): ID del campo a validar</li>
+                                    <li>param (string): Expresión regular a validar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si el campo cumple con la expresión regular
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- SECCIÓN: CLASES PARA TESTS -->
+            <section id="clases-tests" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">Clases para Tests</h2>
+                </header>
+                <article>
+                    <div class="api-description">
+                        <p>Estas clases manejan la ejecución de tests y validación de pruebas del sistema.</p>
+                    </div>
+                </article>
+            </section>
+
+            <section id="test-iu" class="api-section">
+                <header class="api-section-header">
+                    <h3 class="api-section-title">test_IU</h3>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que maneja la ejecución y validación de tests de la interfaz de usuario.</p>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">test_run()</h4>
+                            <div class="api-description">Ejecuta la suite de tests.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> Promise - Resultado de la ejecución de los tests
+                            </div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">verificarPruebas()</h4>
+                            <div class="api-description">Verifica los resultados de las pruebas ejecutadas.</div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> boolean - true si todas las pruebas pasan
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
+
+            <!-- SECCIÓN: ACCESO AL BACKEND -->
+            <section id="acceso-backend" class="api-section">
+                <header class="api-section-header">
+                    <h2 class="api-section-title">Acceso al Backend</h2>
+                </header>
+                <article>
+                    <div class="api-description">
+                        <p>Estas clases manejan la comunicación y acceso a servicios del backend del sistema.</p>
+                    </div>
+                </article>
+            </section>
+
+            <section id="external-access" class="api-section">
+                <header class="api-section-header">
+                    <h3 class="api-section-title">ExternalAccess</h3>
+                </header>
+                <article>
+                    <div class="api-container-overview">
+                        <div class="api-description">
+                            <p>Clase que maneja las comunicaciones con el backend del sistema.
+                                Proporciona métodos para realizar peticiones HTTP al servidor, específicamente
+                                para operaciones CRUD y otras interacciones con el backend. </p>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">constructor()</h4>
+                            <div class="api-description">Inicializa la clase ExternalAccess.</div>
+                        </div>  
+                        <div class="api-method">
+                            <h4 class="api-method-title">back_request(action, data)</h4>
+                            <div class="api-description">Realiza una petición POST al backend del sistema.
+                                Proceso:
+                                <ol style="list-style-type: decimal; margin-left: 20px;">
+                                    <li>Prepara los datos del formulario o crea un FormData vacío</li>
+                                    <li>Añade el controlador y la acción</li>
+                                    <li>Añade datos extra si se proporcionan</li>
+                                    <li>Realiza la petición AJAX</li>
+                                </ol>
+                            </div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>action (string): Acción a realizar</li>
+                                    <li>data (object): Datos a enviar</li>
+                                </ul>
+                            </div>
+                            <div class="api-return">
+                                <strong>Retorna:</strong> Promise - Resultado de la petición
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </section>
         </main>
 
         <nav id="api-nav">
             <h2 class="api-nav-title"><a href="#main">Inicio</a></h2>
-            <h3 class="api-nav-title">Clases</h3>
+            
+            <h3 class="api-nav-title">Clases para modificar HTML</h3>
             <ul>
                 <li><a href="#dom">Dom</a></li>
-                <li><a href="#dom-validations">Dom_validations</a></li>
                 <li><a href="#entidad-abstracta">Entidad_Abstracta</a></li>
-                <li><a href="#external-access">ExternalAccess</a></li>
-                <li><a href="#validaciones-atomicas">Validaciones_Atomicas</a></li>
                 <li><a href="#analysis-preparation">analysis_preparation</a></li>
                 <li><a href="#characteristic">characteristic</a></li>
                 <li><a href="#project">project</a></li>
+            </ul>
+
+            <h3 class="api-nav-title">Clases para Validaciones</h3>
+            <ul>
+                <li><a href="#dom-validations">Dom_validations</a></li>
+                <li><a href="#validaciones-atomicas">Validaciones_Atomicas</a></li>
+            </ul>
+
+            <h3 class="api-nav-title">Clases para Tests</h3>
+            <ul>
                 <li><a href="#test-iu">test_IU</a></li>
+            </ul>
+
+            <h3 class="api-nav-title">Acceso al Backend</h3>
+            <ul>
+                <li><a href="#external-access">ExternalAccess</a></li>
             </ul>
         </nav>
     </div>
