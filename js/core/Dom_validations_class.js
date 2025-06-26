@@ -118,7 +118,10 @@ class Dom_validations extends Dom{
             console.warn(`No hay validaciones definidas para el campo: ${campo} y acción: ${action}`);
             return true;
         }
-
+         // Si es SEARCH y no hay valor, permitir la búsqueda
+         if (action === 'SEARCH' && !valor) {
+            return true;
+        }
         // 2. Validación especial genérica
         const resultadoEspecial = this.check_special_tests(campo,valor);
         if (resultadoEspecial !== true) {
@@ -134,10 +137,7 @@ class Dom_validations extends Dom{
 
         const reglasAccion = validacionesCampo[action] || {};
         
-        // Si es SEARCH y no hay valor, permitir la búsqueda
-        if (action === 'SEARCH' && !valor) {
-            return true;
-        }
+       
 
         // Si es SEARCH y hay valor, validar según las reglas
         if (action === 'SEARCH' && valor) {

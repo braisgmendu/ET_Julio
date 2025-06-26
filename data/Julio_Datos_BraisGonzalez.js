@@ -1,1 +1,1 @@
-let datos = ["ET_Julio", "53861955A", "Brais González Menduiña", 75];
+let info_entrega = ["ET_Julio", "53861955A", "Brais González Menduiña", 84];

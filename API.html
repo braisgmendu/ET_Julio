@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentación de la API</title>
     <link rel="stylesheet" href="css/IU.css">
     
@@ -47,6 +48,17 @@
                             <div class="api-description">Inicializa la clase Dom con las referencias básicas al formulario y configuración
                                 de columnas para tests. Establece las columnas disponibles y visibles por defecto para
                                 la visualización de resultados de tests.</div>
+                        </div>
+                        <div class="api-method">
+                            <h4 class="api-method-title">cargar_formulario_dinamico(action, estructura)</h4>
+                            <div class="api-description">Carga un formulario dinámico basado en la acción y estructura proporcionada.</div>
+                            <div class="api-param">
+                                <strong>Parámetros:</strong>
+                                <ul>
+                                    <li>action (string): La acción a realizar (ADD, EDIT, SEARCH, DELETE, SHOWCURRENT)</li>
+                                    <li>estructura (object): La estructura de la entidad que define los campos del formulario</li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="api-method">
                             <h4 class="api-method-title">createForm(action, estructura)</h4>

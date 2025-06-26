@@ -127,7 +127,7 @@ class Entidad_Abstracta extends Dom {
     if (eval(this.cargar_formularios_estatico)) {
       this.cargar_formularios_estatico();
     } else {
-      this.createForm(action, this.def_estructura);
+      this.cargar_formulario_dinamico(action, this.def_estructura);
     }
   }
 

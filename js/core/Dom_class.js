@@ -25,6 +25,15 @@ class Dom {
       'NumPrueba', 'valor', 'Respuesta Test','Respuesta esperada', 'Resultado'
     ]; // Columnas visibles por defecto
   }
+  /**
+   * @method cargar_formulario_dinamico
+   * @description Carga un formulario dinámico basado en la acción y estructura proporcionada.
+   * @param {string} action - La acción a realizar (ADD, EDIT, SEARCH, DELETE, SHOWCURRENT)
+   * @param {object} estructura - La estructura de la entidad que define los campos del formulario
+   */
+  cargar_formulario_dinamico(action, estructura) {
+    this.createForm(action, estructura);
+  }
    /**
    * @method createForm
    * @description Crea un formulario dinámico basado en la estructura proporcionada y la acción solicitada.
